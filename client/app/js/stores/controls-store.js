@@ -2,15 +2,14 @@ var AppDispatcher = require('../dispatcher/app-dispatcher');
 var EventEmitter = require('events').EventEmitter;
 var MessageConstants = require('../constants/viewport-constants');
 var assign = require('object-assign');
-var Controls = require('../components/controls/controls');
-var ControlsConstants = require('../constants/controls-constants');
+var controls = require('../components/controls');
 
 var CHANGE_EVENT = 'change';
 
 var ControlsStore = assign({}, EventEmitter.prototype, {
 
   getAll: function() {
-    return loadControls();
+    return controls;
   },
 
   emitChange: function() {
@@ -27,28 +26,7 @@ var ControlsStore = assign({}, EventEmitter.prototype, {
 });
 
 var loadControls = function() {
-  return [
-    {
-      name: 'one',
-      locations: [
-        {
-          name: ControlsConstants.TOOLBAR,
-          path: 'primary'
-        }
-      ],
-      icon: 'fa-plus'
-    },
-    {
-      name: 'two',
-      locations: [
-        {
-          name: ControlsConstants.TOOLBAR,
-          path: 'primary'
-        }
-      ],
-      icon: 'fa-minus'
-    }
-  ];
+  return controls;
 };
 
 module.exports = ControlsStore;

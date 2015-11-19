@@ -17,13 +17,18 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
+    "browserify-fs": "^1.0.0",
     "flux": "^2.1.1",
     "font-awesome": "^4.4.0",
     "foundation": "^4.2.1",
+    "fs": "0.0.2",
     "keymirror": "^0.1.1",
     "lodash": "^3.10.1",
     "object-assign": "^4.0.1",
+    "q": "^1.4.1",
     "react": "^0.14.2",
-    "react-dom": "^0.14.2"
+    "react-dom": "^0.14.2",
+    "schema-inspector": "^1.5.9",
+    "zurb-foundation-5": "^5.4.7"
   }
 }
