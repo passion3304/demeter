@@ -14896,8 +14896,8 @@ th.hide-for-touch {
   th.show-for-print {
     display: table-cell !important; } }
 
-.toolbar {
-  max-width: 300px; }
+button {
+  max-width: 75px; }
 
 body {
   background-color: #8ead86; }

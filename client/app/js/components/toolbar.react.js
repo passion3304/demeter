@@ -1,12 +1,25 @@
 var React = require('react');
-var ControlsStore = require('../stores/controls-store');
-var ControlsConstants = require('../constants/controls-constants');
+var classNames = require('classnames');
+var StateStore = require('../stores/state-store');
+var StateActions = require('../actions/state-actions');
 var _ = require('lodash');
 
 var Toolbar = React.createClass({
 
   getInitialState: function() {
-    return getToolbarControls();
+    return {
+      toolbarControls: []
+    };
+  },
+
+  componentDidMount: function() {
+    StateStore.addChangeListener(this.onChange);
+    this.setState({ toolbarControls: StateStore.getToolbarControls() });
+  },
+
+
+  componentWillUnmount: function() {
+    StateStore.removeChangeListener(this._onChange);
   },
 
   render: function() {
@@ -16,9 +29,16 @@ var Toolbar = React.createClass({
       <div className="toolbar">
         <ul className="stack button-group">
         {toolbarControls.map(function(control, i) {
+
+          var buttonClass = classNames({
+            'success' : (toolbarControls[i].type === 'command'),
+            'warning' : toolbarControls[i].active,
+            'button' : true
+          });
+
           return (
             <li key={i} className="toolbar-control">
-              <button key={i} className="button">
+              <button key={i} className={buttonClass} onClick={self.handleClick.bind(null, i)}>
                 <i className={"fa " + control.icon} />
               </button>
             </li>
@@ -27,23 +47,19 @@ var Toolbar = React.createClass({
         </ul>
       </div>
     );
+  },
+
+  handleClick: function(i) {
+
+    StateActions.changeToolbarSelection({
+      'id' : this.state.toolbarControls[i].id
+    });
+  },
+
+  onChange: function() {
+    this.setState({ toolbarControls: StateStore.getToolbarControls() });
   }
 });
 
-var getToolbarControls = function() {
-
-  var toolbarControls;
-  var allControls = ControlsStore.getAll();
-
-
-  // pull out just the controls that are meant for the toolbar
-  toolbarControls = _.filter(allControls, function(control) {
-    return _.some(control.locations, 'name', 'toolbar');
-  });
-
-  return {
-    toolbarControls: toolbarControls
-  };
-};
 
 module.exports = Toolbar;

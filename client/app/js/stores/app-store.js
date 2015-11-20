@@ -1,6 +1,5 @@
 var AppDispatcher = require('../dispatcher/app-dispatcher');
 var EventEmitter = require('events').EventEmitter;
-var MessageConstants = require('../constants/viewport-constants');
 var assign = require('object-assign');
 
 var CHANGE_EVENT = 'change';
