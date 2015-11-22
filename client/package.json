@@ -21,9 +21,8 @@
     "classnames": "^2.2.0",
     "flux": "^2.1.1",
     "font-awesome": "^4.4.0",
-    "foundation": "^4.2.1",
+    "foundation-sites": "^5.5.3",
     "fs": "0.0.2",
-    "guid": "0.0.12",
     "keymirror": "^0.1.1",
     "lodash": "^3.10.1",
     "node-uuid": "^1.4.7",
@@ -32,6 +31,6 @@
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "schema-inspector": "^1.5.9",
-    "zurb-foundation-5": "^5.4.7"
+    "three": "^0.73.0"
   }
 }

@@ -1,12 +1,31 @@
 var _ = require('lodash');
 var AppDispatcher = require('../dispatcher/app-dispatcher');
 var EventEmitter = require('events').EventEmitter;
+var ApplicationConstants = require('../constants/application-constants');
 var StateConstants = require('../constants/state-constants');
 var assign = require('object-assign');
+var commands = require('../ui-modules/commands/commands');
+var optionPanels = require('../ui-modules/option-panels/option-panels');
 
-var controls = require('../ui-modules/controls/controls');
+
+/**
+ *    globals
+ */
+
+var appState = {
+  selectedInteractiveCommand: null,
+  selectedBooleanCommands: [],
+  activeOptionsPanel: false
+};
+
+var uiModules = [];
 
 var CHANGE_EVENT = 'change';
+
+
+/**
+ *    public API
+ */
 
 var StateStore = assign({}, EventEmitter.prototype, {
 
@@ -22,45 +41,19 @@ var StateStore = assign({}, EventEmitter.prototype, {
     this.removeListener(CHANGE_EVENT, callback);
   },
 
-  getToolbarControls: function() {
-
-    // pull out just the controls that are meant for the toolbar
-    return _.filter(controls, function(control) {
-      return _.some(control.locations, 'name', 'toolbar');
-    });
+  getToolbarCommands: function() {
+    return _getToolbarCommands();
   }
 });
 
+/**
+ *    one big switch statement with a case for each listener
+ */
+
 AppDispatcher.register(function(action) {
   switch (action.actionType) {
-    case StateConstants.TOOLBAR_SELECTION_CHANGED:
-
-      var controlClicked = _.find(controls, { 'id' : action.id });
-
-      switch (controlClicked.type) {
-        case 'command':
-          return;
-        case 'boolean':
-          controlClicked.active = !controlClicked.active;
-          break;
-        case 'modal':
-          if (controlClicked.active) {
-            return;
-          } else {
-            controlClicked.active = !controlClicked.active;
-
-            // deselect other modal controls
-            _.forEach( _.reject(controls, { 'id' : action.id }), function(otherControl) {
-              if (otherControl.type === 'modal' && otherControl.active) {
-                otherControl.active = false;
-              }
-            });
-          }
-          break;
-        default:
-          // no op
-      }
-
+    case StateConstants.SELECT_CONTROL:
+      _selectCommand(action.command);
       StateStore.emitChange();
       break;
 
@@ -68,5 +61,95 @@ AppDispatcher.register(function(action) {
     // no op
   }
 });
+
+
+/**
+ *      private functions for public API
+ */
+
+var _getToolbarCommands = function() {
+  return _.filter(commands, function(command) {
+    return _.some(command.locations, 'name', 'toolbar');
+  });
+
+};
+
+
+/**
+ *      dispatcher functions
+ */
+
+var _appStart = function() {
+  _.forEach(commands, function(command) {
+    uiModules.push(command);
+  });
+  _.forEach(optionPanels, function(optionPanel) {
+    uiModules.push(optionPanel);
+  });
+};
+
+
+var _selectCommand = function(command) {
+  switch (command.type) {
+    case 'command':
+      return;
+
+    case 'boolean':
+      if (command.active) {
+        command.deactivate();
+        _deactivateChildren(command);
+      } else {
+        command.activate();
+        _activateChildren(command);
+      }
+      break;
+
+    case 'interactive':
+
+
+      if (command.active) {
+        return;
+      } else {
+        if (appState.selectedInteractiveCommand !== null) {
+          appState.selectedInteractiveCommand.deactivate();
+          _deactivateChildren(appState.selectedInteractiveCommand);
+        }
+        appState.selectedInteractiveCommand = command;
+        command.activate();
+        _activateChildren(command);
+      }
+      break;
+    default:
+    // no op
+  }
+};
+
+
+var _activateChildren = function(parentModule) {
+  _.forEach( uiModules, function(module) {
+    _.forEach( module.locations, function(location) {
+      _.forEach( parentModule.children, function(child) {
+        if (child.path === location.path) {
+          module.activate();
+        }
+      });
+    });
+  });
+};
+
+
+var _deactivateChildren = function(parentModule) {
+  _.forEach( uiModules, function(module) {
+    _.forEach( module.locations, function(location) {
+      _.forEach( parentModule.children, function(child) {
+        if (child.path === location.path) {
+          module.deactivate();
+        }
+      });
+    });
+  });
+};
+
+
 
 module.exports = StateStore;

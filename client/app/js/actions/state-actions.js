@@ -3,10 +3,10 @@ var StateConstants = require('../constants/state-constants');
 
 var StateActions = {
 
-  changeToolbarSelection: function(control) {
+  selectControl: function(control) {
     AppDispatcher.dispatch({
-      actionType: StateConstants.TOOLBAR_SELECTION_CHANGED,
-      id: control.id
+      actionType: StateConstants.SELECT_CONTROL,
+      control: control.control
     });
   }
 };

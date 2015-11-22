@@ -1,5 +1,6 @@
 var React = require('react');
 var classNames = require('classnames');
+var ApplicationActions = require('../actions/application-actions');
 var StateStore = require('../stores/state-store');
 var StateActions = require('../actions/state-actions');
 var _ = require('lodash');
@@ -14,7 +15,7 @@ var Toolbar = React.createClass({
 
   componentDidMount: function() {
     StateStore.addChangeListener(this.onChange);
-    this.setState({ toolbarControls: StateStore.getToolbarControls() });
+    this.setState({ toolbarControls: StateStore.getToolbarCommands() });
   },
 
 
@@ -27,13 +28,14 @@ var Toolbar = React.createClass({
     var toolbarControls = this.state.toolbarControls;
     return (
       <div className="toolbar">
-        <ul className="stack button-group">
+        <ul className="side-nav">
         {toolbarControls.map(function(control, i) {
 
           var buttonClass = classNames({
             'success' : (toolbarControls[i].type === 'command'),
             'warning' : toolbarControls[i].active,
-            'button' : true
+            'button' : true,
+            'round' : true
           });
 
           return (
@@ -50,11 +52,11 @@ var Toolbar = React.createClass({
   },
 
   handleClick: function(i) {
-
-    StateActions.changeToolbarSelection({
-      'id' : this.state.toolbarControls[i].id
+    ApplicationActions.click({
+      'target' : this.state.toolbarControls[i]
     });
   },
+
 
   onChange: function() {
     this.setState({ toolbarControls: StateStore.getToolbarControls() });
