@@ -3,16 +3,16 @@ var ApplicationConstants = require('../constants/application-constants');
 
 var ApplicationActions = {
 
-  appStart: function() {
+  startApp: function(data) {
     AppDispatcher.dispatch({
-      actionType: ApplicationConstants.APP_START
+      actionType: ApplicationConstants.START_APP
     });
   },
 
-  click: function(target) {
+  click: function(data) {
     AppDispatcher.dispatch({
-      actionType: ApplicationConstants.UI_CLICK,
-      uiTarget: target
+      actionType: ApplicationConstants.CLICK,
+      targetID: data.targetID
     });
   }
 };

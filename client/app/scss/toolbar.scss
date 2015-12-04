@@ -1,8 +1,11 @@
+$toolbar-medium-width: 120px;
+
 .toolbar {
   padding: 20px;
+  margin-top: 40px;   // make this a variable
   background-color: #459773;
   height: 100vh;
-  max-width: 120px;
+  width: $toolbar-medium-width;
   position: absolute;
   left: 0px;
   top: 0px;

@@ -1,65 +1,62 @@
 var React = require('react');
 var classNames = require('classnames');
 var ApplicationActions = require('../actions/application-actions');
-var StateStore = require('../stores/state-store');
-var StateActions = require('../actions/state-actions');
-var _ = require('lodash');
+var uiStore = require('../stores/ui-store');
 
 var Toolbar = React.createClass({
 
   getInitialState: function() {
-    return {
-      toolbarControls: []
-    };
+    return {};
   },
 
   componentDidMount: function() {
-    StateStore.addChangeListener(this.onChange);
-    this.setState({ toolbarControls: StateStore.getToolbarCommands() });
+    uiStore.addChangeListener(this.onChange);
   },
 
 
   componentWillUnmount: function() {
-    StateStore.removeChangeListener(this._onChange);
+    uiStore.removeChangeListener(this.onChange);
   },
 
   render: function() {
     var self = this;
-    var toolbarControls = this.state.toolbarControls;
+
     return (
       <div className="toolbar">
-        <ul className="side-nav">
-        {toolbarControls.map(function(control, i) {
+        <ul className="button-group stack">
+          {self.props.componentData.children.map(function(child, i) {
 
-          var buttonClass = classNames({
-            'success' : (toolbarControls[i].type === 'command'),
-            'warning' : toolbarControls[i].active,
-            'button' : true,
-            'round' : true
-          });
+            var buttonClass = classNames({
+              button: true,
+              small: true,
+              info: !self.props.componentData.children[i].active,
+              default: self.props.componentData.children[i].active
+            });
 
-          return (
-            <li key={i} className="toolbar-control">
-              <button key={i} className={buttonClass} onClick={self.handleClick.bind(null, i)}>
-                <i className={"fa " + control.icon} />
-              </button>
-            </li>
-          );
-        })}
+            return (
+              <li key={i}>
+                <button key={child.id} className={buttonClass}
+                    onClick={self.handleClick.bind(null, child.id)}>
+                  <i className={"fa " + child.icon} />
+                </button>
+              </li>
+            );
+          })}
         </ul>
       </div>
     );
+
   },
 
-  handleClick: function(i) {
+  handleClick: function(id) {
     ApplicationActions.click({
-      'target' : this.state.toolbarControls[i]
+      'targetID' : id
     });
   },
 
 
   onChange: function() {
-    this.setState({ toolbarControls: StateStore.getToolbarControls() });
+    this.forceUpdate();
   }
 });
 

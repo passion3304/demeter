@@ -1,0 +1,15 @@
+.option-panel {
+  position: absolute;
+  top: 200px;
+  left: 400px;
+}
+
+.panel-show {
+  opacity: 1;
+  transition: opacity 300ms linear;
+}
+
+.panel-hide {
+  opacity: 0;
+  transition: opacity 300ms linear;
+}
