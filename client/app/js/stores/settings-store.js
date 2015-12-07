@@ -37,7 +37,7 @@ var SettingsStore = assign({}, EventEmitter.prototype, {
 
     setTimeout(function() {
       deferred.resolve(settings);
-    }, 1400);
+    }, 100);
 
     return deferred.promise;
   }

@@ -1,4 +1,7 @@
 var React = require('react');
+var ReactBootstrap = require('react-bootstrap');
+var Button = ReactBootstrap.Button;
+var ButtonGroup = ReactBootstrap.ButtonGroup;
 var classNames = require('classnames');
 var ApplicationActions = require('../actions/application-actions');
 var uiStore = require('../stores/ui-store');
@@ -23,26 +26,22 @@ var Toolbar = React.createClass({
 
     return (
       <div className="toolbar">
-        <ul className="button-group stack">
+        <ButtonGroup vertical block>
           {self.props.componentData.children.map(function(child, i) {
 
             var buttonClass = classNames({
-              button: true,
-              small: true,
-              info: !self.props.componentData.children[i].active,
-              default: self.props.componentData.children[i].active
+              'toolbar-button': true,
+              'toolbar-button-active': self.props.componentData.children[i].active
             });
 
             return (
-              <li key={i}>
-                <button key={child.id} className={buttonClass}
-                    onClick={self.handleClick.bind(null, child.id)}>
-                  <i className={"fa " + child.icon} />
-                </button>
-              </li>
+              <Button key={child.id} className={buttonClass} bsStyle="primary"
+                  onClick={self.handleClick.bind(null, child.id)}>
+                <i className={"fa " + child.icon} />
+              </Button>
             );
           })}
-        </ul>
+        </ButtonGroup>
       </div>
     );
 

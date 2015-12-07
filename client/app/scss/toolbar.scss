@@ -1,4 +1,4 @@
-$toolbar-medium-width: 120px;
+@import "app-settings";
 
 .toolbar {
   padding: 20px;
@@ -9,4 +9,31 @@ $toolbar-medium-width: 120px;
   position: absolute;
   left: 0px;
   top: 0px;
+  z-index: 2;
+
+}
+
+
+.toolbar-button {
+  //@include button(
+  //                $padding: $button-med,
+  //                $bg: darken($secondary-color, 10%),
+  //                $radius: false,
+  //                $full-width: false,
+  //                $disabled: false
+  //);
+}
+
+.toolbar-button-active {
+  //@include button(
+  //        $padding: $button-med,
+  //        $bg: lighten($secondary-color, 20%),
+  //        $radius: false,
+  //        $full-width: false,
+  //        $disabled: false
+  //);
+}
+
+.toolbar-button-inactive {
+
 }

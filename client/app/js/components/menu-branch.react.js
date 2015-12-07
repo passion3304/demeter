@@ -21,7 +21,7 @@ var MenuBranch = React.createClass({
 
       return (
         <li key={menuItem.id}>
-          <a href="#" onclick={self.handleClick.bind(null, menuItem.id)}>{menuItem.displayName}</a>
+          <a href="#" onClick={self.handleClick.bind(null, menuItem.id)}>{menuItem.displayName}</a>
         </li>
       );
     });
