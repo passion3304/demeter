@@ -1,14 +1,14 @@
-@import "app-settings";
+@import "app_settings";
 
 .option-panel {
-  background-color: lighten($primary-color, 30);
   position: absolute;
+  top: $navbar-height;
   left: $toolbar-medium-width;
   width: $option-panel-medium-width;
-  height: rem-calc(300);
+  height: 300px;
 
   h1 {
-    font-size: rem-calc(24);
+    font-size: 24px;
     text-align: center !important;
   }
 }
@@ -16,7 +16,8 @@
 .panel-show {
   left: $toolbar-medium-width;
   opacity: 1;
-  transition: opacity 200ms, left 400ms;
+  z-index: 1;
+  transition: opacity 200ms, left 400ms, z-index 2000ms;
 }
 
 .panel-hide {

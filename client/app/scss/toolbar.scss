@@ -1,39 +1,10 @@
-@import "app-settings";
+@import "app_settings";
 
 .toolbar {
   padding: 20px;
-  margin-top: 40px;   // make this a variable
+  margin-top: $navbar-height;
   background-color: #459773;
   height: 100vh;
   width: $toolbar-medium-width;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  z-index: 2;
-
-}
-
-
-.toolbar-button {
-  //@include button(
-  //                $padding: $button-med,
-  //                $bg: darken($secondary-color, 10%),
-  //                $radius: false,
-  //                $full-width: false,
-  //                $disabled: false
-  //);
-}
-
-.toolbar-button-active {
-  //@include button(
-  //        $padding: $button-med,
-  //        $bg: lighten($secondary-color, 20%),
-  //        $radius: false,
-  //        $full-width: false,
-  //        $disabled: false
-  //);
-}
-
-.toolbar-button-inactive {
-
+  z-index: 1000;
 }

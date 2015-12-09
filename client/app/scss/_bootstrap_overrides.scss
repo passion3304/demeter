@@ -1,0 +1,12 @@
+@import "app_settings";
+
+//== Navbar
+
+$navbar-default-color: $primary-color;
+$navbar-default-bg: lighten($primary-color, 20%);
+$navbar-height: 50px;
+$navbar-default-link-color: #333;
+
+//== Panels
+
+$panel-bg: lighten($primary-color, 30%);

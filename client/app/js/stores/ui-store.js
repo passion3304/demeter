@@ -1,6 +1,7 @@
 var AppDispatcher = require('../dispatcher/app-dispatcher');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
+var uuid = require('node-uuid');
 var _ = require('lodash');
 
 var CHANGE_EVENT = 'change';
@@ -40,41 +41,27 @@ var uiStore = assign({}, EventEmitter.prototype, {
   initialize: function(settings) {
 
     uiState.ui = settings.ui;
-    uiState.commands = settings.commands;
+    initializeCommands(settings.commands);
 
     _.forEach(uiState.ui.components, function(componentClass) {
-      uiState.components.push(componentClass);
+      initializeComponent(componentClass);
       _.forEach(componentClass, function(component) {
-        uiState.elements.push(component);
-        if (typeof component.children !== 'undefined') {
-          _.forEach(component.children, function(child) {
-            uiState.elements.push(child);
-            if (typeof child.children !== 'undefined') {
-              _.forEach(child.children, function(subChild) {
-                uiState.elements.push(subChild);
-              });
-            }
-          });
-        }
+        initializeElement(component);
+
+        var initializeChildren = function(parent) {
+          var hasChildren = typeof parent.children !== 'undefined';
+          if (!hasChildren) {
+            return;
+          } else {
+            _.forEach(parent.children, function(child) {
+              initializeElement(child);
+              initializeChildren(child);
+            });
+          }
+        };
+
+        initializeChildren(component);
       });
-    });
-
-    var elementDefaults = {
-      visible: true,
-      active: false,
-      optionsPanel: false
-    };
-
-    _.forEach(uiState.elements, function(element) {
-      _.defaults(element, elementDefaults);
-    });
-
-    var commandDefaults = {
-      optionPanel: false
-    };
-
-    _.forEach(uiState.commands, function(command) {
-      _.defaults(command, commandDefaults);
     });
 
     this.emitChange();
@@ -95,41 +82,19 @@ var uiStore = assign({}, EventEmitter.prototype, {
   click: function(targetID) {
     var element = findByID(uiState.elements, targetID);
     if (element && typeof element.command !== 'undefined') {
+
       var command = findByName(uiState.commands, element.command);
+
       switch (command.type) {
         case 'interactive':
 
-          var otherElements = _.reject(uiState.elements, { id: targetID });
-          _.forEach(otherElements, function(otherElement) {
-
-            if (otherElement.hasOwnProperty('command')) {
-              var otherCommand = findByName(uiState.commands, otherElement.command);
-              if (otherCommand.type === 'interactive' && otherElement.active) {
-                otherElement.active = false;
-                deactivate(otherElement);
-              }
-            }
-          });
-
-          element.active = !element.active;
-
-          if (element.active) {
-            activate(element);
-
-            var otherElementsWithSameCommand = _.find(otherElements, { command: element.command });
-            _.forEach(otherElementsWithSameCommand, function(otherElement) {
-              otherElement.active;
-            });
-
-          } else {
-            deactivate(element);
-          }
+          toggleActiveState(element);
 
           uiStore.emitChange();
           break;
 
         case 'boolean':
-          element.active = !element.active;
+          toggleActiveState(element);
           if (element.active) {
             activate(element);
           } else {
@@ -139,10 +104,10 @@ var uiStore = assign({}, EventEmitter.prototype, {
           break;
 
         case 'instant':
-          element.active = true;
+          activate(element);
           uiStore.emitChange();
           setTimeout(function() {
-            element.active = false;
+            deactivate(element);
             uiStore.emitChange();
           }, 333);
           // execute command
@@ -183,16 +148,100 @@ var findDependentsByCommand = function(element) {
   }
 };
 
-var activate = function(element) {
-  _.forEach(findDependentsByCommand(element), function(dependent) {
-    dependent.active = true;
+var initializeCommands = function(commands) {
+  uiState.commands = commands;
+
+  var commandDefaults = {
+    optionPanel: false
+  };
+
+  _.forEach(uiState.commands, function(command) {
+    _.defaults(command, commandDefaults);
+    command.id = uuid.v1();
   });
 };
 
-var deactivate = function(element) {
-  _.forEach(findDependentsByCommand(element), function(dependent) {
-    dependent.active = false;
+var initializeComponent = function(componentClass) {
+  componentClass.id = uuid.v1();
+  uiState.components.push(componentClass);
+};
+
+var initializeElement = function(element) {
+  element.id = uuid.v1();
+  uiState.elements.push(element);
+
+  var elementDefaults = {
+    visible: true,
+    active: false,
+    optionsPanel: false
+  };
+
+  _.defaults(element, elementDefaults);
+};
+
+var activate = function(element) {
+  var otherElements = _.reject(uiState.elements, { id: element.id });
+  var command = findByName(uiState.commands, element.command);
+
+  _.forEach(otherElements, function(otherElement) {
+
+    if (command && otherElement.hasOwnProperty('command')) {
+      var otherCommand = findByName(uiState.commands, otherElement.command);
+
+      // only one interactive command at a time
+      if (command.type === 'interactive' && otherCommand.type === 'interactive'
+            && otherElement.active) {
+        deactivate(otherElement);
+      }
+    }
   });
+
+  element.active = true;
+
+  _.forEach(findDependentsByCommand(element), function(dependent) {
+    dependent.active = true;
+  });
+
+  var otherElementsWithSameCommand = _.find(otherElements, { command: element.command });
+  if (Array.isArray(otherElementsWithSameCommand)) {
+    _.forEach(otherElementsWithSameCommand, function(otherElement) {
+      otherElement.active = true;
+    });
+  } else {
+    otherElementsWithSameCommand.active = true;
+  }
+};
+
+var deactivate = function(element) {
+  var otherElements = _.reject(uiState.elements, { id: element.id });
+  var command = findByName(uiState.commands, element.command);
+
+  element.active = false;
+
+  _.forEach(findDependentsByCommand(element), function(dependent) {
+    deactivate(dependent);
+  });
+
+  var otherElementsWithSameCommand = _.find(otherElements, { command: element.command });
+  if (command && Array.isArray(otherElementsWithSameCommand)) {
+    _.forEach(otherElementsWithSameCommand, function(otherElement) {
+      otherElement.active = false;
+    });
+  } else if (otherElementsWithSameCommand) {
+    otherElementsWithSameCommand.active = false;
+  } else {
+    return;
+  }
+};
+
+var toggleActiveState = function(element) {
+  element.active = !element.active;
+
+  if (element.active) {
+    activate(element);
+  } else {
+    deactivate(element);
+  }
 };
 
 module.exports = uiStore;

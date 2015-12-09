@@ -4,7 +4,7 @@ var uiStore = require('../stores/ui-store');
 var Toolbar = require('./toolbar.react');
 var Menu = require('./menu.react');
 var Viewport = require('./viewport.react');
-var OptionPanel = require('./option-panel.react');
+var OptionPanel = require('./option_panels/option-panel.react.js');
 var _ = require('lodash');
 
 var ReactClasses = {

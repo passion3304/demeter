@@ -1,10 +1,10 @@
 var React = require('react');
+var uiStore = require('../stores/ui-store');
 var ReactBootstrap = require('react-bootstrap');
 var Button = ReactBootstrap.Button;
 var ButtonGroup = ReactBootstrap.ButtonGroup;
 var classNames = require('classnames');
 var ApplicationActions = require('../actions/application-actions');
-var uiStore = require('../stores/ui-store');
 
 var Toolbar = React.createClass({
 
@@ -30,8 +30,7 @@ var Toolbar = React.createClass({
           {self.props.componentData.children.map(function(child, i) {
 
             var buttonClass = classNames({
-              'toolbar-button': true,
-              'toolbar-button-active': self.props.componentData.children[i].active
+              'active': child.active
             });
 
             return (

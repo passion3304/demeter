@@ -1,7 +1,11 @@
 var React = require('react');
+var ReactBootstrap = require('react-bootstrap');
+var Navbar = ReactBootstrap.Navbar;
+var Nav = ReactBootstrap.Nav;
+var NavDropdown = ReactBootstrap.NavDropdown;
+var MenuItem = ReactBootstrap.MenuItem;
 var ApplicationActions = require('../actions/application-actions');
 var uiStore = require('../stores/ui-store');
-var MenuBrach = require('./menu-branch.react');
 var classNames = require('classnames');
 var _ = require('lodash');
 
@@ -22,27 +26,48 @@ var Menu = React.createClass({
   },
 
   render: function() {
+    var self = this;
     var menu = this.props.componentData;
 
     return (
-      <div className="fixed">
-        <nav className="top-bar" data-topbar role="navigation">
-          <section className="top-bar-section">
-            <ul className="left">
-              {menu.children.map(function(menuTop, i) {
-                return (
-                  <MenuBrach key={menuTop.id} entity={menuTop} />
-                );
-              })}
-            </ul>
-          </section>
-        </nav>
-      </div>
+      <Navbar fixedTop={true}>
+        <Nav>
+          {menu.children.map(function(menuHeader, i) {
+            return (
+              <NavDropdown key={i} title={menuHeader.displayName}
+                 id="navbar-dropdown">
+                {menuHeader.children.map(function(menuItem, i) {
+                  if (menuItem.type === 'divider') {
+                    return (
+                      <MenuItem key={i} divider />
+                    );
+                  } else {
+                    var menuItemClass = classNames({
+                      'active': menuItem.active
+                    });
+                    return (
+                      <MenuItem key={i} className={menuItemClass}
+                                onSelect={self.handleSelect.bind(null, menuItem.id)}>
+                        {menuItem.displayName}</MenuItem>
+                    );
+                  }
+                })}
+              </NavDropdown>
+            );
+          })}
+        </Nav>
+      </Navbar>
     );
   },
 
   onChange: function() {
     this.forceUpdate();
+  },
+
+  handleSelect: function(id) {
+    ApplicationActions.click({
+      targetID: id
+    });
   }
 });
 

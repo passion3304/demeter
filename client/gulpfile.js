@@ -8,10 +8,9 @@ var rename = require('gulp-rename');
 
 gulp.task('default', function() {
   gulp.start('sass', 'jsx_transform', 'copy', 'browser-sync');
-  gulp.watch('./app/js/*.js', ['jsx_transform']);
   gulp.watch('./app/js/**/*.js', ['jsx_transform']);
   gulp.watch('./dist/*.js', browserSync.reload);
-  gulp.watch('./app/scss/*.scss', ['sass']);
+  gulp.watch('./app/scss/**/*.scss', ['sass']);
   gulp.watch('./dist/*.css', browserSync.reload);
 
 });
