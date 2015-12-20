@@ -9,6 +9,13 @@ var ApplicationActions = {
     });
   },
 
+  registerElements(data) {
+    AppDispatcher.dispatch({
+      actionType: ApplicationConstants.REGISTER_ELEMENTS,
+      elements: data.elements
+    });
+  },
+
   click: function(data) {
     AppDispatcher.dispatch({
       actionType: ApplicationConstants.CLICK,

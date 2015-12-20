@@ -1,8 +1,10 @@
 var React = require('react');
+var uiStore = require('../../stores/ui-store');
+var Panels = require('./option-panels-index');
 var classNames = require('classnames');
-var Panels = require('./panels-index');
 
 var OptionPanel = React.createClass({
+
   render: function() {
     var optionPanelClass = classNames({
       'panel-hide': !this.props.componentData.active,
@@ -15,7 +17,7 @@ var OptionPanel = React.createClass({
     return (
       <div className={optionPanelClass}>
         <h1>{this.props.componentData.displayName}</h1>
-        <ReactSubClass></ReactSubClass>
+        <ReactSubClass />
       </div>
     );
   }

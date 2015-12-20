@@ -1,8 +1,6 @@
 var React = require('react');
 var uiStore = require('../stores/ui-store');
-var ReactBootstrap = require('react-bootstrap');
-var Button = ReactBootstrap.Button;
-var ButtonGroup = ReactBootstrap.ButtonGroup;
+var Widgets = require('./widgets/widgets-index');
 var classNames = require('classnames');
 var ApplicationActions = require('../actions/application-actions');
 
@@ -23,6 +21,8 @@ var Toolbar = React.createClass({
 
   render: function() {
     var self = this;
+    var Button = Widgets.Button;
+    var ButtonGroup = Widgets.ButtonGroup;
 
     return (
       <div className="toolbar">
@@ -54,7 +54,6 @@ var Toolbar = React.createClass({
 
 
   onChange: function() {
-    this.forceUpdate();
   }
 });
 

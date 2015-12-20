@@ -8,10 +8,10 @@ var OptionPanel = require('./option_panels/option-panel.react.js');
 var _ = require('lodash');
 
 var ReactClasses = {
-  Toolbar: Toolbar,
-  Viewport: Viewport,
-  Menu: Menu,
-  OptionPanel: OptionPanel
+  Toolbar:      Toolbar,
+  Viewport:     Viewport,
+  Menu:         Menu,
+  OptionPanel:  OptionPanel
 };
 
 var Application = React.createClass({

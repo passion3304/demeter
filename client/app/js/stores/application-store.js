@@ -30,6 +30,8 @@ var ApplicationStore = assign({}, EventEmitter.prototype, {
     switch (action.actionType) {
       case ApplicationConstants.START_APP:
 
+        var self = this;
+
         AppDispatcher.waitFor([
           SettingsStore.dispatchToken,
           uiStore.dispatchToken
@@ -44,10 +46,13 @@ var ApplicationStore = assign({}, EventEmitter.prototype, {
           .then(function() {
             appState.loaded = true;
             uiStore.initialize(appState.settings);
-            this.emitChange();
+            self.emitChange();
           });
 
 
+        break;
+      case ApplicationConstants.REGISTER_ELEMENTS:
+        uiStore.registerElements(action.elements);
         break;
       case ApplicationConstants.CLICK:
         uiStore.click(action.targetID);

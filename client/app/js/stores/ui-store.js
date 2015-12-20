@@ -67,6 +67,14 @@ var uiStore = assign({}, EventEmitter.prototype, {
     this.emitChange();
   },
 
+  registerElements: function(elements) {
+    if (Array.isArray(elements)) {
+      elements.map(function (element) {
+        initializeElement(element);
+      });
+    }
+  },
+
   getElements: function() {
     return uiState.elements;
   },
@@ -75,8 +83,12 @@ var uiStore = assign({}, EventEmitter.prototype, {
     return uiState.components;
   },
 
-  getComponentByReactID: function(id) {
+  getComponentByID: function(id) {
     return findByID(uiState.components, id);
+  },
+
+  getElementByID: function(id) {
+    return findByID(uiState.elements, id);
   },
 
   click: function(targetID) {
@@ -151,26 +163,28 @@ var findDependentsByCommand = function(element) {
 var initializeCommands = function(commands) {
   uiState.commands = commands;
 
-  var commandDefaults = {
-    optionPanel: false
-  };
-
   _.forEach(uiState.commands, function(command) {
+    var commandDefaults = {
+      id: uuid.v1(),
+      optionPanel: false
+    };
     _.defaults(command, commandDefaults);
-    command.id = uuid.v1();
   });
 };
 
 var initializeComponent = function(componentClass) {
-  componentClass.id = uuid.v1();
+  var componentClassDefaults = {
+    id: uuid.v1()
+  };
+  _.defaults(componentClass, componentClassDefaults);
   uiState.components.push(componentClass);
 };
 
 var initializeElement = function(element) {
-  element.id = uuid.v1();
   uiState.elements.push(element);
 
   var elementDefaults = {
+    id: uuid.v1(),
     visible: true,
     active: false,
     optionsPanel: false
@@ -207,8 +221,10 @@ var activate = function(element) {
     _.forEach(otherElementsWithSameCommand, function(otherElement) {
       otherElement.active = true;
     });
-  } else {
+  } else if (typeof otherElementsWithSameCommand !== 'undefined') {
     otherElementsWithSameCommand.active = true;
+  } else {
+    return;
   }
 };
 

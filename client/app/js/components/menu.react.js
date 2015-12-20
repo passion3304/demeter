@@ -1,9 +1,5 @@
 var React = require('react');
-var ReactBootstrap = require('react-bootstrap');
-var Navbar = ReactBootstrap.Navbar;
-var Nav = ReactBootstrap.Nav;
-var NavDropdown = ReactBootstrap.NavDropdown;
-var MenuItem = ReactBootstrap.MenuItem;
+var Widgets = require('./widgets/widgets-index');
 var ApplicationActions = require('../actions/application-actions');
 var uiStore = require('../stores/ui-store');
 var classNames = require('classnames');
@@ -26,8 +22,12 @@ var Menu = React.createClass({
   },
 
   render: function() {
-    var self = this;
-    var menu = this.props.componentData;
+    var self =          this;
+    var menu =          this.props.componentData;
+    var Navbar =        Widgets.Navbar;
+    var Nav =           Widgets.Nav;
+    var NavDropdown =   Widgets.NavDropdown;
+    var MenuItem =      Widgets.MenuItem;
 
     return (
       <Navbar fixedTop={true}>
