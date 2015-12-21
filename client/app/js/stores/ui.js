@@ -1,10 +1,7 @@
-var AppDispatcher = require('../dispatcher/app-dispatcher');
-var EventEmitter = require('events').EventEmitter;
-var assign = require('object-assign');
+var q = require('q');
 var uuid = require('node-uuid');
 var _ = require('lodash');
 
-var CHANGE_EVENT = 'change';
 
 var uiState = {
   commands: [],
@@ -14,31 +11,11 @@ var uiState = {
 };
 
 
-var uiStore = assign({}, EventEmitter.prototype, {
-
-  emitChange: function() {
-    this.emit(CHANGE_EVENT);
-  },
-
-  addChangeListener: function(callback) {
-    this.on(CHANGE_EVENT, callback);
-  },
-
-  removeChangeListener: function(callback) {
-    this.removeListener(CHANGE_EVENT, callback);
-  },
-
-  dispatchToken: AppDispatcher.register(function(action) {
-    switch (action.actionType) {
-      case true:
-        break;
-
-      default:
-      // no op
-    }
-  }),
+var ui = {
 
   initialize: function(settings) {
+
+    var deferred = q.defer();
 
     uiState.ui = settings.ui;
     initializeCommands(settings.commands);
@@ -64,7 +41,12 @@ var uiStore = assign({}, EventEmitter.prototype, {
       });
     });
 
-    this.emitChange();
+    setTimeout(function() {     // terrible
+      deferred.resolve();
+    }, 1000);
+
+    return deferred.promise;
+
   },
 
   registerElements: function(elements) {
@@ -102,7 +84,6 @@ var uiStore = assign({}, EventEmitter.prototype, {
 
           toggleActiveState(element);
 
-          uiStore.emitChange();
           break;
 
         case 'boolean':
@@ -112,15 +93,12 @@ var uiStore = assign({}, EventEmitter.prototype, {
           } else {
             deactivate(element);
           }
-          uiStore.emitChange();
           break;
 
         case 'instant':
           activate(element);
-          uiStore.emitChange();
           setTimeout(function() {
             deactivate(element);
-            uiStore.emitChange();
           }, 333);
           // execute command
           break;
@@ -130,7 +108,7 @@ var uiStore = assign({}, EventEmitter.prototype, {
       }
     }
   }
-});
+};
 
 
 
@@ -260,4 +238,4 @@ var toggleActiveState = function(element) {
   }
 };
 
-module.exports = uiStore;
+module.exports = ui;

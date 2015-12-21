@@ -1,8 +1,8 @@
 var React = require('react');
-var uiStore = require('../stores/ui-store');
+var ApplicationActions = require('../actions/application-actions');
+var ApplicationStore = require('../stores/application-store');
 var Widgets = require('./widgets/widgets-index');
 var classNames = require('classnames');
-var ApplicationActions = require('../actions/application-actions');
 
 var Toolbar = React.createClass({
 
@@ -11,12 +11,12 @@ var Toolbar = React.createClass({
   },
 
   componentDidMount: function() {
-    uiStore.addChangeListener(this.onChange);
+    ApplicationStore.addChangeListener(this.onChange);
   },
 
 
   componentWillUnmount: function() {
-    uiStore.removeChangeListener(this.onChange);
+    ApplicationStore.removeChangeListener(this.onChange);
   },
 
   render: function() {

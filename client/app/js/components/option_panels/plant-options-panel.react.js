@@ -1,7 +1,7 @@
 var React = require('react');
-var uiStore = require('../../stores/ui-store.js');
-var Widgets = require('../widgets/widgets-index');
 var ApplicationActions = require('../../actions/application-actions');
+var ApplicationStore = require('../../stores/application-store');
+var Widgets = require('../widgets/widgets-index');
 var classNames = require('classnames');
 var uuid = require('node-uuid');
 
@@ -17,7 +17,7 @@ var PlantOptionsPanel = React.createClass({
   componentDidMount: function() {
     var self = this;
 
-    // initial values to load into the uiStore
+    // initial values to load into the ui
     var elementsToRegister = [
       {
         id:           uuid.v1(),
@@ -28,7 +28,7 @@ var PlantOptionsPanel = React.createClass({
       }
     ];
 
-    // retain each ID to later pull it from the uiStore
+    // retain each ID to later pull it from the ui
     elementsToRegister.map(function(element) {
       self.elementKeys.push({
         id:     element.id,
@@ -36,19 +36,19 @@ var PlantOptionsPanel = React.createClass({
       });
     });
 
-    // add every element to uiStore
+    // add every element to ui
     ApplicationActions.registerElements({
       elements: elementsToRegister
     });
 
-    // pull in the elements from the uiStore with all the added fields
+    // pull in the elements from the ui with all the added fields
     this.reloadElements();
 
-    uiStore.addChangeListener(self.onChange);
+    ApplicationStore.addChangeListener(self.onChange);
   },
 
   componentWillUnmount: function() {
-    uiStore.removeChangeListener(self.onChange);
+    ApplicationStore.removeChangeListener(self.onChange);
   },
 
   render: function() {
@@ -86,7 +86,7 @@ var PlantOptionsPanel = React.createClass({
   reloadElements: function() {
     var self = this;
     this.elementKeys.map(function(elementKey) {
-      self.elements[elementKey.name] = uiStore.getElementByID(elementKey.id);
+      self.elements[elementKey.name] = ApplicationStore.getElementByID(elementKey.id);
     });
   }
 

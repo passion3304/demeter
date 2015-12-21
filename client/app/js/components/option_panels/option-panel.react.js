@@ -1,5 +1,4 @@
 var React = require('react');
-var uiStore = require('../../stores/ui-store');
 var Panels = require('./option-panels-index');
 var classNames = require('classnames');
 

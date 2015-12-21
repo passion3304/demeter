@@ -1,7 +1,7 @@
 var React = require('react');
 var Widgets = require('./widgets/widgets-index');
 var ApplicationActions = require('../actions/application-actions');
-var uiStore = require('../stores/ui-store');
+var ApplicationStore = require('../stores/application-store');
 var classNames = require('classnames');
 var _ = require('lodash');
 
@@ -14,11 +14,11 @@ var Menu = React.createClass({
   },
 
   componentDidMount: function() {
-    uiStore.addChangeListener(this.onChange);
+    ApplicationStore.addChangeListener(this.onChange);
   },
 
   componentWillUnmount: function() {
-    uiStore.removeChangeListener(this.onChange);
+    ApplicationStore.removeChangeListener(this.onChange);
   },
 
   render: function() {

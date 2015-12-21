@@ -28,18 +28,23 @@ var SettingsStore = assign({}, EventEmitter.prototype, {
       default:
         // no op
     }
+
+    return true;
   }),
 
   getSettings: function() {
-    var deferred = q.defer();
+    // delete with async GET later
 
+    //var deferred = q.defer();
+    //
+    //
+    //
+    //setTimeout(function() {
+    //  deferred.resolve(settings);
+    //}, 100);
 
-
-    setTimeout(function() {
-      deferred.resolve(settings);
-    }, 100);
-
-    return deferred.promise;
+    //return deferred.promise;
+    return settings;
   }
 });
 

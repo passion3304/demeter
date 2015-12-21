@@ -1,6 +1,5 @@
 var React = require('react');
 var ApplicationStore = require('../stores/application-store');
-var uiStore = require('../stores/ui-store');
 var Toolbar = require('./toolbar.react');
 var Menu = require('./menu.react');
 var Viewport = require('./viewport.react');
@@ -23,15 +22,14 @@ var Application = React.createClass({
   },
 
   componentDidMount: function() {
-    uiStore.addChangeListener(this.onChange);
+    ApplicationStore.addChangeListener(this.onChange);
   },
 
   componentWillUnmount: function() {
-    uiStore.removeChangeListener(this.onChange);
+    ApplicationStore.removeChangeListener(this.onChange);
   },
 
   render: function() {
-
     if (!ApplicationStore.appLoaded()) {
       return (
         <div>
@@ -40,7 +38,6 @@ var Application = React.createClass({
       );
 
     } else {
-
       var componentClasses = this.state.components;
       var componentsToRender = [];
 
@@ -72,7 +69,7 @@ var Application = React.createClass({
 
   onChange: function() {
     this.setState({
-      components: uiStore.getComponents()
+      components: ApplicationStore.getComponents()
     });
   }
 });
