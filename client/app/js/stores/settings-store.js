@@ -1,12 +1,13 @@
 var AppDispatcher = require('../dispatcher/app-dispatcher');
 var EventEmitter = require('events').EventEmitter;
-var settings = require('./objects/settings');
 var assign = require('object-assign');
 var q = require('q');
 
 var CHANGE_EVENT = 'change';
 
 var SettingsStore = assign({}, EventEmitter.prototype, {
+
+  settings: {},
 
   emitChange: function() {
     this.emit(CHANGE_EVENT);
@@ -44,7 +45,7 @@ var SettingsStore = assign({}, EventEmitter.prototype, {
     //}, 100);
 
     //return deferred.promise;
-    return settings;
+    return this.settings;
   }
 });
 

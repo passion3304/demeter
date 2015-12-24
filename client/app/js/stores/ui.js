@@ -1,26 +1,23 @@
 var q = require('q');
+var commands = require('./commands');
+var components = require('../components/component-index');
 var uuid = require('node-uuid');
 var _ = require('lodash');
 
 
-var uiState = {
-  commands: [],
-  ui: {},
-  components: [],
-  elements: []
-};
-
-
 var ui = {
+
+  commands: [],
+  components: [],
+  elements: [],
 
   initialize: function(settings) {
 
     var deferred = q.defer();
 
-    uiState.ui = settings.ui;
-    initializeCommands(settings.commands);
+    initializeCommands(commands);
 
-    _.forEach(uiState.ui.components, function(componentClass) {
+    _.forEach(components, function(componentClass) {
       initializeComponent(componentClass);
       _.forEach(componentClass, function(component) {
         initializeElement(component);
@@ -58,26 +55,26 @@ var ui = {
   },
 
   getElements: function() {
-    return uiState.elements;
+    return this.elements;
   },
 
   getComponents: function() {
-    return uiState.components;
+    return this.components;
   },
 
   getComponentByID: function(id) {
-    return findByID(uiState.components, id);
+    return findByID(this.components, id);
   },
 
   getElementByID: function(id) {
-    return findByID(uiState.elements, id);
+    return findByID(this.elements, id);
   },
 
   click: function(targetID) {
-    var element = findByID(uiState.elements, targetID);
+    var element = findByID(this.elements, targetID);
     if (element && typeof element.command !== 'undefined') {
 
-      var command = findByName(uiState.commands, element.command);
+      var command = findByName(this.commands, element.command);
 
       switch (command.type) {
         case 'interactive':
@@ -125,9 +122,9 @@ var findDependentsByCommand = function(element) {
   if (typeof element.command === 'undefined') {
     return false;
   } else {
-    var command = findByName(uiState.commands, element.command);
+    var command = findByName(ui.commands, element.command);
     if (command.optionPanel) {
-      return _.filter(uiState.elements, function(element) {
+      return _.filter(ui.elements, function(element) {
         if (element.hasOwnProperty('parentCommand')) {
           return element.parentCommand === command.name;
         }
@@ -138,13 +135,13 @@ var findDependentsByCommand = function(element) {
   }
 };
 
-var initializeCommands = function(commands) {
-  uiState.commands = commands;
+var initializeCommands = function(allCommands) {
+  ui.commands = allCommands;
 
-  _.forEach(uiState.commands, function(command) {
+  _.forEach(ui.commands, function(command) {
     var commandDefaults = {
       id: uuid.v1(),
-      optionPanel: false
+      optionPanel: false      // again, the commands shouldn't keep track of option panels (see commands.js)
     };
     _.defaults(command, commandDefaults);
   });
@@ -155,11 +152,11 @@ var initializeComponent = function(componentClass) {
     id: uuid.v1()
   };
   _.defaults(componentClass, componentClassDefaults);
-  uiState.components.push(componentClass);
+  ui.components.push(componentClass);
 };
 
 var initializeElement = function(element) {
-  uiState.elements.push(element);
+  ui.elements.push(element);
 
   var elementDefaults = {
     id: uuid.v1(),
@@ -172,13 +169,13 @@ var initializeElement = function(element) {
 };
 
 var activate = function(element) {
-  var otherElements = _.reject(uiState.elements, { id: element.id });
-  var command = findByName(uiState.commands, element.command);
+  var otherElements = _.reject(ui.elements, { id: element.id });
+  var command = findByName(ui.commands, element.command);
 
   _.forEach(otherElements, function(otherElement) {
 
     if (command && otherElement.hasOwnProperty('command')) {
-      var otherCommand = findByName(uiState.commands, otherElement.command);
+      var otherCommand = findByName(ui.commands, otherElement.command);
 
       // only one interactive command at a time
       if (command.type === 'interactive' && otherCommand.type === 'interactive'
@@ -207,8 +204,8 @@ var activate = function(element) {
 };
 
 var deactivate = function(element) {
-  var otherElements = _.reject(uiState.elements, { id: element.id });
-  var command = findByName(uiState.commands, element.command);
+  var otherElements = _.reject(ui.elements, { id: element.id });
+  var command = findByName(ui.commands, element.command);
 
   element.active = false;
 
