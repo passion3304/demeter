@@ -54,9 +54,11 @@ var ApplicationStore = assign({}, EventEmitter.prototype, {
         break;
       case ApplicationConstants.REGISTER_ELEMENTS:
         ui.registerElements(action.elements);
+        ApplicationStore.emitChange();
         break;
       case ApplicationConstants.CLICK:
         ui.click(action.targetID);
+        ApplicationStore.emitChange();
         break;
       default:
       //no op

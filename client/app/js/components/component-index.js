@@ -118,7 +118,7 @@ module.exports = {
             {
               name: 'open_help',
               displayName: 'Open Help',
-              type: 'menu-item'
+              type: 'menu-item',
             }
           ]
         }
@@ -132,7 +132,16 @@ module.exports = {
       reactClass: 'OptionPanel',
       reactSubClass: 'PlantOptionsPanel',
       parentCommand: 'plant',
-      displayName: 'Plant options'
+      displayName: 'Plant options',
+      children: [
+        {
+          name: 'airbrushToggle',
+          displayName: 'Airbrush',
+          type: 'button',
+          command: 'airbrush',
+          reactClass: 'Button'
+        }
+      ]
     },
     {
       name: 'erase-options',

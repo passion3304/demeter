@@ -1,18 +1,15 @@
 module.exports = [
   {
     name: 'plant',
-    type: 'interactive',
-    optionPanel: true   // commands shouldn't need to keep track of whether a panel should be associated
+    type: 'interactive'
   },
   {
     name: 'erase',
-    type: 'interactive',
-    optionPanel: true
+    type: 'interactive'
   },
   {
     name: 'electrify',
-    type: 'interactive',
-    optionPanel: true
+    type: 'interactive'
   },
   {
     name: 'invert',

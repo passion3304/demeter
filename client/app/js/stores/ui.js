@@ -85,11 +85,6 @@ var ui = {
 
         case 'boolean':
           toggleActiveState(element);
-          if (element.active) {
-            activate(element);
-          } else {
-            deactivate(element);
-          }
           break;
 
         case 'instant':
@@ -123,15 +118,11 @@ var findDependentsByCommand = function(element) {
     return false;
   } else {
     var command = findByName(ui.commands, element.command);
-    if (command.optionPanel) {
-      return _.filter(ui.elements, function(element) {
-        if (element.hasOwnProperty('parentCommand')) {
-          return element.parentCommand === command.name;
-        }
-      });
-    } else {
-      return false;
-    }
+    return _.filter(ui.elements, function(element) {
+      if (element.hasOwnProperty('parentCommand')) {
+        return element.parentCommand === command.name;
+      }
+    });
   }
 };
 
@@ -140,8 +131,7 @@ var initializeCommands = function(allCommands) {
 
   _.forEach(ui.commands, function(command) {
     var commandDefaults = {
-      id: uuid.v1(),
-      optionPanel: false      // again, the commands shouldn't keep track of option panels (see commands.js)
+      id: uuid.v1()
     };
     _.defaults(command, commandDefaults);
   });
@@ -161,8 +151,7 @@ var initializeElement = function(element) {
   var elementDefaults = {
     id: uuid.v1(),
     visible: true,
-    active: false,
-    optionsPanel: false
+    active: false
   };
 
   _.defaults(element, elementDefaults);
@@ -226,9 +215,9 @@ var deactivate = function(element) {
 };
 
 var toggleActiveState = function(element) {
-  element.active = !element.active;
+  //element.active = !element.active;
 
-  if (element.active) {
+  if (!element.active) {
     activate(element);
   } else {
     deactivate(element);

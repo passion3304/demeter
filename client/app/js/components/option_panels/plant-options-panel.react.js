@@ -17,33 +17,6 @@ var PlantOptionsPanel = React.createClass({
   componentDidMount: function() {
     var self = this;
 
-    // initial values to load into the ui
-    var elementsToRegister = [
-      {
-        id:           uuid.v1(),
-        name:         'airbrushToggle',
-        displayName:  'Airbrush',
-        type:         'button',
-        command:      'airbrush'
-      }
-    ];
-
-    // retain each ID to later pull it from the ui
-    elementsToRegister.map(function(element) {
-      self.elementKeys.push({
-        id:     element.id,
-        name:   element.name
-      });
-    });
-
-    // add every element to ui
-    ApplicationActions.registerElements({
-      elements: elementsToRegister
-    });
-
-    // pull in the elements from the ui with all the added fields
-    this.reloadElements();
-
     ApplicationStore.addChangeListener(self.onChange);
   },
 
@@ -80,14 +53,6 @@ var PlantOptionsPanel = React.createClass({
   },
 
   onChange: function() {
-    this.reloadElements();
-  },
-
-  reloadElements: function() {
-    var self = this;
-    this.elementKeys.map(function(elementKey) {
-      self.elements[elementKey.name] = ApplicationStore.getElementByID(elementKey.id);
-    });
   }
 
 });

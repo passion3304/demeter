@@ -32,7 +32,7 @@ var Application = React.createClass({
       var components = this.state.components;
       var componentsToRender = [];
 
-      // get all component types like toolbars, viewport, panels, etc. from the ui store
+      // get all component types like toolbars, viewport, panels, etc.
       _.forEach(components, function(componentType) {
         _.forEach(componentType, function(component) {
           if (component.visible) {
