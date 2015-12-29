@@ -12,7 +12,8 @@ module.exports = [
         name: 'airbrushToggle',
         displayName: 'Airbrush',
         type: 'button',
-        command: 'airbrush'
+        command: 'airbrush',
+        reactClass: 'Button'
       }
     ]
   }

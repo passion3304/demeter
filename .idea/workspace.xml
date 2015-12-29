@@ -1,30 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6f997d69-4014-4472-bb16-c68c33e9271b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/app/js/commands/command-index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/app/js/commands/electrify-command.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/app/js/commands/erase-command.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/app/js/commands/plant-command.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/app/js/components/status_indicators/current-interactive-command.react.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/app/js/components/status_indicators/status-indicator-index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/app/scss/status-indicator.scss" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/client/app/js/components/option_panels/option-panels-index.js" afterPath="$PROJECT_DIR$/client/app/js/components/option_panels/option-panel-index.js" />
+    <list default="true" id="6f997d69-4014-4472-bb16-c68c33e9271b" name="Default" comment="create separate react files for each option panel type">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/client/app/js/stores/ui.js" afterPath="$PROJECT_DIR$/client/app/js/stores/ui5.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/actions/application-actions.js" afterPath="$PROJECT_DIR$/client/app/js/actions/application-actions.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/components/application.react.js" afterPath="$PROJECT_DIR$/client/app/js/components/application.react.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/components/component-index.js" afterPath="$PROJECT_DIR$/client/app/js/components/component-index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/components/option_panels/option-panel.react.js" afterPath="$PROJECT_DIR$/client/app/js/components/option_panels/option-panel.react.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/components/option_panels/option-panel-index.js" afterPath="$PROJECT_DIR$/client/app/js/components/option_panels/option-panel-index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/components/react-class-index.js" afterPath="$PROJECT_DIR$/client/app/js/components/react-class-index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/components/toolbar.react.js" afterPath="$PROJECT_DIR$/client/app/js/components/toolbar.react.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/constants/application-constants.js" afterPath="$PROJECT_DIR$/client/app/js/constants/application-constants.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/stores/application-store.js" afterPath="$PROJECT_DIR$/client/app/js/stores/application-store.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/stores/commands.js" afterPath="$PROJECT_DIR$/client/app/js/stores/commands.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/stores/ui.js" afterPath="$PROJECT_DIR$/client/app/js/stores/ui.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/scss/_bootstrap_overrides.scss" afterPath="$PROJECT_DIR$/client/app/scss/_bootstrap_overrides.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/scss/app.scss" afterPath="$PROJECT_DIR$/client/app/scss/app.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/scss/option-panel.scss" afterPath="$PROJECT_DIR$/client/app/scss/option-panel.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/scss/toolbar.scss" afterPath="$PROJECT_DIR$/client/app/scss/toolbar.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/dist/app.css" afterPath="$PROJECT_DIR$/client/dist/app.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/dist/app.js" afterPath="$PROJECT_DIR$/client/dist/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/three/three.js" afterPath="$PROJECT_DIR$/client/node_modules/three/three.js" />
     </list>
     <ignored path="demeter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,11 +33,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="application-store.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="application-store.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/app/js/stores/application-store.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="70" column="12" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.0978121">
+              <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ui5.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/app/js/stores/ui5.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-21.222221">
+              <caret line="42" column="20" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -59,17 +57,17 @@
         <entry file="file://$PROJECT_DIR$/client/app/js/stores/ui.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="64" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
+              <caret line="82" column="12" selection-start-line="82" selection-start-column="12" selection-end-line="82" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.react.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/app/js/components/application.react.js">
+      <file leaf-file-name="react-class-index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/app/js/components/react-class-index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.024453025">
-              <caret line="10" column="16" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -79,17 +77,29 @@
         <entry file="file://$PROJECT_DIR$/client/app/js/components/component-index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="31" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+              <caret line="55" column="7" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="option-panel.react.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/app/js/components/option_panels/option-panel.react.js">
+      <file leaf-file-name="option-panel-index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/app/js/components/option_panels/option-panel-index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="32" column="31" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+              <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.react.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/app/js/components/application.react.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="37" column="19" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -99,47 +109,7 @@
         <entry file="file://$PROJECT_DIR$/client/app/js/components/toolbar.react.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="menu.react.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/app/js/components/menu.react.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="toolbar.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/app/scss/toolbar.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.535714">
-              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="status-indicator-index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/app/js/components/status_indicators/status-indicator-index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1" column="3" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="current-interactive-command.react.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/app/js/components/status_indicators/current-interactive-command.react.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="33" column="43" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -162,6 +132,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -179,16 +154,12 @@
         <option value="$PROJECT_DIR$/client/app/scss/_app-settings.scss" />
         <option value="$PROJECT_DIR$/client/app/scss/_app_settings.scss" />
         <option value="$PROJECT_DIR$/client/app/js/components/option-panel.react.js" />
-        <option value="$PROJECT_DIR$/client/gulpfile.js" />
         <option value="$PROJECT_DIR$/client/app/js/components/option_panels/index.js" />
         <option value="$PROJECT_DIR$/client/app/js/components/option_panels/erase-options-panel.react.js" />
         <option value="$PROJECT_DIR$/client/app/js/components/option_panels/electrify-options-panel.react.js" />
         <option value="$PROJECT_DIR$/client/app/js/components/option_panels/panels-index.js" />
         <option value="$PROJECT_DIR$/client/app/js/components/widgets/widgets-index.js" />
-        <option value="$PROJECT_DIR$/client/app/js/constants/application-constants.js" />
-        <option value="$PROJECT_DIR$/client/app/js/actions/application-actions.js" />
         <option value="$PROJECT_DIR$/client/app/js/stores/ui-store.js" />
-        <option value="$PROJECT_DIR$/client/app/js/components/menu.react.js" />
         <option value="$PROJECT_DIR$/client/app/js/components/components-index.js" />
         <option value="$PROJECT_DIR$/client/app/js/stores/objects/settings.js" />
         <option value="$PROJECT_DIR$/client/app/js/stores/settings-store.js" />
@@ -204,17 +175,23 @@
         <option value="$PROJECT_DIR$/client/app/js/commands/erase-command.js" />
         <option value="$PROJECT_DIR$/client/app/js/commands/electrify-command.js" />
         <option value="$PROJECT_DIR$/client/app/scss/app.scss" />
-        <option value="$PROJECT_DIR$/client/app/js/stores/application-store.js" />
         <option value="$PROJECT_DIR$/client/app/js/components/status_indicators/current-interactive-command.js" />
         <option value="$PROJECT_DIR$/client/app/scss/status-indicator.scss" />
         <option value="$PROJECT_DIR$/client/app/js/components/status_indicators/status-indicator-index.js" />
-        <option value="$PROJECT_DIR$/client/app/js/components/react-class-index.js" />
         <option value="$PROJECT_DIR$/client/app/js/components/status_indicators/current-interactive-command.react.js" />
         <option value="$PROJECT_DIR$/client/app/scss/toolbar.scss" />
         <option value="$PROJECT_DIR$/client/app/js/components/toolbar.react.js" />
         <option value="$PROJECT_DIR$/client/app/js/stores/ui.js" />
-        <option value="$PROJECT_DIR$/client/app/js/components/component-index.js" />
+        <option value="$PROJECT_DIR$/client/gulpfile.js" />
+        <option value="$PROJECT_DIR$/client/app/js/components/menu.react.js" />
+        <option value="$PROJECT_DIR$/client/app/js/actions/application-actions.js" />
+        <option value="$PROJECT_DIR$/client/app/js/constants/application-constants.js" />
+        <option value="$PROJECT_DIR$/client/app/js/components/react-class-index.js" />
+        <option value="$PROJECT_DIR$/client/app/js/components/option_panels/option-panel-index.js" />
+        <option value="$PROJECT_DIR$/client/app/js/stores/ui6.js" />
         <option value="$PROJECT_DIR$/client/app/js/components/application.react.js" />
+        <option value="$PROJECT_DIR$/client/app/js/components/component-index.js" />
+        <option value="$PROJECT_DIR$/client/app/js/stores/application-store.js" />
       </list>
     </option>
   </component>
@@ -237,13 +214,19 @@
             <id />
           </State>
           <State>
-            <id>Bitwise operation issuesJavaScript</id>
+            <id>CoffeeScript</id>
+          </State>
+          <State>
+            <id>Control flow issuesCoffeeScript</id>
           </State>
           <State>
             <id>Control flow issuesJavaScript</id>
           </State>
           <State>
-            <id>DOM issuesJavaScript</id>
+            <id>Data flow issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Error handlingJavaScript</id>
           </State>
           <State>
             <id>GeneralJavaScript</id>
@@ -252,12 +235,24 @@
             <id>JavaScript</id>
           </State>
           <State>
-            <id>Potentially confusing code constructsJavaScript</id>
+            <id>JavaScript function metricsJavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript validity issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Probable bugsJavaScript</id>
+          </State>
+          <State>
+            <id>TypeScript</id>
+          </State>
+          <State>
+            <id>XPath</id>
           </State>
         </expanded-state>
         <selected-state>
           <State>
-            <id>CoffeeScript</id>
+            <id>UnnecessaryReturnJS</id>
           </State>
         </selected-state>
       </profile-state>
@@ -644,70 +639,6 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="stylesheets">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="demeter">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="client">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="node_modules">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="bootstrap-sass">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="assets">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="stylesheets">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="bootstrap">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="demeter">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="client">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="node_modules">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="bootstrap-sass">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="assets">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT USER_OBJECT="Root">
@@ -878,7 +809,7 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="status_indicators">
+            <PATH_ELEMENT USER_OBJECT="option_panels">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -904,11 +835,33 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="components">
+            <PATH_ELEMENT USER_OBJECT="commands">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="option_panels">
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="demeter">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="client">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="js">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="actions">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -937,7 +890,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="js.buildTools.gulp.node_interpreter" value="/usr/local/bin/node" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="/usr/local/lib/node_modules/gulp" />
@@ -1099,6 +1052,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26875" sideWeight="0.4925926" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3279503" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1122,7 +1076,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21041666" sideWeight="0.5074074" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1152,7 +1105,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="8" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1161,13 +1114,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/app/js/constants/settings-constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10079575">
-          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/app/js/actions/settings-actions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12226512">
@@ -1224,13 +1170,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/app/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34234235">
@@ -1259,13 +1198,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7716956">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_thumbnails.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1274,41 +1206,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_utilities.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/gulpfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2934363">
-          <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/constants/application-constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1956242">
-          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/actions/application-actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2934363">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/option_panels/electrify-options-panel.react.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/option_panels/erase-options-panel.react.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1374,17 +1271,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/widgets/widgets-index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/app/js/stores/commands.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3912484">
           <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1399,6 +1290,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17117117">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1413,6 +1305,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17117117">
           <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1427,21 +1320,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.5894466">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/option_panels/option-panel-index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/react-class-index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -1470,15 +1348,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/option_panels/option-panel.react.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="31" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/menu.react.js">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1486,26 +1356,116 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/gulpfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5868726">
+          <caret line="24" column="84" selection-start-line="24" selection-start-column="76" selection-end-line="24" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/stores/ui5.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.222221">
+          <caret line="42" column="20" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/components/menu.react.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="6" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/actions/application-actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22007722">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/constants/application-constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12226512">
+          <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/app/scss/toolbar.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.535714">
+        <state vertical-scroll-proportion="0.43124166">
           <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/components/react-class-index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/components/option_panels/erase-options-panel.react.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/components/option_panels/electrify-options-panel.react.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/components/option_panels/option-panel.react.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.1956242">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/components/widgets/widgets-index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/components/option_panels/option-panel-index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/app/js/components/toolbar.react.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/stores/application-store.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="70" column="12" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1513,7 +1473,15 @@
     <entry file="file://$PROJECT_DIR$/client/app/js/stores/ui.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="64" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
+          <caret line="82" column="12" selection-start-line="82" selection-start-column="12" selection-end-line="82" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/components/application.react.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="19" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1521,15 +1489,15 @@
     <entry file="file://$PROJECT_DIR$/client/app/js/components/component-index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="31" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+          <caret line="55" column="7" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/application.react.js">
+    <entry file="file://$PROJECT_DIR$/client/app/js/stores/application-store.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.024453025">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.0978121">
+          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
           <folding />
         </state>
       </provider>

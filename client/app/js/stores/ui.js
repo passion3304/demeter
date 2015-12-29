@@ -1,254 +1,222 @@
-var q = require('q');
-var commands = require('./commands');
-var components = require('../components/component-index');
-var uuid = require('node-uuid');
-var _ = require('lodash');
+var commands = require('./commands')
+var components = require('../components/component-index')
+var uuid = require('node-uuid')
+var _ = require('lodash')
+var q = require('q')
 
 
-var ui = {
+export default class {
+  constructor(settings) {
+    this.state = {}
+    this.state.commands = initializeCommands(commands)
+    this.state.containerComponents = []
+    this.state.components = initializeComponents(components, this.state.containerComponents)
+    this.state.currentInteractiveCommand = {}
+  }
 
-  commands: [],
-  components: [],   // maybe call this something else like containers?
-  elements: [],
-  currentInteractiveCommand: {},
+  getCommands() {
+    return this.state.commands
+  }
 
-  initialize: function(settings) {
+  getContainerComponents() {
+    return this.state.containerComponents
+  }
 
-    var deferred = q.defer();
+  getComponents() {
+    return this.state.components
+  }
 
-    initializeCommands(commands);
+  getComponentByID(id) {
+    return findByID(this.state.components, id)
+  }
 
-    _.forEach(components, function(componentClass) {
-      initializeComponent(componentClass);
-      _.forEach(componentClass, function(component) {
-        initializeElement(component);
+  click(targetID) {
+    let deferred = q.defer()
+    let component = findByID(this.state.components, targetID)
+    if (component && typeof component.command !== 'undefined') {
 
-        var initializeChildren = function(parent) {
-          var hasChildren = typeof parent.children !== 'undefined';
-          if (!hasChildren) {
-            return;
-          } else {
-            _.forEach(parent.children, function(child) {
-              initializeElement(child);
-              initializeChildren(child);
-            });
-          }
-        };
+      let command = findByName(this.state.commands, component.command)
 
-        initializeChildren(component);
-      });
-    });
-
-    setTimeout(function() {     // terrible
-      deferred.resolve();
-    }, 100);
-
-    return deferred.promise;
-
-  },
-
-  registerElements: function(elements) {
-    if (Array.isArray(elements)) {
-      elements.map(function (element) {
-        initializeElement(element);
-      });
-    }
-  },
-
-  getElements: function() {
-    return this.elements;
-  },
-
-  getComponents: function() {
-    return this.components;
-  },
-
-  getComponentByID: function(id) {
-    return findByID(this.components, id);
-  },
-
-  getElementByID: function(id) {
-    return findByID(this.elements, id);
-  },
-
-  click: function(targetID) {
-    var deferred = q.defer();
-    var element = findByID(this.elements, targetID);
-    if (element && typeof element.command !== 'undefined') {
-
-      var command = findByName(this.commands, element.command);
-
-      switch (command.type) {
+      switch (command.type, this.state) {
         case 'interactive':
-          toggleActiveState(element);
-          deferred.resolve({ currentInteractiveCommand: this.currentInteractiveCommand });
-          break;
+          toggleActiveState(component)
+          deferred.resolve({ currentInteractiveCommand: this.state.currentInteractiveCommand })
+          break
 
         case 'boolean':
-          toggleActiveState(element);
-          deferred.resolve();
-          break;
+          toggleActiveState(component, this.state)
+          deferred.resolve()
+          break
 
         case 'instant':
-          activate(element);
-          deactivate(element);
-          deferred.resolve();
-          //setTimeout(function() {
-          //  deactivate(element);
-          //  deferred.resolve();
-          //}, 800);
-          // execute command
-          break;
+          activate(component, this.state)
+          deactivate(component, this.state)
+          deferred.resolve()
+          break
 
         default:
-          // no op
+        // no op
       }
     }
-    return deferred.promise;
+    return deferred.promise
   }
-};
+}
 
+function initializeCommands(commands) {
 
-
-
-var findByID = function(collection, id) {
-  return _.find(collection, { id : id });
-};
-
-var findByName = function(collection, name) {
-  return _.find(collection, { name : name });
-};
-
-var findDependentsByCommand = function(element) {
-  if (typeof element.command === 'undefined') {
-    return false;
-  } else {
-    var command = findByName(ui.commands, element.command);
-    return _.filter(ui.elements, function(element) {
-      if (element.hasOwnProperty('parentCommand')) {
-        return element.parentCommand === command.name;
-      }
-    });
-  }
-};
-
-var initializeCommands = function(allCommands) {
-  ui.commands = allCommands;
-
-  _.forEach(ui.commands, function(command) {
-    var commandDefaults = {
+  _.forEach(commands, (command) => {
+    let commandDefaults = {
       id: uuid.v1()
-    };
-    _.defaults(command, commandDefaults);
-    _.assign(command, command.command);   // move the module commands one level up so you don't
+    }
+    _.defaults(command, commandDefaults)
+    _.assign(command, command.command)    // move the module commands one level up so you don't
                                           // have to keep using command.command
-  });
-};
+  })
 
-var initializeComponent = function(componentClass) {
-  var componentClassDefaults = {
-    id: uuid.v1()
-  };
-  _.defaults(componentClass, componentClassDefaults);
-  ui.components.push(componentClass);
-};
+  return commands
+}
 
-var initializeElement = function(element) {
-  ui.elements.push(element);
+function initializeComponents(components, containerComponents) {
 
-  var elementDefaults = {
-    id: uuid.v1(),
-    visible: true,
-    active: false
-  };
+  let processedComponents = []
 
-  _.defaults(element, elementDefaults);
-};
+  _.forEach(components, category => {
 
-var activate = function(element) {
-  var otherElements = _.reject(ui.elements, { id: element.id });
-  var command = findByName(ui.commands, element.command);
+    function initialize(component) {
+      let componentDefaults = {
+        id:       uuid.v1(),
+        visible:  true,
+        active:   false
+      }
+      _.defaults(component, componentDefaults)
+      processedComponents.push(component)
+      initializeChildren(component)
+    }
 
-  element.active = true;
-  ui.currentInteractiveCommand = command;
+    function initializeChildren(parent) {
+      let hasChildren = typeof parent.children !== 'undefined'
+      if (!hasChildren) {
+        return
+      } else {
+        _.forEach(parent.children, child => {
+          initialize(child)
+        })
+      }
+    }
 
-  _.forEach(otherElements, function(otherElement) {
+    _.forEach(category, component => {
+      initialize(component)
+      containerComponents.push(component)    // just top level components
+    })
+  })
 
-    if (command && otherElement.hasOwnProperty('command')) {
-      var otherCommand = findByName(ui.commands, otherElement.command);
+  return processedComponents
+}
+
+function findByID(collection, id) {
+  return _.find(collection, { id : id })
+}
+
+function findByName(collection, name) {
+  return _.find(collection, { name : name })
+}
+
+function findDependentsByCommand(element, state) {
+  if (typeof element.command === 'undefined') {
+    return false
+  } else {
+    let command = findByName(state.commands, element.command)
+    return _.filter(state.components, (component) => {
+      if (component.hasOwnProperty('parentCommand')) {
+        return component.parentCommand === command.name
+      } else {
+        return false
+      }
+    })
+  }
+}
+
+function activate(component, state) {
+  let otherComponents = _.reject(state.components, { id: component.id })
+  let command = findByName(state.commands, component.command)
+
+  component.active = true
+  state.currentInteractiveCommand = command
+
+  _.forEach(otherComponents, (otherComponent) => {
+
+    if (command && otherComponent.hasOwnProperty('command')) {
+      let otherCommand = findByName(state.commands, otherComponent.command)
 
       // only one interactive command at a time
       if (command.type === 'interactive' && otherCommand.type === 'interactive'
-            && otherElement.active) {
-        deactivate(otherElement);
+          && otherComponent.active) {
+        deactivate(otherComponent)
       }
     }
-  });
+  })
 
-  _.forEach(findDependentsByCommand(element), function(dependent) {
-    dependent.active = true;
-  });
+  _.forEach(findDependentsByCommand(component, state), (dependent) => {
+    dependent.active = true
+  })
 
-  var otherElementsWithSameCommand = _.find(otherElements, { command: element.command });
-  if (Array.isArray(otherElementsWithSameCommand)) {
-    _.forEach(otherElementsWithSameCommand, function(otherElement) {
-      otherElement.active = true;
-    });
-  } else if (typeof otherElementsWithSameCommand !== 'undefined') {
-    otherElementsWithSameCommand.active = true;
+  let otherComponentsWithSameCommand = _.find(otherComponents, { command: element.command })
+  if (Array.isArray(otherComponentsWithSameCommand)) {
+    _.forEach(otherComponentsWithSameCommand, (otherComponent) => {
+      otherComponent.active = true
+    })
+  } else if (typeof otherComponentsWithSameCommand !== 'undefined') {
+    otherComponentsWithSameCommand.active = true
   } else {
-    return;
+    return
   }
 
   if (typeof command.command !== 'undefined') {
-    command.activate();
+    command.activate()
   } else {
-    return;
+    return
   }
-};
+}
 
-var deactivate = function(element) {
-  var otherElements = _.reject(ui.elements, { id: element.id });
-  var command = findByName(ui.commands, element.command);
+function deactivate(component, state) {
+  let otherComponents = _.reject(state.components, { id: element.id })
+  var command = findByName(state.commands, component.command)
 
-  element.active = false;
+  component.active = false
 
-  _.forEach(findDependentsByCommand(element), function(dependent) {
-    deactivate(dependent);
-  });
+  _.forEach(findDependentsByCommand(component, state), (dependent) => {
+    deactivate(dependent)
+  })
 
-  var otherElementsWithSameCommand = _.find(otherElements, { command: element.command });
-  if (command && Array.isArray(otherElementsWithSameCommand)) {
-    _.forEach(otherElementsWithSameCommand, function(otherElement) {
-      otherElement.active = false;
-    });
-  } else if (otherElementsWithSameCommand) {
-    otherElementsWithSameCommand.active = false;
+  let otherComponentsSameCommand = _.find(otherComponents, { command: component.command })
+  if (command && Array.isArray(otherComponentsSameCommand)) {
+    _.forEach(otherComponentsSameCommand, (otherComponent) => {
+      otherComponent.active = false
+    })
+  } else if (otherComponentsSameCommand) {
+    otherComponentsSameCommand.active = false
   } else {
-    return;
+    return
   }
 
-  if (!(_.find(ui.elements, {'active': true}))) {   // we're deactivating without toggling
-                                                    // to another command
-    ui.currentInteractiveCommand = 'none';
+  if (!(_.find(state.components, {'active': true}))) {    // we're deactivating without toggling
+                                                          // to another command
+    state.currentInteractiveCommand = 'none'
   }
 
   if (typeof command.command !== 'undefined') {
-    command.deactivate();
+    command.deactivate()
   } else {
-    return;
+    return
   }
 
-};
+}
 
-var toggleActiveState = function(element) {
-  //element.active = !element.active;
+function toggleActiveState(component) {
 
-  if (!element.active) {
-    activate(element);
+  if (!component.active) {
+    activate(component)
   } else {
-    deactivate(element);
+    deactivate(component)
   }
-};
-
-module.exports = ui;
+}

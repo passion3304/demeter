@@ -8,7 +8,7 @@ var Application = React.createClass({
 
   getInitialState: function() {
     return {
-      components: {}
+      containerComponents: {}
     }
   },
 
@@ -29,16 +29,14 @@ var Application = React.createClass({
       );
 
     } else {
-      var components = this.state.components;
+      var containerComponents = this.state.containerComponents;
       var componentsToRender = [];
 
-      // get all component types like toolbars, viewport, panels, etc.
-      _.forEach(components, function(componentType) {
-        _.forEach(componentType, function(component) {
-          if (component.visible) {
-            componentsToRender.push(component);
-          }
-        });
+      // get all top level component types like toolbars, viewport, panels, etc.
+      _.forEach(containerComponents, function(component) {
+        if (component.visible) {
+          componentsToRender.push(component);
+        }
       });
 
       // render each component in turn using a dynamic component name
@@ -59,7 +57,7 @@ var Application = React.createClass({
 
   onChange: function() {
     this.setState({
-      components: ApplicationStore.ui.getComponents()
+      containerComponents: ApplicationStore.ui.getContainerComponents()
     });
   }
 });
