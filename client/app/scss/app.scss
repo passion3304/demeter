@@ -27,6 +27,7 @@ $fa-font-path: "./fonts" !default;
 
 @import "./toolbar.scss";
 @import "./option-panel.scss";
+@import "./status-indicator";
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 
 
@@ -39,7 +40,7 @@ body {
 }
 
 button {
-  outline: none;
+  outline: none !important;   // make this a configurable option for accessibility
 }
 
 .hidden {

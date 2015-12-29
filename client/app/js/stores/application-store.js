@@ -4,14 +4,19 @@ var ApplicationConstants = require('../constants/application-constants');
 var SettingsStore = require('./settings-store');
 var ui = require('./ui');
 var assign = require('object-assign');
+var _ = require('lodash');
 
 var CHANGE_EVENT = 'change';
 
 var ApplicationStore = assign({}, EventEmitter.prototype, {
+
   state: {
     settings: {},
-    loaded: false
+    loaded: false,
+    currentInteractiveCommand: {}
   },
+
+  ui: ui,
 
   emitChange: function () {
     this.emit(CHANGE_EVENT);
@@ -57,8 +62,11 @@ var ApplicationStore = assign({}, EventEmitter.prototype, {
         ApplicationStore.emitChange();
         break;
       case ApplicationConstants.CLICK:
-        ui.click(action.targetID);
-        ApplicationStore.emitChange();
+        ui.click(action.targetID)
+          .then(function(newState) {
+            _.assign(ApplicationStore.state, newState);
+            ApplicationStore.emitChange();
+          });
         break;
       default:
       //no op
@@ -71,20 +79,12 @@ var ApplicationStore = assign({}, EventEmitter.prototype, {
     return this.state.loaded;
   },
 
-  getComponents: function () {
-    return ui.getComponents();
-  },
-
-  getComponentByID(id) {
-    return ui.getComponentByID(id);
-  },
-
-  getElements: function () {
-    return ui.getElements();
-  },
-
-  getElementByID: function (id) {
-    return ui.getElementByID(id);
+  getCurrentInteractiveCommand: function() {
+    if (typeof this.state.currentInteractiveCommand.name !== 'undefined') {
+      return this.state.currentInteractiveCommand.name;
+    } else {
+      return 'none';
+    }
   }
 
 });

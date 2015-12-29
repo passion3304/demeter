@@ -21,13 +21,21 @@ var Toolbar = React.createClass({
 
   render: function() {
     var self = this;
+    var children = [];
+    var toolbarStyle = classNames(self.props.componentData.classNames);
     var Button = Widgets.Button;
     var ButtonGroup = Widgets.ButtonGroup;
 
+    if (typeof this.props.componentData.children !== 'undefined') {
+      this.props.componentData.children.map(function(child) {
+        children.push(child);
+      });
+    }
+
     return (
-      <div className="toolbar">
+      <div className={toolbarStyle}>
         <ButtonGroup vertical block>
-          {self.props.componentData.children.map(function(child, i) {
+          {children.map(function(child, i) {
 
             var buttonClass = classNames({
               'active': child.active

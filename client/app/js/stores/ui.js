@@ -8,8 +8,9 @@ var _ = require('lodash');
 var ui = {
 
   commands: [],
-  components: [],
+  components: [],   // maybe call this something else like containers?
   elements: [],
+  currentInteractiveCommand: {},
 
   initialize: function(settings) {
 
@@ -40,7 +41,7 @@ var ui = {
 
     setTimeout(function() {     // terrible
       deferred.resolve();
-    }, 1000);
+    }, 100);
 
     return deferred.promise;
 
@@ -71,6 +72,7 @@ var ui = {
   },
 
   click: function(targetID) {
+    var deferred = q.defer();
     var element = findByID(this.elements, targetID);
     if (element && typeof element.command !== 'undefined') {
 
@@ -78,20 +80,23 @@ var ui = {
 
       switch (command.type) {
         case 'interactive':
-
           toggleActiveState(element);
-
+          deferred.resolve({ currentInteractiveCommand: this.currentInteractiveCommand });
           break;
 
         case 'boolean':
           toggleActiveState(element);
+          deferred.resolve();
           break;
 
         case 'instant':
           activate(element);
-          setTimeout(function() {
-            deactivate(element);
-          }, 333);
+          deactivate(element);
+          deferred.resolve();
+          //setTimeout(function() {
+          //  deactivate(element);
+          //  deferred.resolve();
+          //}, 800);
           // execute command
           break;
 
@@ -99,6 +104,7 @@ var ui = {
           // no op
       }
     }
+    return deferred.promise;
   }
 };
 
@@ -134,6 +140,8 @@ var initializeCommands = function(allCommands) {
       id: uuid.v1()
     };
     _.defaults(command, commandDefaults);
+    _.assign(command, command.command);   // move the module commands one level up so you don't
+                                          // have to keep using command.command
   });
 };
 
@@ -161,6 +169,9 @@ var activate = function(element) {
   var otherElements = _.reject(ui.elements, { id: element.id });
   var command = findByName(ui.commands, element.command);
 
+  element.active = true;
+  ui.currentInteractiveCommand = command;
+
   _.forEach(otherElements, function(otherElement) {
 
     if (command && otherElement.hasOwnProperty('command')) {
@@ -174,8 +185,6 @@ var activate = function(element) {
     }
   });
 
-  element.active = true;
-
   _.forEach(findDependentsByCommand(element), function(dependent) {
     dependent.active = true;
   });
@@ -187,6 +196,12 @@ var activate = function(element) {
     });
   } else if (typeof otherElementsWithSameCommand !== 'undefined') {
     otherElementsWithSameCommand.active = true;
+  } else {
+    return;
+  }
+
+  if (typeof command.command !== 'undefined') {
+    command.activate();
   } else {
     return;
   }
@@ -212,6 +227,18 @@ var deactivate = function(element) {
   } else {
     return;
   }
+
+  if (!(_.find(ui.elements, {'active': true}))) {   // we're deactivating without toggling
+                                                    // to another command
+    ui.currentInteractiveCommand = 'none';
+  }
+
+  if (typeof command.command !== 'undefined') {
+    command.deactivate();
+  } else {
+    return;
+  }
+
 };
 
 var toggleActiveState = function(element) {

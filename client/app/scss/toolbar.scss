@@ -1,10 +1,19 @@
 @import "app_settings";
 
 .toolbar {
+  z-index: 1000;
+}
+
+.primary-toolbar {
   padding: 20px;
   margin-top: $navbar-height;
   background-color: #459773;
   height: 100vh;
   width: $toolbar-medium-width;
-  z-index: 1000;
+}
+
+.secondary-toolbar {
+  position: absolute;
+  left: 500px;
+  top: 200px;
 }

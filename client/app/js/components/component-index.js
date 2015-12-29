@@ -4,38 +4,56 @@ module.exports = {
       name:       'primary-toolbar',
       type:       'toolbar',
       reactClass: 'Toolbar',
+      classNames: {
+        'toolbar':              true,
+        'primary-toolbar':      true
+      },
       children:  [
         {
           name:     'Create plant',
           type:     'button',
           command:  'plant',
+          reactClass: 'Button',
           icon:     'fa-tree'
         },
         {
           name:     'Eraser',
           type:     'button',
           command:  'erase',
+          reactClass: 'Button',
           icon:     'fa-eraser'
         },
         {
           name:     'Electrify',
           type:     'button',
           command:  'electrify',
+          reactClass: 'Button',
           icon:     'fa-bolt'
         },
         {
           name:     'Invert',
           type:     'button',
           command:  'invert',
+          reactClass: 'Button',
           icon:     'fa-rebel'
         },
         {
           name:     'Clear scene',
           type:     'button',
           command:  'clear_scene',
+          reactClass: 'Button',
           icon:     'fa-trash'
         }
       ]
+    },
+    {
+      name:         'secondary-toolbar',
+      type:         'toolbar',
+      reactClass:   'Toolbar',
+      classNames:   {
+        'toolbar':                true,
+        'secondary-toolbar':      true
+      }
     }
   ],
   menus: [
@@ -118,7 +136,7 @@ module.exports = {
             {
               name: 'open_help',
               displayName: 'Open Help',
-              type: 'menu-item',
+              type: 'menu-item'
             }
           ]
         }
@@ -139,7 +157,14 @@ module.exports = {
           displayName: 'Airbrush',
           type: 'button',
           command: 'airbrush',
-          reactClass: 'Button'
+          reactClass: 'Button',
+          classNames: {
+            'btn': true,
+            'btn-success': true
+          },
+          icon: {
+            'fa-paper-plane-o': true
+          }
         }
       ]
     },
@@ -158,6 +183,15 @@ module.exports = {
       reactSubClass: 'ElectrifyOptionsPanel',
       parentCommand: 'electrify',
       displayName: 'Electrify options'
+    }
+  ],
+  statusIndicators: [
+    {
+      name: 'current-interactive-command',
+      type: 'status-indicator',
+      reactClass: 'CurrentInteractiveCommand',
+      displayName: 'Current interactive command',
+      active: 'true'
     }
   ]
 };

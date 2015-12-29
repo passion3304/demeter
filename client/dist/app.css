@@ -2078,6 +2078,14 @@
 .fa-percent:before {
   content: ""; }
 
+.btn:focus {
+  background-color: #337ab7 !important;
+  border-color: #2e6da4 !important; }
+
+.btn.active {
+  background-color: #23527c !important;
+  border-color: #23527c !important; }
+
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
   font-family: sans-serif;
@@ -6169,19 +6177,27 @@ input[type="button"].btn-block {
   border-top-left-radius: 0; }
 
 .toolbar {
+  z-index: 1000; }
+
+.primary-toolbar {
   padding: 20px;
   margin-top: 50px;
   background-color: #459773;
   height: 100vh;
-  width: 120px;
-  z-index: 1000; }
+  width: 120px; }
+
+.secondary-toolbar {
+  position: absolute;
+  left: 500px;
+  top: 200px; }
 
 .option-panel {
   position: absolute;
   top: 50px;
   left: 120px;
   width: 250px;
-  height: 300px; }
+  height: 300px;
+  padding: 10px; }
   .option-panel h1 {
     font-size: 24px;
     text-align: center !important; }
@@ -6197,6 +6213,11 @@ input[type="button"].btn-block {
   opacity: 0;
   z-index: -1;
   transition: opacity 200ms, left 400ms; }
+
+.current-interactive-command {
+  position: absolute;
+  left: 600px;
+  top: 200px; }
 
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
@@ -12022,7 +12043,7 @@ body {
     list-style-type: none; }
 
 button {
-  outline: none; }
+  outline: none !important; }
 
 .hidden {
   visibility: hidden; }

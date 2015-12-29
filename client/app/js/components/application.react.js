@@ -59,7 +59,7 @@ var Application = React.createClass({
 
   onChange: function() {
     this.setState({
-      components: ApplicationStore.getComponents()
+      components: ApplicationStore.ui.getComponents()
     });
   }
 });

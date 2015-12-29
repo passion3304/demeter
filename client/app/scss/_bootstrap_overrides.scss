@@ -10,3 +10,13 @@ $navbar-default-link-color: #333;
 //== Panels
 
 $panel-bg: lighten($primary-color, 30%);
+
+.btn:focus {
+  background-color: $brand-primary !important;
+  border-color: darken($btn-primary-bg, 5%) !important;
+}
+
+.btn.active {
+  background-color: darken($brand-primary, 15%) !important;
+  border-color: darken($btn-primary-bg, 15%) !important;
+}

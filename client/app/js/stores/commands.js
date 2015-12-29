@@ -1,15 +1,20 @@
+var commands = require('../commands/command-index');
+
 module.exports = [
   {
     name: 'plant',
-    type: 'interactive'
+    type: 'interactive',
+    command: commands.plant
   },
   {
     name: 'erase',
-    type: 'interactive'
+    type: 'interactive',
+    command: commands.erase
   },
   {
     name: 'electrify',
-    type: 'interactive'
+    type: 'interactive',
+    command: commands.electrify
   },
   {
     name: 'invert',
@@ -20,7 +25,7 @@ module.exports = [
     type: 'instant'
   },
   {
-    name:     'airbrush',
-    type:     'boolean'
+    name: 'airbrush',
+    type: 'boolean'
   }
 ];
