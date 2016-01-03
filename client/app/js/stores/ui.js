@@ -37,9 +37,9 @@ export default class {
 
       let command = findByName(this.state.commands, component.command)
 
-      switch (command.type, this.state) {
+      switch (command.type) {
         case 'interactive':
-          toggleActiveState(component)
+          toggleActiveState(component, this.state)
           deferred.resolve({ currentInteractiveCommand: this.state.currentInteractiveCommand })
           break
 
@@ -151,7 +151,7 @@ function activate(component, state) {
       // only one interactive command at a time
       if (command.type === 'interactive' && otherCommand.type === 'interactive'
           && otherComponent.active) {
-        deactivate(otherComponent)
+        deactivate(otherComponent, state)
       }
     }
   })
@@ -160,7 +160,7 @@ function activate(component, state) {
     dependent.active = true
   })
 
-  let otherComponentsWithSameCommand = _.find(otherComponents, { command: element.command })
+  let otherComponentsWithSameCommand = _.find(otherComponents, { command: component.command })
   if (Array.isArray(otherComponentsWithSameCommand)) {
     _.forEach(otherComponentsWithSameCommand, (otherComponent) => {
       otherComponent.active = true
@@ -179,13 +179,13 @@ function activate(component, state) {
 }
 
 function deactivate(component, state) {
-  let otherComponents = _.reject(state.components, { id: element.id })
+  let otherComponents = _.reject(state.components, { id: component.id })
   var command = findByName(state.commands, component.command)
 
   component.active = false
 
   _.forEach(findDependentsByCommand(component, state), (dependent) => {
-    deactivate(dependent)
+    deactivate(dependent, state)
   })
 
   let otherComponentsSameCommand = _.find(otherComponents, { command: component.command })
@@ -212,11 +212,11 @@ function deactivate(component, state) {
 
 }
 
-function toggleActiveState(component) {
+function toggleActiveState(component, state) {
 
   if (!component.active) {
-    activate(component)
+    activate(component, state)
   } else {
-    deactivate(component)
+    deactivate(component, state)
   }
 }

@@ -1,15 +1,16 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var ApplicationStore = require('./stores/application-store');
-var ApplicationActions = require('./actions/application-actions');
-var Application = require('./components/application.react');
-var Viewport = require('./components/viewport.react');
+let React = require('react')
+let ReactDOM = require('react-dom')
+let ApplicationStore = require('./stores/application-store')
+let ApplicationActions = require('./actions/application-actions')
+let Viewport = require('./components/viewport.react')
+
+import Application from './components/application.react'
 
 ReactDOM.render(
   <div>
     <Application />
   </div>,
   document.getElementById('app-container')
-);
+)
 
-ApplicationActions.startApp();
+ApplicationActions.startApp()

@@ -1,65 +1,87 @@
-var React = require('react');
-var ApplicationStore = require('../stores/application-store');
-var reactClasses = require('./react-class-index');
-var _ = require('lodash');
+let React = require('react')
+let ApplicationStore = require('../stores/application-store')
+let reactContainerClasses = require('./react-container-class-index')
+let _ = require('lodash')
 
 
-var Application = React.createClass({
+export default class Application extends React.Component {
 
-  getInitialState: function() {
-    return {
-      containerComponents: {}
-    }
-  },
+  constructor(props) {
+    super(props)
+    this.state = { containerComponents: {} }
+    this.onChange = this.onChange.bind(this)
+  }
 
-  componentDidMount: function() {
-    ApplicationStore.addChangeListener(this.onChange);
-  },
+  componentDidMount() {
+    ApplicationStore.addChangeListener(this.onChange)
+  }
 
-  componentWillUnmount: function() {
-    ApplicationStore.removeChangeListener(this.onChange);
-  },
+  componentWillUnmount() {
+    ApplicationStore.removeChangeListener(this.onChange)
+  }
 
-  render: function() {
+  render() {
     if (!ApplicationStore.appLoaded()) {
       return (
         <div>
           <p>Loading...</p>
         </div>
-      );
+      )
 
     } else {
-      var containerComponents = this.state.containerComponents;
-      var componentsToRender = [];
+      let containerComponents = this.state.containerComponents
+      let componentsToRender = []
 
       // get all top level component types like toolbars, viewport, panels, etc.
-      _.forEach(containerComponents, function(component) {
+      _.forEach(containerComponents, (component) => { // TO DO: use filter here
         if (component.visible) {
-          componentsToRender.push(component);
+          componentsToRender.push(component)
         }
-      });
+      })
 
       // render each component in turn using a dynamic component name
       return (
-        <div> {componentsToRender.map(function(componentToRender, i) {
-          var ComponentReactClass = reactClasses[componentToRender.reactClass];
+        <div> {componentsToRender.map((componentToRender, i) => {
+          let ComponentReactClass = reactContainerClasses[componentToRender.reactClass]
           return (
             <div key={i}>
               <ComponentReactClass componentData={componentToRender} />
             </div>
-          );
+          )
         })}
         </div>
-      );
-
+      )
     }
-  },
+  }
 
-  onChange: function() {
+  temp() {
+    let containerComponents = this.state.containerComponents
+    let componentsToRender = []
+
+    // get all top level component types like toolbars, viewport, panels, etc.
+    _.forEach(containerComponents, (component) => { // TO DO: use filter here
+      if (component.visible) {
+        componentsToRender.push(component)
+      }
+    })
+
+    // render each component in turn using a dynamic component name
+    return (
+      <div> {componentsToRender.map((componentToRender, i) => {
+        let ComponentReactClass = reactContainerClasses[componentToRender.reactClass]
+        return (
+          <div key={i}>
+            <ComponentReactClass componentData={componentToRender} />
+          </div>
+        )
+      })}
+      </div>
+    )
+  }
+
+  onChange() {
     this.setState({
       containerComponents: ApplicationStore.ui.getContainerComponents()
-    });
+    })
   }
-});
-
-module.exports = Application;
+}

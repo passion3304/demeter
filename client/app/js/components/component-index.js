@@ -14,47 +14,87 @@ module.exports = {
           type:     'button',
           command:  'plant',
           reactClass: 'Button',
-          icon:     'fa-tree'
+          extraProps: [
+            {
+              name: 'bsStyle',
+              value: 'primary'
+            }
+          ],
+          icon:     {
+            'fa-tree': true
+          }
         },
         {
           name:     'Eraser',
           type:     'button',
           command:  'erase',
           reactClass: 'Button',
-          icon:     'fa-eraser'
+          extraProps: [
+            {
+              name: 'bsStyle',
+              value: 'primary'
+            }
+          ],
+          icon:     {
+            'fa-eraser': true
+          }
         },
         {
           name:     'Electrify',
           type:     'button',
           command:  'electrify',
           reactClass: 'Button',
-          icon:     'fa-bolt'
+          extraProps: [
+            {
+              name: 'bsStyle',
+              value: 'primary'
+            }
+          ],
+          icon:     {
+            'fa-bolt': true
+          }
         },
         {
           name:     'Invert',
           type:     'button',
           command:  'invert',
           reactClass: 'Button',
-          icon:     'fa-rebel'
+          extraProps: [
+            {
+              name: 'bsStyle',
+              value: 'primary'
+            }
+          ],
+          icon:     {
+            'fa-rebel': true
+          }
         },
         {
           name:     'Clear scene',
           type:     'button',
           command:  'clear_scene',
           reactClass: 'Button',
-          icon:     'fa-trash'
+          extraProps: [
+            {
+              name: 'bsStyle',
+              value: 'primary'
+            }
+          ],
+          icon:     {
+            'fa-trash': true
+          }
         }
       ]
-    },
-    {
-      name:         'secondary-toolbar',
-      type:         'toolbar',
-      reactClass:   'Toolbar',
-      classNames:   {
-        'toolbar':                true,
-        'secondary-toolbar':      true
-      }
     }
+    //{
+    //  name:         'secondary-toolbar',
+    //  type:         'toolbar',
+    //  reactClass:   'Toolbar',
+    //  classNames:   {
+    //    'toolbar':                true,
+    //    'secondary-toolbar':      true
+    //  }
+    //}
   ],
   menus: [
     {
@@ -66,21 +106,34 @@ module.exports = {
           name: 'file',
           displayName: 'File',
           type: 'top-menu',
+          reactClass: 'NavDropdown',
+          extraProps: [
+            {
+              name: 'title',
+              value: 'File'
+            }
+          ],
           children: [
             {
               name: 'new',
               displayName: 'New',
-              type: 'menu-item'
+              templateText: 'New',
+              type: 'menu-item',
+              reactClass: 'MenuItem'
             },
             {
               name: 'open',
               displayName: 'Open',
-              type: 'menu-item'
+              templateText: 'Open',
+              type: 'menu-item',
+              reactClass: 'MenuItem'
             },
             {
               name: 'open_recent',
               displayName: 'Open Recent',
-              type: 'sub-menu'
+              templateText: 'Open Recent',
+              type: 'sub-menu',
+              reactClass: 'MenuItem'
             }
           ]
         },
@@ -89,41 +142,72 @@ module.exports = {
           name: 'tools',
           displayName: 'Tools',
           type: 'top-menu',
+          reactClass: 'NavDropdown',
+          extraProps: [
+            {
+              name: 'title',
+              value: 'Tools'
+            }
+          ],
           children: [
             {
               name: 'plant',
+              templateText: 'Create plant',
               displayName: 'Create plant',
               type: 'menu-item',
+              reactClass: 'MenuItem',
               command: 'plant'
             },
             {
               name: 'eraser',
+              templateText: 'Eraser',
               displayName: 'Eraser',
               type: 'menu-item',
+              reactClass: 'MenuItem',
               command: 'erase'
             },
             {
               name: 'electrify',
+              templateText: 'Electrify',
               displayName: 'Electrify',
               type: 'menu-item',
+              reactClass: 'MenuItem',
               command: 'electrify'
             },
             {
-              type: 'divider'
+              reactClass: 'MenuItem',
+              type: 'divider',
+              extraProps: [
+                {
+                  name: 'divider',
+                  value : true
+                }
+              ]
             },
             {
               name: 'invert',
+              templateText: 'Invert',
               displayName: 'Invert',
               type: 'menu-item',
+              reactClass: 'MenuItem',
               command: 'invert'
             },
             {
-              type: 'divider'
+              reactClass: 'MenuItem',
+              type: 'divider',
+              extraProps: [
+                {
+                  name: 'divider',
+                  value : true
+                }
+              ]
             },
             {
               name: 'clear_scene',
               displayName: 'Clear Scene',
+              templateText: 'Clear Scene',
               type: 'menu-item',
+              reactClass: 'MenuItem',
               command: 'clear_scene'
             }
           ]
@@ -132,11 +216,20 @@ module.exports = {
           name: 'help',
           displayName: 'Help',
           type: 'top-menu',
+          reactClass: 'NavDropdown',
+          extraProps: [
+            {
+              name: 'title',
+              value: 'Help'
+            }
+          ],
           children: [
             {
               name: 'open_help',
+              templateText: 'Open Help',
               displayName: 'Open Help',
-              type: 'menu-item'
+              type: 'menu-item',
+              reactClass: 'MenuItem'
             }
           ]
         }
@@ -184,14 +277,14 @@ module.exports = {
       parentCommand: 'electrify',
       displayName: 'Electrify options'
     }
-  ],
-  statusIndicators: [
-    {
-      name: 'current-interactive-command',
-      type: 'status-indicator',
-      reactClass: 'CurrentInteractiveCommand',
-      displayName: 'Current interactive command',
-      active: 'true'
-    }
   ]
+  //statusIndicators: [
+  //  {
+  //    name: 'current-interactive-command',
+  //    type: 'status-indicator',
+  //    reactClass: 'CurrentInteractiveCommand',
+  //    displayName: 'Current interactive command',
+  //    active: 'true'
+  //  }
+  //]
 };

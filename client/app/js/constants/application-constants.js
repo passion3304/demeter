@@ -1,4 +1,4 @@
-var keyMirror = require('keymirror');
+let keyMirror = require('keymirror')
 
 module.exports = keyMirror({
 
@@ -7,4 +7,4 @@ module.exports = keyMirror({
   CLICK: null
 
 
-});
+})
