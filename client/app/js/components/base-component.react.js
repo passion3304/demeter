@@ -35,6 +35,14 @@ export default function BaseComponent(SubComponent) {
         }
       }
 
+      function ref(component) {
+        if (typeof component.ref !== 'undefined') {
+          return component.ref
+        } else {
+          return {}
+        }
+      }
+
       function childComponents(componentData) {
         let children = []
 
@@ -84,7 +92,7 @@ export default function BaseComponent(SubComponent) {
 
       return (
         <div>
-          <SubComponent {...this.props} className={style}
+          <SubComponent {...this.props} className={style} ref={ref(this)}
                           childComponents={childComponents(this.props.componentData)} />
         </div>
       )

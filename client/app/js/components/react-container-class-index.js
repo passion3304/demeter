@@ -1,8 +1,7 @@
-var Toolbar = require('./toolbar.react.js');
-var Menu = require('./menu.react.js');
-var Viewport = require('./viewport.react');
-var OptionPanel = require('./option_panels/option-panel.react.js');
-var StatusIndicator = require('./status_indicators/status-indicator-index');
+let Toolbar = require('./toolbar.react.js')
+import Menu from './menu.react.js'
+import Viewport from './viewport.react'
+import OptionPanel from './option_panels/option-panel.react.js'
 
 
 module.exports = {
@@ -10,5 +9,4 @@ module.exports = {
   Viewport:                     Viewport,
   Menu:                         Menu,
   OptionPanel:                  OptionPanel,
-  CurrentInteractiveCommand:    StatusIndicator.CurrentInteractiveCommand   // nooo
 };

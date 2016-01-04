@@ -10,11 +10,9 @@ class Toolbar extends React.Component {
   render() {
     let ButtonGroup = Widgets.ButtonGroup
     return (
-      <div className="toolbar primary-toolbar" >
-        <ButtonGroup vertical block>
-          {this.props.childComponents}
-        </ButtonGroup>
-      </div>
+      <ButtonGroup vertical block>
+        {this.props.childComponents}
+      </ButtonGroup>
     )
   }
 }

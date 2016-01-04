@@ -277,6 +277,19 @@ module.exports = {
       parentCommand: 'electrify',
       displayName: 'Electrify options'
     }
+  ],
+  viewports: [
+    {
+      name: 'primary-viewport',
+      type: 'viewport',
+      reactClass: 'Viewport',
+      ref: 'viewport',
+      classNames: [
+        {
+          'viewport': true
+        }
+      ]
+    }
   ]
   //statusIndicators: [
   //  {

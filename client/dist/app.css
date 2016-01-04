@@ -6184,7 +6184,8 @@ input[type="button"].btn-block {
   margin-top: 50px;
   background-color: #459773;
   height: 100vh;
-  width: 120px; }
+  width: 120px;
+  z-index: 1000; }
 
 .secondary-toolbar {
   position: absolute;
@@ -6205,7 +6206,6 @@ input[type="button"].btn-block {
 .panel-show {
   left: 120px;
   opacity: 1;
-  z-index: 1;
   transition: opacity 200ms, left 400ms, z-index 2000ms; }
 
 .panel-hide {
@@ -6218,6 +6218,12 @@ input[type="button"].btn-block {
   position: absolute;
   left: 600px;
   top: 200px; }
+
+.viewport {
+  position: absolute;
+  left: 200px;
+  top: 0px;
+  z-index: -1; }
 
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)

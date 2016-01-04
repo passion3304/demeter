@@ -22,12 +22,10 @@ $fa-font-path: "./fonts" !default;
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/navbar";
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/navs";
 
-
-
-
 @import "./toolbar.scss";
 @import "./option-panel.scss";
-@import "./status-indicator";
+@import "./status-indicator.scss";
+@import "./viewport";
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 
 

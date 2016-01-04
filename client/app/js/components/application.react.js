@@ -1,4 +1,5 @@
 let React = require('react')
+let classNames = require('classnames')
 let ApplicationStore = require('../stores/application-store')
 let reactContainerClasses = require('./react-container-class-index')
 let _ = require('lodash')
@@ -43,8 +44,12 @@ export default class Application extends React.Component {
       return (
         <div> {componentsToRender.map((componentToRender, i) => {
           let ComponentReactClass = reactContainerClasses[componentToRender.reactClass]
+          let componentStyle = {}
+          if (typeof componentToRender.classNames !== 'undefined') {
+            componentStyle = classNames(componentToRender.classNames)
+          }
           return (
-            <div key={i}>
+            <div key={i} className={componentStyle}>
               <ComponentReactClass componentData={componentToRender} />
             </div>
           )
@@ -52,31 +57,6 @@ export default class Application extends React.Component {
         </div>
       )
     }
-  }
-
-  temp() {
-    let containerComponents = this.state.containerComponents
-    let componentsToRender = []
-
-    // get all top level component types like toolbars, viewport, panels, etc.
-    _.forEach(containerComponents, (component) => { // TO DO: use filter here
-      if (component.visible) {
-        componentsToRender.push(component)
-      }
-    })
-
-    // render each component in turn using a dynamic component name
-    return (
-      <div> {componentsToRender.map((componentToRender, i) => {
-        let ComponentReactClass = reactContainerClasses[componentToRender.reactClass]
-        return (
-          <div key={i}>
-            <ComponentReactClass componentData={componentToRender} />
-          </div>
-        )
-      })}
-      </div>
-    )
   }
 
   onChange() {

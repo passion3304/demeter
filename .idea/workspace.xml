@@ -2,137 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f997d69-4014-4472-bb16-c68c33e9271b" name="Default" comment="create separate react files for each option panel type">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/app/js/components/base-component.react.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/app/js/components/toolbar5.react.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/CSSCore.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/Deferred.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/ErrorUtils.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/EventListener.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/ExecutionEnvironment.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/Map.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/Promise.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/PromiseMap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/TouchEventUtils.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/URI.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/UserAgent.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/UserAgentData.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/VersionRange.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/areEqual.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/camelize.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/camelizeStyleName.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/containsNode.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/crc32.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/createArrayFromMixed.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/createNodesFromMarkup.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/emptyFunction.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/emptyObject.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/everyObject.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/fetch.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/fetchWithRetries.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/filterObject.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/flattenArray.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/focusNode.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/forEachObject.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/getActiveElement.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/getMarkupWrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/getUnboundedScrollPosition.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/hyphenate.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/hyphenateStyleName.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/invariant.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/isEmpty.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/isNode.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/isTextNode.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/joinClasses.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/keyMirror.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/keyOf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/mapObject.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/memoizeStringOnly.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/monitorCodeUse.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/nativeRequestAnimationFrame.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/nullthrows.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/performance.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/performanceNow.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/removeFromArray.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/requestAnimationFrame.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/resolveImmediate.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/shallowEqual.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/someObject.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/sprintf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/toArray.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/warning.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/flow/include/xhrSimpleDataSerializer.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/client/app/js/components/menu.react.js" afterPath="$PROJECT_DIR$/client/app/js/components/menu5.react.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/client/app/js/components/option_panels/option-panel.react.js" afterPath="$PROJECT_DIR$/client/app/js/components/option_panels/option-panel5.react.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/client/app/js/components/react-class-index.js" afterPath="$PROJECT_DIR$/client/app/js/components/react-container-class-index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/app/scss/viewport.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/actions/application-actions.js" afterPath="$PROJECT_DIR$/client/app/js/actions/application-actions.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/app.js" afterPath="$PROJECT_DIR$/client/app/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/components/application.react.js" afterPath="$PROJECT_DIR$/client/app/js/components/application.react.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/components/base-component.react.js" afterPath="$PROJECT_DIR$/client/app/js/components/base-component.react.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/components/component-index.js" afterPath="$PROJECT_DIR$/client/app/js/components/component-index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/components/menu.react.js" afterPath="$PROJECT_DIR$/client/app/js/components/menu.react.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/components/option_panels/option-panel.react.js" afterPath="$PROJECT_DIR$/client/app/js/components/option_panels/option-panel.react.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/components/react-container-class-index.js" afterPath="$PROJECT_DIR$/client/app/js/components/react-container-class-index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/components/toolbar.react.js" afterPath="$PROJECT_DIR$/client/app/js/components/toolbar.react.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/constants/application-constants.js" afterPath="$PROJECT_DIR$/client/app/js/constants/application-constants.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/stores/application-store.js" afterPath="$PROJECT_DIR$/client/app/js/stores/application-store.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/stores/ui.js" afterPath="$PROJECT_DIR$/client/app/js/stores/ui.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/components/viewport.react.js" afterPath="$PROJECT_DIR$/client/app/js/components/viewport.react.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/scss/app.scss" afterPath="$PROJECT_DIR$/client/app/scss/app.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/scss/option-panel.scss" afterPath="$PROJECT_DIR$/client/app/scss/option-panel.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/scss/toolbar.scss" afterPath="$PROJECT_DIR$/client/app/scss/toolbar.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/dist/app.css" afterPath="$PROJECT_DIR$/client/dist/app.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/dist/app.js" afterPath="$PROJECT_DIR$/client/dist/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/dist/react-with-addons.js" afterPath="$PROJECT_DIR$/client/node_modules/react/dist/react-with-addons.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/dist/react-with-addons.min.js" afterPath="$PROJECT_DIR$/client/node_modules/react/dist/react-with-addons.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/dist/react.js" afterPath="$PROJECT_DIR$/client/node_modules/react/dist/react.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/dist/react.min.js" afterPath="$PROJECT_DIR$/client/node_modules/react/dist/react.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/lib/HTMLDOMPropertyConfig.js" afterPath="$PROJECT_DIR$/client/node_modules/react/lib/HTMLDOMPropertyConfig.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/lib/React.js" afterPath="$PROJECT_DIR$/client/node_modules/react/lib/React.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/lib/ReactCSSTransitionGroupChild.js" afterPath="$PROJECT_DIR$/client/node_modules/react/lib/ReactCSSTransitionGroupChild.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/lib/ReactDOMSelect.js" afterPath="$PROJECT_DIR$/client/node_modules/react/lib/ReactDOMSelect.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/lib/ReactDefaultPerfAnalysis.js" afterPath="$PROJECT_DIR$/client/node_modules/react/lib/ReactDefaultPerfAnalysis.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/lib/ReactTestUtils.js" afterPath="$PROJECT_DIR$/client/node_modules/react/lib/ReactTestUtils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/lib/ReactVersion.js" afterPath="$PROJECT_DIR$/client/node_modules/react/lib/ReactVersion.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/lib/ResponderEventPlugin.js" afterPath="$PROJECT_DIR$/client/node_modules/react/lib/ResponderEventPlugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/CHANGELOG.md" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/CHANGELOG.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/lib/__mocks__/fetch.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/lib/__mocks__/fetch.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/lib/__mocks__/fetchWithRetries.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/lib/__mocks__/fetchWithRetries.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/lib/getActiveElement.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/lib/getActiveElement.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/lib/invariant.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/lib/invariant.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/lib/performanceNow.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/lib/performanceNow.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/module-map.json" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/module-map.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/Readme.md" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/Readme.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/domains/core.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/domains/core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/domains/es6-extensions.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/domains/es6-extensions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/domains/index.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/domains/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/domains/node-extensions.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/domains/node-extensions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/lib/core.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/lib/core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/lib/es6-extensions.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/lib/es6-extensions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/lib/index.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/lib/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/lib/node-extensions.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/lib/node-extensions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/package.json" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/setimmediate/core.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/setimmediate/core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/setimmediate/es6-extensions.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/setimmediate/es6-extensions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/setimmediate/index.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/setimmediate/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/setimmediate/node-extensions.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/setimmediate/node-extensions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/src/core.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/src/core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/src/index.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/src/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/src/node-extensions.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/promise/src/node-extensions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/.npmignore" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/.npmignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/.travis.yml" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/.travis.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/bower.json" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/component.json" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/component.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/dist/ua-parser.min.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/dist/ua-parser.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/dist/ua-parser.pack.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/dist/ua-parser.pack.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/package.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/package.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/package.json" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/readme.md" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/readme.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/src/ua-parser.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/src/ua-parser.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/test/browser&amp;mediaplayer-test.json" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/test/browser&amp;mediaplayer-test.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/test/browser-test.json" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/test/browser-test.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/test/cpu-test.json" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/test/cpu-test.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/test/device-test.json" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/test/device-test.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/test/engine-test.json" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/test/engine-test.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/test/os-test.json" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/test/os-test.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/test/test.js" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/test/test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/ua-parser-js.jquery.json" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/node_modules/ua-parser-js/ua-parser-js.jquery.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/package.json" afterPath="$PROJECT_DIR$/client/node_modules/react/node_modules/fbjs/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/react/package.json" afterPath="$PROJECT_DIR$/client/node_modules/react/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/three/package.json" afterPath="$PROJECT_DIR$/client/node_modules/three/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/three/three.js" afterPath="$PROJECT_DIR$/client/node_modules/three/three.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/node_modules/three/three.min.js" afterPath="$PROJECT_DIR$/client/node_modules/three/three.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/package.json" afterPath="$PROJECT_DIR$/client/package.json" />
     </list>
     <ignored path="demeter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -153,71 +40,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="viewport.react.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/app/js/components/viewport.react.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.2934363">
+              <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="application.react.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/app/js/components/application.react.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+              <caret line="52" column="35" selection-start-line="52" selection-start-column="35" selection-end-line="52" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="menu5.react.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/app/js/components/menu5.react.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="27" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="menu.react.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/app/js/components/menu.react.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base-component.react.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/app/js/components/base-component.react.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="74" column="16" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="react-container-class-index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/app/js/components/react-container-class-index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="64" selection-start-line="3" selection-start-column="64" selection-end-line="3" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="option-panel.react.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/app/js/components/option_panels/option-panel.react.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="component-index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="component-index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/app/js/components/component-index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.4671814">
-              <caret line="245" column="35" selection-start-line="245" selection-start-column="35" selection-end-line="245" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="288" column="19" selection-start-line="288" selection-start-column="19" selection-end-line="288" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -227,7 +74,7 @@
         <entry file="file://$PROJECT_DIR$/client/app/js/components/toolbar.react.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="14" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -259,18 +106,25 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/client/app/js/components/toolbar.react.js" />
         <option value="$PROJECT_DIR$/client/app/js/stores/ui.js" />
         <option value="$PROJECT_DIR$/client/app/js/stores/application-store.js" />
         <option value="$PROJECT_DIR$/client/app/js/components/menu.react.js" />
-        <option value="$PROJECT_DIR$/client/app/js/components/base-component.react.js" />
         <option value="$PROJECT_DIR$/client/app/js/components/menu6.react.js" />
         <option value="$PROJECT_DIR$/client/app/js/components/toolbar6.react.js" />
         <option value="$PROJECT_DIR$/client/app/js/components/option_panels/option-panel6.react.js" />
-        <option value="$PROJECT_DIR$/client/app/js/components/application.react.js" />
-        <option value="$PROJECT_DIR$/client/app/js/components/react-container-class-index.js" />
-        <option value="$PROJECT_DIR$/client/app/js/components/component-index.js" />
         <option value="$PROJECT_DIR$/client/app/js/components/option_panels/option-panel.react.js" />
+        <option value="$PROJECT_DIR$/client/app/js/components/react-container-class-index.js" />
+        <option value="$PROJECT_DIR$/client/app/js/app.js" />
+        <option value="$PROJECT_DIR$/client/app/scss/option-panel.scss" />
+        <option value="$PROJECT_DIR$/client/app/scss/app.scss" />
+        <option value="$PROJECT_DIR$/client/app/scss/toolbar.scss" />
+        <option value="$PROJECT_DIR$/client/app/js/components/base-component.react.js" />
+        <option value="$PROJECT_DIR$/client/package.json" />
+        <option value="$PROJECT_DIR$/client/app/js/components/component-index.js" />
+        <option value="$PROJECT_DIR$/client/app/js/components/toolbar.react.js" />
+        <option value="$PROJECT_DIR$/client/app/js/components/application.react.js" />
+        <option value="$PROJECT_DIR$/client/app/scss/viewport.scss" />
+        <option value="$PROJECT_DIR$/client/app/js/components/viewport.react.js" />
       </list>
     </option>
   </component>
@@ -571,6 +425,7 @@
         </subPane>
         <subPane subId="Tests" />
       </pane>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -815,7 +670,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -1021,7 +875,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21041666" sideWeight="0.5074074" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34285715" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1060,35 +914,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/base-component.react.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/toolbar.react.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/component-index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/app/js/components/react-container-class-index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="33" selection-start-line="0" selection-start-column="33" selection-end-line="0" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1096,7 +925,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1104,47 +932,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="27" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/base-component.react.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/component-index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/react-container-class-index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="33" selection-start-line="0" selection-start-column="33" selection-end-line="0" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/application.react.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/toolbar5.react.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="27" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1152,7 +939,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1160,7 +946,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1168,7 +953,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="33" selection-start-line="0" selection-start-column="33" selection-end-line="0" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1176,7 +960,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1184,7 +967,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="29" column="27" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1192,7 +974,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="29" column="55" selection-start-line="29" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1200,7 +981,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1208,7 +988,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="33" selection-start-line="0" selection-start-column="33" selection-end-line="0" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1268,20 +1047,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/viewport.react.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/scss/option-panel.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20293725">
-          <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/gulpfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5868726">
@@ -1303,39 +1068,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0978121">
-          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71028036">
-          <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/scss/app.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.678572">
-          <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/scss/toolbar.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1364,23 +1100,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.21750322">
           <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/toolbar5.react.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.24710424">
-          <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="19" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/base-component.react.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="74" column="16" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1388,31 +1107,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="42" column="27" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/toolbar.react.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/menu.react.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/application.react.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1420,15 +1114,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.21750322">
           <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/react-container-class-index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="64" selection-start-line="3" selection-start-column="64" selection-end-line="3" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1436,14 +1121,162 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/stores/viewport-store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/dist/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/scss/_app_settings.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/components/react-container-class-index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/components/toolbar5.react.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/node_modules/react-three/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22666667">
+          <caret line="68" column="12" selection-start-line="68" selection-start-column="12" selection-end-line="68" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/node_modules/react-three/src/components/cameras/THREEOrthographicCamera.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/node_modules/react-three/src/components/THREEScene.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14671814">
+          <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/node_modules/react-three/src/components/cameras/THREEPerspectiveCamera.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/components/menu.react.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/components/base-component.react.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.8120978">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/scss/app.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31508678">
+          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/scss/option-panel.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5073431">
+          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/scss/toolbar.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30440587">
+          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/app/js/components/component-index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.4671814">
-          <caret line="245" column="35" selection-start-line="245" selection-start-column="35" selection-end-line="245" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="288" column="19" selection-start-line="288" selection-start-column="19" selection-end-line="288" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/components/application.react.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="35" selection-start-line="52" selection-start-column="35" selection-end-line="52" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/components/toolbar.react.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="14" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/scss/viewport.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.05073431">
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/components/viewport.react.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2934363">
+          <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
           <folding />
         </state>
       </provider>
