@@ -19,7 +19,7 @@ let ViewportStore = Object.assign({}, EventEmitter.prototype, {
         },
         {
           geometry: new THREE.BoxGeometry(40, 0, 40),
-          material: new THREE.MeshLambertMaterial( { color: 0x5e3308 } ),
+          material: new THREE.MeshLambertMaterial( { color: 0x6666ff } ),
           position: new THREE.Vector3(0, -2, 0)
         }
       ]

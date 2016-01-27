@@ -1294,6 +1294,7 @@ module.exports =
 	        var camera = props.camera;
 	        if (typeof camera === 'string') {
 	            camera = this._THREEObject3D.getObjectByName(camera, true);
+	            console.log('getting camera');
 	        } else if (camera === null || typeof camera === 'undefined') {
 	            warning(false, "No camera prop specified for react-three scene, using 'maincamera'");
 	            // look for a 'maincamera' object; if none, then make a default camera

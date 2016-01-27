@@ -8,7 +8,7 @@ let PerspectiveCamera = ReactTHREE.PerspectiveCamera
 let Mesh = ReactTHREE.Mesh
 let AmbientLight = ReactTHREE.AmbientLight
 let PointLight = ReactTHREE.PointLight
-//let OrbitControls = require('three-orbit-controls')(THREE)
+let OrbitControls = require('three-orbit-controls')(THREE)
 let ViewportStore = require('../stores/viewport-store')
 let ViewportActions = require('../actions/viewport-actions')
 let ApplicationStore = require('../stores/application-store')
@@ -114,13 +114,16 @@ class Viewport extends React.Component {
     }
     return (
       <div className="viewport" ref={ (ref) => this.viewportRef = ref }>
+        <Renderer width={this.state.width} height={this.state.height}>
           <Scene width={this.state.width} height={this.state.height}
-                 camera="maincamera">
+                 camera="maincamera"
+                 orbitControls={OrbitControls}>
             <PerspectiveCamera name="maincamera" {...cameraProps} />
             {this.sceneGeometry()}
             <PointLight color={0xffffff} position={lightPosition} intensity={3.0} />
             <AmbientLight color={0x333333} />
           </Scene>
+        </Renderer>
       </div>
     )
   }
