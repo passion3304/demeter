@@ -2,19 +2,18 @@ let AppDispatcher = require('../dispatcher/app-dispatcher')
 let EventEmitter = require('events').EventEmitter
 let ApplicationConstants = require('../constants/application-constants')
 let SettingsStore = require('./settings-store')
-let assign = require('object-assign')   // probably can use lodash version
 let _ = require('lodash')
 
 import UI from './ui'
 
 const CHANGE_EVENT = 'change'
 
-let ApplicationStore = assign({}, EventEmitter.prototype, {
+let ApplicationStore = Object.assign({}, EventEmitter.prototype, {
 
   state: {
     settings: {},
     loaded: false,
-    currentInteractiveCommand: {}
+    currentInteractiveCommand: false
   },
 
   ui: {},
@@ -31,7 +30,7 @@ let ApplicationStore = assign({}, EventEmitter.prototype, {
     this.removeListener(CHANGE_EVENT, callback)
   },
 
-  dispatchToken: AppDispatcher.register(function (action) {
+  dispatchToken: AppDispatcher.register(function(action) {
 
     switch (action.actionType) {
       case ApplicationConstants.START_APP:
@@ -59,10 +58,10 @@ let ApplicationStore = assign({}, EventEmitter.prototype, {
   },
 
   getCurrentInteractiveCommand: function() {
-    if (typeof this.state.currentInteractiveCommand.name !== 'undefined') {
+    if (this.state.currentInteractiveCommand.name) {
       return this.state.currentInteractiveCommand.name
     } else {
-      return 'none'
+      return false
     }
   }
 

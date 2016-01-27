@@ -1,6 +1,7 @@
 .viewport {
   position: absolute;
-  left: 200px;
-  top: 0px;
-  z-index: -1;
+  top: $navbar-height;
+  left: $toolbar-medium-width;
+  width: 90%;
+  height: 90%;
 }

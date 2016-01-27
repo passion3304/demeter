@@ -1,7 +1,6 @@
 @import "app_settings";
 
 .toolbar {
-  z-index: 1000;
 }
 
 .primary-toolbar {
@@ -10,7 +9,6 @@
   background-color: #459773;
   height: 100vh;
   width: $toolbar-medium-width;
-  z-index: 1000;
 }
 
 .secondary-toolbar {

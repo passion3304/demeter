@@ -6176,16 +6176,12 @@ input[type="button"].btn-block {
   border-top-right-radius: 0;
   border-top-left-radius: 0; }
 
-.toolbar {
-  z-index: 1000; }
-
 .primary-toolbar {
   padding: 20px;
   margin-top: 50px;
   background-color: #459773;
   height: 100vh;
-  width: 120px;
-  z-index: 1000; }
+  width: 120px; }
 
 .secondary-toolbar {
   position: absolute;
@@ -6194,25 +6190,23 @@ input[type="button"].btn-block {
 
 .option-panel {
   position: absolute;
-  top: 50px;
   left: 120px;
+  top: 50px;
   width: 250px;
   height: 300px;
-  padding: 10px; }
+  padding: 10px;
+  z-index: 2; }
   .option-panel h1 {
     font-size: 24px;
     text-align: center !important; }
 
 .panel-show {
-  left: 120px;
   opacity: 1;
-  transition: opacity 200ms, left 400ms, z-index 2000ms; }
+  transition: opacity 200ms; }
 
 .panel-hide {
-  left: -120px;
   opacity: 0;
-  z-index: -1;
-  transition: opacity 200ms, left 400ms; }
+  transition: opacity 200ms; }
 
 .current-interactive-command {
   position: absolute;
@@ -6221,9 +6215,10 @@ input[type="button"].btn-block {
 
 .viewport {
   position: absolute;
-  left: 200px;
-  top: 0px;
-  z-index: -1; }
+  top: 50px;
+  left: 120px;
+  width: 90%;
+  height: 90%; }
 
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)

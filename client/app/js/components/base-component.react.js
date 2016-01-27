@@ -35,7 +35,7 @@ export default function BaseComponent(SubComponent) {
         }
       }
 
-      function ref(component) {
+      function getRef(component) {
         if (typeof component.ref !== 'undefined') {
           return component.ref
         } else {
@@ -55,6 +55,7 @@ export default function BaseComponent(SubComponent) {
         }
 
         return children.map((child, i) => {
+
           let ChildReactClass = Widgets[child.reactClass]
           let childClassNames = {
             'active': child.active
@@ -65,10 +66,6 @@ export default function BaseComponent(SubComponent) {
           }
           let childStyle = classNames(childClassNames)
 
-          let bsStyle = {}
-          if (typeof child.bsStyle !== 'undefined') {
-            bsStyle = child.bsStyle
-          }
 
           let extraProps = {}
 
@@ -92,7 +89,7 @@ export default function BaseComponent(SubComponent) {
 
       return (
         <div>
-          <SubComponent {...this.props} className={style} ref={ref(this)}
+          <SubComponent {...this.props} className={style} ref={getRef(this.props.componentData)}
                           childComponents={childComponents(this.props.componentData)} />
         </div>
       )

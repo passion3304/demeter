@@ -8,7 +8,8 @@ var rename = require('gulp-rename');
 
 gulp.task('default', function() {
   gulp.start('sass', 'jsx_transform', 'copy', 'browser-sync');
-  gulp.watch('./app/js/**/*.js', ['jsx_transform']);
+  gulp.watch(['./app/js/**/*.js', '!./app/js/lib/**/*'], ['jsx_transform']);
+  //gulp.watch('./app/js/lib/react-three/es5/*.js', browserSync.reload);    // doesn't work because of deleting and recreating
   gulp.watch('./dist/*.js', browserSync.reload);
   gulp.watch('./app/scss/**/*.scss', ['sass']);
   gulp.watch('./dist/*.css', browserSync.reload);

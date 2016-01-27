@@ -3,7 +3,6 @@ var AppDispatcher = require('../dispatcher/app-dispatcher');
 var EventEmitter = require('events').EventEmitter;
 var ApplicationConstants = require('../constants/application-constants');
 var StateConstants = require('../constants/state-constants');
-var assign = require('object-assign');
 var commands = require('../ui-modules/commands/commands');
 var optionPanels = require('../ui-modules/option-panels/option-panels');
 
@@ -27,7 +26,7 @@ var CHANGE_EVENT = 'change';
  *    public API
  */
 
-var StateStore = assign({}, EventEmitter.prototype, {
+var StateStore = Object.assign({}, EventEmitter.prototype, {
 
   emitChange: function() {
     this.emit(CHANGE_EVENT);
