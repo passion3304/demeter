@@ -19,11 +19,13 @@ class Viewport extends React.Component {
 
   constructor(props) {
     super(props)
+    let initialCameraPosition = new THREE.Vector3(0,0,3)
     this.state = {
       currentInteractiveCommand: false,
       height: 600,
       width: 600,
       sceneObjects: ViewportStore.getSceneObjects(),
+      cameraPosition: initialCameraPosition,
       orbitControlSettings: {
         enableRotate: true,
         enablePan: true,
@@ -41,14 +43,9 @@ class Viewport extends React.Component {
       height: this.viewportRef.offsetHeight
     })
 
-    ViewportStore.addChangeListener(() => {
-      this.setState(ViewportStore.getSceneObjects())
-    })
+    ViewportStore.addChangeListener(this.onChange)
 
-    ApplicationStore.addChangeListener(() => {
-      self.setState({
-        currentInteractiveCommand: ApplicationStore.getCurrentInteractiveCommand()
-      })
+    ApplicationStore.addChangeListener(this.onChange)
 
       //if (self.state.currentInteractiveCommand) {
       //  self.setState({
@@ -67,7 +64,7 @@ class Viewport extends React.Component {
       //    }
       //  })
       //}
-    })
+    //})
 
     window.addEventListener('resize', () => {
       this.setState({
@@ -78,10 +75,15 @@ class Viewport extends React.Component {
 
   }
 
+  componentWillUpdate() {
+  }
+
   componentWillUnmount() {
     ViewportStore.removeChangeListener(this.onChange)
-    window.removeEventListener('resize', this.resize);
+    ApplicationStore.removeChangeListener(this.onChange)
+    window.removeEventListener('resize', this.resize)
   }
+
 
   resize() {
     if (typeof this.viewportRef !== 'undefined') {
@@ -109,14 +111,16 @@ class Viewport extends React.Component {
     let cameraProps = {
       fov : 75, aspect : 1,
       near : 1, far : 5000,
-      position : new THREE.Vector3(0,0,6),
+      position : this.state.cameraPosition,
       lookat : new THREE.Vector3(0,0,0)
     }
+    let myCameraPosition = new THREE.Vector3(0,1,10)
     return (
       <div className="viewport" ref={ (ref) => this.viewportRef = ref }>
-        <Renderer width={this.state.width} height={this.state.height}>
+        <Renderer width={this.state.width} height={this.state.height} background={0x3366ff}>
           <Scene width={this.state.width} height={this.state.height}
                  camera="maincamera"
+                 myCameraPosition={myCameraPosition}
                  orbitControls={OrbitControls}>
             <PerspectiveCamera name="maincamera" {...cameraProps} />
             {this.sceneGeometry()}
@@ -129,6 +133,9 @@ class Viewport extends React.Component {
   }
 
   onChange() {
+    this.setState({
+      currentInteractiveCommand: ApplicationStore.getCurrentInteractiveCommand()
+    })
     this.setState(ViewportStore.getSceneObjects())
   }
 }

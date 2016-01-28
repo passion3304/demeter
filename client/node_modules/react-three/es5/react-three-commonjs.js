@@ -507,180 +507,186 @@ module.exports =
 	//
 
 	var THREERenderer = React.createClass({
-	    displayName: 'THREERenderer',
-	    mixins: [THREEContainerMixin],
+	  displayName: 'THREERenderer',
+	  mixins: [THREEContainerMixin],
 
-	    propTypes: {
-	        enableRapidRender: React.PropTypes.bool,
-	        pixelRatio: React.PropTypes.number,
-	        pointerEvents: React.PropTypes.arrayOf(React.PropTypes.string),
-	        transparent: React.PropTypes.bool,
-	        disableHotLoader: React.PropTypes.bool
-	    },
+	  propTypes: {
+	    enableRapidRender: React.PropTypes.bool,
+	    pixelRatio: React.PropTypes.number,
+	    pointerEvents: React.PropTypes.arrayOf(React.PropTypes.string),
+	    transparent: React.PropTypes.bool,
+	    disableHotLoader: React.PropTypes.bool
+	  },
 
-	    getDefaultProps: function getDefaultProps() {
-	        return {
-	            enableRapidRender: true,
-	            pixelRatio: 1,
-	            transparent: false,
-	            disableHotLoader: false
-	        };
-	    },
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      enableRapidRender: true,
+	      pixelRatio: 1,
+	      transparent: false,
+	      disableHotLoader: false
+	    };
+	  },
 
-	    componentDidMount: function componentDidMount() {
-	        var _this = this;
+	  componentDidMount: function componentDidMount() {
+	    var _this = this;
 
-	        var renderelement = this.props.canvas || ReactDOM.findDOMNode(this);
-	        var props = this.props;
-	        var context = this._reactInternalInstance._context;
+	    var renderelement = this.props.canvas || ReactDOM.findDOMNode(this);
+	    var props = this.props;
+	    var context = this._reactInternalInstance._context;
 
-	        // manually mounting things in a 'createClass' component messes up react internals
-	        // need to fix up some fields
-	        this._rootNodeID = "";
+	    // manually mounting things in a 'createClass' component messes up react internals
+	    // need to fix up some fields
+	    this._rootNodeID = "";
 
-	        this._THREErenderer = new THREE.WebGLRenderer({
-	            alpha: this.props.transparent,
-	            canvas: renderelement,
-	            antialias: props.antialias === undefined ? true : props.antialias
-	        });
-	        this._THREErenderer.shadowMap.enabled = props.shadowMapEnabled !== undefined ? props.shadowMapEnabled : false;
-	        if (props.shadowMapType !== undefined) {
-	            this._THREErenderer.shadowMap.type = props.shadowMapType;
-	        }
-	        this._THREErenderer.setPixelRatio(props.pixelRatio);
-	        this._THREErenderer.setSize(+props.width, +props.height);
-
-	        var transaction = ReactUpdates.ReactReconcileTransaction.getPooled();
-	        transaction.perform(this.mountAndAddChildren, this, props.children, transaction, context);
-	        ReactUpdates.ReactReconcileTransaction.release(transaction);
-
-	        // THREEScene binds the pointer events and orbit camera but needs a canvas/DOM element to bind to.
-	        // The canvas is stored in the renderer, though, so we have to get the canvas here in the renderer and
-	        // then bind pointer events/orbit controls in child scenes
-	        var renderedComponent = this._reactInternalInstance._renderedComponent;
-	        var renderedChildren = this._renderedChildren;
-	        if (renderedChildren) {
-	            for (var childkey in renderedChildren) {
-	                if (renderedChildren.hasOwnProperty(childkey)) {
-	                    var child = renderedChildren[childkey];
-	                    child.bindOrbitControls(renderedComponent._rootNodeID, renderelement, child._currentElement.props);
-	                    child.bindPointerEvents(renderedComponent._rootNodeID, renderelement, child._currentElement.props);
-	                }
-	            }
-	        }
-
-	        // hack for react-hot-loader
-	        if (!this.props.disableHotLoader && renderedComponent._currentElement !== null) {
-	            renderedComponent._renderedChildren = this._renderedChildren;
-	        }
-
-	        var backgroundtype = typeof props.background;
-	        if (backgroundtype !== 'undefined') {
-	            // background color should be a number, check it
-	            warning(backgroundtype === 'number', "The background property of " + "the Renderer component must be a number, not " + backgroundtype);
-	            this._THREErenderer.setClearColor(props.background, this.props.transparent ? 0 : 1);
-	        }
-
-	        this.renderScene();
-
-	        // The canvas gets re-rendered every frame even if no props/state changed.
-	        // This is because some three.js items like skinned meshes need redrawing
-	        // every frame even if nothing changed in React props/state.
-	        //
-	        // See https://github.com/Izzimach/react-three/issues/28
-
-	        if (this.props.enableRapidRender) {
-	            (function () {
-	                var rapidrender = function rapidrender(timestamp) {
-
-	                    _this._timestamp = timestamp;
-	                    _this._rAFID = window.requestAnimationFrame(rapidrender);
-
-	                    // render the stage
-	                    _this.renderScene();
-	                };
-
-	                _this._rAFID = window.requestAnimationFrame(rapidrender);
-	            })();
-	        }
-
-	        // warn users of the old listenToClick prop
-	        warning(typeof props.listenToClick === 'undefined', "the `listenToClick` prop has been replaced with `pointerEvents`");
-
-	        renderelement.onselectstart = function () {
-	            return false;
-	        };
-	    },
-
-	    componentDidUpdate: function componentDidUpdate(oldProps) {
-	        var props = this.props;
-	        var context = this._reactInternalInstance._context;
-
-	        if (props.pixelRatio != oldProps.pixelRatio) {
-	            this._THREErenderer.setPixelRatio(props.pixelRatio);
-	        }
-
-	        if (props.width != oldProps.width || props.width != oldProps.height || props.pixelRatio != oldProps.pixelRatio) {
-	            this._THREErenderer.setSize(+props.width, +props.height);
-	        }
-
-	        var backgroundtype = typeof props.background;
-	        if (backgroundtype !== 'undefined') {
-	            // background color should be a number, check it
-	            warning(backgroundtype === 'number', "The background property of " + "the scene component must be a number, not " + backgroundtype);
-	            this._THREErenderer.setClearColor(props.background, this.props.transparent ? 0 : 1);
-	        }
-
-	        var transaction = ReactUpdates.ReactReconcileTransaction.getPooled();
-	        transaction.perform(this.updateChildren, this, this.props.children, transaction, context);
-	        ReactUpdates.ReactReconcileTransaction.release(transaction);
-
-	        // hack for react-hot-loader
-	        var renderedComponent = this._reactInternalInstance._renderedComponent;
-	        if (!this.props.disableHotLoader && renderedComponent._currentElement !== null) {
-	            renderedComponent._renderedChildren = this._renderedChildren;
-	        }
-
-	        this.renderScene();
-	    },
-
-	    componentWillUnmount: function componentWillUnmount() {
-	        // hack for react-hot-loader
-	        var renderedComponent = this._reactInternalInstance._renderedComponent;
-	        if (!this.props.disableHotLoader && renderedComponent._currentElement !== null) {
-	            renderedComponent._renderedChildren = null;
-	        }
-	        this.unmountChildren();
-	        ReactBrowserEventEmitter.deleteAllListeners(this._reactInternalInstance._rootNodeID);
-	        if (typeof this._rAFID !== 'undefined') {
-	            window.cancelAnimationFrame(this._rAFID);
-	        }
-	    },
-
-	    renderScene: function renderScene() {
-	        var _this2 = this;
-
-	        if (!this.props.children) return;
-
-	        var children = this._renderedChildren;
-
-	        this._THREErenderer.autoClear = false;
-	        this._THREErenderer.clear();
-
-	        _Object$keys(children).forEach(function (key) {
-	            var scene = children[key];
-	            if (scene._THREEObject3D && scene._THREEMetaData.camera !== null) {
-	                _this2._THREErenderer.render(scene._THREEObject3D, scene._THREEMetaData.camera);
-	            }
-	        });
-	    },
-
-	    render: function render() {
-	        if (this.props.canvas) return null;
-
-	        // the three.js renderer will get applied to this canvas element
-	        return React.createElement("canvas");
+	    this._THREErenderer = new THREE.WebGLRenderer({
+	      alpha: this.props.transparent,
+	      canvas: renderelement,
+	      antialias: props.antialias === undefined ? true : props.antialias
+	    });
+	    this._THREErenderer.shadowMap.enabled = props.shadowMapEnabled !== undefined ? props.shadowMapEnabled : false;
+	    if (props.shadowMapType !== undefined) {
+	      this._THREErenderer.shadowMap.type = props.shadowMapType;
 	    }
+	    this._THREErenderer.setPixelRatio(props.pixelRatio);
+	    this._THREErenderer.setSize(+props.width, +props.height);
+
+	    var transaction = ReactUpdates.ReactReconcileTransaction.getPooled();
+	    transaction.perform(this.mountAndAddChildren, this, props.children, transaction, context);
+	    ReactUpdates.ReactReconcileTransaction.release(transaction);
+
+	    // THREEScene binds the pointer events and orbit camera but needs a canvas/DOM element to bind to.
+	    // The canvas is stored in the renderer, though, so we have to get the canvas here in the renderer and
+	    // then bind pointer events/orbit controls in child scenes
+	    var renderedComponent = this._reactInternalInstance._renderedComponent;
+	    var renderedChildren = this._renderedChildren;
+	    if (renderedChildren) {
+	      for (var childkey in renderedChildren) {
+	        if (renderedChildren.hasOwnProperty(childkey)) {
+	          var child = renderedChildren[childkey];
+	          child.bindOrbitControls(renderedComponent._rootNodeID, renderelement, child._currentElement.props);
+	          child.bindPointerEvents(renderedComponent._rootNodeID, renderelement, child._currentElement.props);
+	        }
+	      }
+	    }
+
+	    // hack for react-hot-loader
+	    if (!this.props.disableHotLoader && renderedComponent._currentElement !== null) {
+	      renderedComponent._renderedChildren = this._renderedChildren;
+	    }
+
+	    var backgroundtype = typeof props.background;
+	    if (backgroundtype !== 'undefined') {
+	      // background color should be a number, check it
+	      warning(backgroundtype === 'number', "The background property of " + "the Renderer component must be a number, not " + backgroundtype);
+	      this._THREErenderer.setClearColor(props.background, this.props.transparent ? 0 : 1);
+	    }
+
+	    this.renderScene();
+
+	    // The canvas gets re-rendered every frame even if no props/state changed.
+	    // This is because some three.js items like skinned meshes need redrawing
+	    // every frame even if nothing changed in React props/state.
+	    //
+	    // See https://github.com/Izzimach/react-three/issues/28
+
+	    if (this.props.enableRapidRender) {
+	      (function () {
+	        var rapidrender = function rapidrender(timestamp) {
+
+	          _this._timestamp = timestamp;
+	          _this._rAFID = window.requestAnimationFrame(rapidrender);
+
+	          // render the stage
+	          _this.renderScene();
+	        };
+
+	        _this._rAFID = window.requestAnimationFrame(rapidrender);
+	      })();
+	    }
+
+	    // warn users of the old listenToClick prop
+	    warning(typeof props.listenToClick === 'undefined', "the `listenToClick` prop has been replaced with `pointerEvents`");
+
+	    renderelement.onselectstart = function () {
+	      return false;
+	    };
+	  },
+
+	  shouldComponentUpdate: function shouldComponentUpdate(nextProps, nextState) {
+	    if (nextProps.width !== this.props.width) {
+	      return true;
+	    }
+	  },
+
+	  componentDidUpdate: function componentDidUpdate(oldProps) {
+	    var props = this.props;
+	    var context = this._reactInternalInstance._context;
+
+	    if (props.pixelRatio != oldProps.pixelRatio) {
+	      this._THREErenderer.setPixelRatio(props.pixelRatio);
+	    }
+
+	    if (props.width != oldProps.width || props.width != oldProps.height || props.pixelRatio != oldProps.pixelRatio) {
+	      this._THREErenderer.setSize(+props.width, +props.height);
+	    }
+
+	    var backgroundtype = typeof props.background;
+	    if (backgroundtype !== 'undefined') {
+	      // background color should be a number, check it
+	      warning(backgroundtype === 'number', "The background property of " + "the scene component must be a number, not " + backgroundtype);
+	      this._THREErenderer.setClearColor(props.background, this.props.transparent ? 0 : 1);
+	    }
+
+	    var transaction = ReactUpdates.ReactReconcileTransaction.getPooled();
+	    transaction.perform(this.updateChildren, this, this.props.children, transaction, context);
+	    ReactUpdates.ReactReconcileTransaction.release(transaction);
+
+	    // hack for react-hot-loader
+	    var renderedComponent = this._reactInternalInstance._renderedComponent;
+	    if (!this.props.disableHotLoader && renderedComponent._currentElement !== null) {
+	      renderedComponent._renderedChildren = this._renderedChildren;
+	    }
+
+	    this.renderScene();
+	  },
+
+	  componentWillUnmount: function componentWillUnmount() {
+	    // hack for react-hot-loader
+	    var renderedComponent = this._reactInternalInstance._renderedComponent;
+	    if (!this.props.disableHotLoader && renderedComponent._currentElement !== null) {
+	      renderedComponent._renderedChildren = null;
+	    }
+	    this.unmountChildren();
+	    ReactBrowserEventEmitter.deleteAllListeners(this._reactInternalInstance._rootNodeID);
+	    if (typeof this._rAFID !== 'undefined') {
+	      window.cancelAnimationFrame(this._rAFID);
+	    }
+	  },
+
+	  renderScene: function renderScene() {
+	    var _this2 = this;
+
+	    if (!this.props.children) return;
+
+	    var children = this._renderedChildren;
+
+	    this._THREErenderer.autoClear = false;
+	    this._THREErenderer.clear();
+
+	    _Object$keys(children).forEach(function (key) {
+	      var scene = children[key];
+	      if (scene._THREEObject3D && scene._THREEMetaData.camera !== null) {
+	        _this2._THREErenderer.render(scene._THREEObject3D, scene._THREEMetaData.camera);
+	      }
+	    });
+	  },
+
+	  render: function render() {
+	    if (this.props.canvas) return null;
+
+	    // the three.js renderer will get applied to this canvas element
+	    return React.createElement("canvas");
+	  }
 	});
 
 	module.exports = THREERenderer;
@@ -898,63 +904,63 @@ module.exports =
 	//
 
 	var THREEContainerMixin = assign({}, ReactMultiChild.Mixin, {
-	    moveChild: function moveChild(child, toIndex) {
-	        var childTHREEObject3D = child._mountImage; // should be a three.js Object3D
-	        var THREEObject3D = this._THREEObject3D;
+	  moveChild: function moveChild(child, toIndex) {
+	    var childTHREEObject3D = child._mountImage; // should be a three.js Object3D
+	    var THREEObject3D = this._THREEObject3D;
 
-	        if (!THREEObject3D) return; // for THREERenderer, which has no _THREEObject3D
+	    if (!THREEObject3D) return; // for THREERenderer, which has no _THREEObject3D
 
-	        var childindex = THREEObject3D.children.indexOf(childTHREEObject3D);
-	        if (childindex === -1) {
-	            throw new Error('The object to move needs to already be a child');
-	        }
-
-	        // remove from old location, put in the new location
-	        THREEObject3D.children.splice(childindex, 1);
-	        THREEObject3D.children.splice(toIndex, 0, childTHREEObject3D);
-	    },
-
-	    createChild: function createChild(child, childTHREEObject3D) {
-	        child._mountImage = childTHREEObject3D;
-	        this._THREEObject3D.add(childTHREEObject3D);
-	    },
-
-	    removeChild: function removeChild(child) {
-	        var childTHREEObject3D = child._mountImage;
-
-	        this._THREEObject3D.remove(childTHREEObject3D);
-	        child._mountImage = null;
-	    },
-
-	    /**
-	     * Override to bypass batch updating because it is not necessary.
-	     *
-	     * @param {?object} nextChildren.
-	     * @param {ReactReconcileTransaction} transaction
-	     * @internal
-	     * @override {ReactMultiChild.Mixin.updateChildren}
-	     */
-	    updateChildren: function updateChildren(nextChildren, transaction, context) {
-	        this._updateChildren(nextChildren, transaction, context);
-	    },
-
-	    // called by any container component after it gets mounted
-	    mountAndAddChildren: function mountAndAddChildren(children, transaction, context) {
-	        var mountedImages = this.mountChildren(children, transaction, context);
-	        // Each mount image corresponds to one of the flattened children
-	        var thisTHREEObject3D = this._THREEObject3D;
-	        var i = 0;
-	        for (var key in this._renderedChildren) {
-	            if (this._renderedChildren.hasOwnProperty(key)) {
-	                var child = this._renderedChildren[key];
-	                child._mountImage = mountedImages[i];
-
-	                // THREERenderer has no _THREEObject3D
-	                if (thisTHREEObject3D) thisTHREEObject3D.add(child._mountImage);
-	                i++;
-	            }
-	        }
+	    var childindex = THREEObject3D.children.indexOf(childTHREEObject3D);
+	    if (childindex === -1) {
+	      throw new Error('The object to move needs to already be a child');
 	    }
+
+	    // remove from old location, put in the new location
+	    THREEObject3D.children.splice(childindex, 1);
+	    THREEObject3D.children.splice(toIndex, 0, childTHREEObject3D);
+	  },
+
+	  createChild: function createChild(child, childTHREEObject3D) {
+	    child._mountImage = childTHREEObject3D;
+	    this._THREEObject3D.add(childTHREEObject3D);
+	  },
+
+	  removeChild: function removeChild(child) {
+	    var childTHREEObject3D = child._mountImage;
+
+	    this._THREEObject3D.remove(childTHREEObject3D);
+	    child._mountImage = null;
+	  },
+
+	  /**
+	   * Override to bypass batch updating because it is not necessary.
+	   *
+	   * @param {?object} nextChildren.
+	   * @param {ReactReconcileTransaction} transaction
+	   * @internal
+	   * @override {ReactMultiChild.Mixin.updateChildren}
+	   */
+	  updateChildren: function updateChildren(nextChildren, transaction, context) {
+	    this._updateChildren(nextChildren, transaction, context);
+	  },
+
+	  // called by any container component after it gets mounted
+	  mountAndAddChildren: function mountAndAddChildren(children, transaction, context) {
+	    var mountedImages = this.mountChildren(children, transaction, context);
+	    // Each mount image corresponds to one of the flattened children
+	    var thisTHREEObject3D = this._THREEObject3D;
+	    var i = 0;
+	    for (var key in this._renderedChildren) {
+	      if (this._renderedChildren.hasOwnProperty(key)) {
+	        var child = this._renderedChildren[key];
+	        child._mountImage = mountedImages[i];
+
+	        // THREERenderer has no _THREEObject3D
+	        if (thisTHREEObject3D) thisTHREEObject3D.add(child._mountImage);
+	        i++;
+	      }
+	    }
+	  }
 	});
 
 	module.exports = THREEContainerMixin;
@@ -1006,7 +1012,7 @@ module.exports =
 	var _interopRequireDefault = __webpack_require__(32)['default'];
 
 	Object.defineProperty(exports, '__esModule', {
-	    value: true
+	  value: true
 	});
 
 	var _three = __webpack_require__(26);
@@ -1029,128 +1035,128 @@ module.exports =
 	//
 	var THREEObject3DMixin = (0, _node_modulesReactLibObjectAssignJs2['default'])({}, _THREEContainerMixin2['default'], {
 
-	    construct: function construct(element) {
-	        this._currentElement = element;
-	        this._THREEObject3D = null;
-	    },
+	  construct: function construct(element) {
+	    this._currentElement = element;
+	    this._THREEObject3D = null;
+	  },
 
-	    getPublicInstance: function getPublicInstance() {
-	        return this._THREEObject3D;
-	    },
+	  getPublicInstance: function getPublicInstance() {
+	    return this._THREEObject3D;
+	  },
 
-	    createTHREEObject: function createTHREEObject() {
-	        return new _three2['default'].Object3D();
-	    },
+	  createTHREEObject: function createTHREEObject() {
+	    return new _three2['default'].Object3D();
+	  },
 
-	    applyTHREEObject3DProps: function applyTHREEObject3DProps(oldProps, props) {
-	        this.applyTHREEObject3DPropsToObject(this._THREEObject3D, oldProps, props);
-	    },
+	  applyTHREEObject3DProps: function applyTHREEObject3DProps(oldProps, props) {
+	    this.applyTHREEObject3DPropsToObject(this._THREEObject3D, oldProps, props);
+	  },
 
-	    applyTHREEObject3DPropsToObject: function applyTHREEObject3DPropsToObject(THREEObject3D, oldProps, props) {
-	        // these props have defaults
-	        if (typeof props.position !== 'undefined') {
-	            THREEObject3D.position.copy(props.position);
-	        } else {
-	            THREEObject3D.position.set(0, 0, 0);
-	        }
-
-	        if (typeof props.quaternion !== 'undefined') {
-	            THREEObject3D.quaternion.copy(props.quaternion);
-	        } else {
-	            THREEObject3D.quaternion.set(0, 0, 0, 1); // no rotation
-	        }
-
-	        if (typeof props.rotation !== 'undefined') {
-	            THREEObject3D.rotation.copy(props.rotation);
-	        } else {
-	            THREEObject3D.rotation.set(0, 0, 0, 'XYZ'); // no rotation
-	        }
-
-	        if (typeof props.visible !== 'undefined') {
-	            THREEObject3D.visible = props.visible;
-	        } else {
-	            THREEObject3D.visible = true;
-	        }
-
-	        if (typeof props.scale === "number") {
-	            THREEObject3D.scale.set(props.scale, props.scale, props.scale);
-	        } else if (props.scale instanceof _three2['default'].Vector3) {
-	            // copy over scale values
-	            THREEObject3D.scale.copy(props.scale);
-	        } else {
-	            THREEObject3D.scale.set(1, 1, 1);
-	        }
-
-	        if (typeof props.up !== 'undefined') {
-	            THREEObject3D.up.copy(props.up);
-	        }
-
-	        if (typeof props.lookat !== 'undefined') {
-	            THREEObject3D.lookAt(props.lookat);
-	        }
-
-	        if (typeof props.name !== 'undefined') {
-	            THREEObject3D.name = props.name;
-	        }
-
-	        if (typeof props.castShadow !== 'undefined') {
-	            THREEObject3D.castShadow = props.castShadow;
-	        }
-
-	        if (typeof props.receiveShadow !== 'undefined') {
-	            THREEObject3D.receiveShadow = props.receiveShadow;
-	        }
-
-	        if (typeof props.fog !== 'undefined') {
-	            THREEObject3D.fog = props.fog;
-	        }
-	    },
-
-	    transferTHREEObject3DPropsByName: function transferTHREEObject3DPropsByName(oldProps, newProps, propnames) {
-	        var THREEObject3D = this._THREEObject3D;
-
-	        propnames.forEach(function (propname) {
-	            if (typeof newProps[propname] !== 'undefined') {
-	                THREEObject3D[propname] = newProps[propname];
-	            }
-	        });
-	    },
-
-	    applySpecificTHREEProps: function applySpecificTHREEProps() /*oldProps, newProps*/{
-	        // the default props are applied in applyTHREEObject3DProps.
-	        // to create a new object type, mixin your own version of this method
-	    },
-
-	    mountComponent: function mountComponent(rootID, transaction, context) {
-	        var props = this._currentElement.props;
-	        /* jshint unused: vars */
-	        this._THREEObject3D = this.createTHREEObject(arguments);
-	        this._THREEObject3D.userData = this;
-	        this.applyTHREEObject3DProps({}, props);
-	        this.applySpecificTHREEProps({}, props);
-
-	        this.mountAndAddChildren(props.children, transaction, context);
-	        return this._THREEObject3D;
-	    },
-
-	    receiveComponent: function receiveComponent(nextElement, transaction, context) {
-	        var oldProps = this._currentElement.props;
-	        var props = nextElement.props;
-	        this.applyTHREEObject3DProps(oldProps, props);
-	        this.applySpecificTHREEProps(oldProps, props);
-
-	        this.updateChildren(props.children, transaction, context);
-	        this._currentElement = nextElement;
-	    },
-
-	    unmountComponent: function unmountComponent() {
-	        this.unmountChildren();
-	    },
-
-	    /*eslint no-unused-vars: [2, { "args": "none" }]*/
-	    mountComponentIntoNode: function mountComponentIntoNode(rootID, container) {
-	        throw new Error('You cannot render an THREE Object3D standalone. ' + 'You need to wrap it in a THREEScene.');
+	  applyTHREEObject3DPropsToObject: function applyTHREEObject3DPropsToObject(THREEObject3D, oldProps, props) {
+	    // these props have defaults
+	    if (typeof props.position !== 'undefined') {
+	      THREEObject3D.position.copy(props.position);
+	    } else {
+	      THREEObject3D.position.set(0, 0, 0);
 	    }
+
+	    if (typeof props.quaternion !== 'undefined') {
+	      THREEObject3D.quaternion.copy(props.quaternion);
+	    } else {
+	      THREEObject3D.quaternion.set(0, 0, 0, 1); // no rotation
+	    }
+
+	    if (typeof props.rotation !== 'undefined') {
+	      THREEObject3D.rotation.copy(props.rotation);
+	    } else {
+	      THREEObject3D.rotation.set(0, 0, 0, 'XYZ'); // no rotation
+	    }
+
+	    if (typeof props.visible !== 'undefined') {
+	      THREEObject3D.visible = props.visible;
+	    } else {
+	      THREEObject3D.visible = true;
+	    }
+
+	    if (typeof props.scale === "number") {
+	      THREEObject3D.scale.set(props.scale, props.scale, props.scale);
+	    } else if (props.scale instanceof _three2['default'].Vector3) {
+	      // copy over scale values
+	      THREEObject3D.scale.copy(props.scale);
+	    } else {
+	      THREEObject3D.scale.set(1, 1, 1);
+	    }
+
+	    if (typeof props.up !== 'undefined') {
+	      THREEObject3D.up.copy(props.up);
+	    }
+
+	    if (typeof props.lookat !== 'undefined') {
+	      THREEObject3D.lookAt(props.lookat);
+	    }
+
+	    if (typeof props.name !== 'undefined') {
+	      THREEObject3D.name = props.name;
+	    }
+
+	    if (typeof props.castShadow !== 'undefined') {
+	      THREEObject3D.castShadow = props.castShadow;
+	    }
+
+	    if (typeof props.receiveShadow !== 'undefined') {
+	      THREEObject3D.receiveShadow = props.receiveShadow;
+	    }
+
+	    if (typeof props.fog !== 'undefined') {
+	      THREEObject3D.fog = props.fog;
+	    }
+	  },
+
+	  transferTHREEObject3DPropsByName: function transferTHREEObject3DPropsByName(oldProps, newProps, propnames) {
+	    var THREEObject3D = this._THREEObject3D;
+
+	    propnames.forEach(function (propname) {
+	      if (typeof newProps[propname] !== 'undefined') {
+	        THREEObject3D[propname] = newProps[propname];
+	      }
+	    });
+	  },
+
+	  applySpecificTHREEProps: function applySpecificTHREEProps() /*oldProps, newProps*/{
+	    // the default props are applied in applyTHREEObject3DProps.
+	    // to create a new object type, mixin your own version of this method
+	  },
+
+	  mountComponent: function mountComponent(rootID, transaction, context) {
+	    var props = this._currentElement.props;
+	    /* jshint unused: vars */
+	    this._THREEObject3D = this.createTHREEObject(arguments);
+	    this._THREEObject3D.userData = this;
+	    this.applyTHREEObject3DProps({}, props);
+	    this.applySpecificTHREEProps({}, props);
+
+	    this.mountAndAddChildren(props.children, transaction, context);
+	    return this._THREEObject3D;
+	  },
+
+	  receiveComponent: function receiveComponent(nextElement, transaction, context) {
+	    var oldProps = this._currentElement.props;
+	    var props = nextElement.props;
+	    this.applyTHREEObject3DProps(oldProps, props);
+	    this.applySpecificTHREEProps(oldProps, props);
+
+	    this.updateChildren(props.children, transaction, context);
+	    this._currentElement = nextElement;
+	  },
+
+	  unmountComponent: function unmountComponent() {
+	    this.unmountChildren();
+	  },
+
+	  /*eslint no-unused-vars: [2, { "args": "none" }]*/
+	  mountComponentIntoNode: function mountComponentIntoNode(rootID, container) {
+	    throw new Error('You cannot render an THREE Object3D standalone. ' + 'You need to wrap it in a THREEScene.');
+	  }
 	});
 
 	exports['default'] = THREEObject3DMixin;
@@ -1255,132 +1261,131 @@ module.exports =
 	//
 
 	var THREEScene = createTHREEComponent('THREEScene', THREEObject3DMixin, {
-	    createTHREEObject: function createTHREEObject() {
-	        return new THREE.Scene();
-	    },
+	  createTHREEObject: function createTHREEObject() {
+	    return new THREE.Scene();
+	  },
 
-	    applySpecificTHREEProps: function applySpecificTHREEProps(oldProps, newProps) {
-	        // can't bind the camera here since children may not be mounted yet
-	    },
+	  applySpecificTHREEProps: function applySpecificTHREEProps(oldProps, newProps) {
+	    // can't bind the camera here since children may not be mounted yet
+	  },
 
-	    mountComponent: function mountComponent(rootID, transaction, context) {
-	        var props = this._currentElement.props;
-	        THREEObject3DMixin.mountComponent.call(this, rootID, transaction, context);
-	        this._THREEMetaData = {
-	            camera: null,
-	            raycaster: new THREE.Raycaster()
-	        };
-	        this.bindCamera(props);
+	  mountComponent: function mountComponent(rootID, transaction, context) {
+	    var props = this._currentElement.props;
+	    THREEObject3DMixin.mountComponent.call(this, rootID, transaction, context);
+	    this._THREEMetaData = {
+	      camera: null,
+	      raycaster: new THREE.Raycaster()
+	    };
+	    this.bindCamera(props);
 
-	        if (props.projectPointerEventRef) {
-	            props.projectPointerEventRef(this.projectPointerEvent.bind(this));
-	        }
-
-	        // this now gets called by the renderer so that canvas is provided
-	        //this.bindPointerEvents(rootID, props);
-	        return this._THREEObject3D;
-	    },
-
-	    receiveComponent: function receiveComponent(nextElement, transaction, context) {
-	        var newProps = nextElement.props;
-	        THREEObject3DMixin.receiveComponent.call(this, nextElement, transaction, context);
-	    },
-
-	    unmountComponent: function unmountComponent() {
-	        THREEObject3DMixin.unmountComponent.call(this);
-	    },
-
-	    bindCamera: function bindCamera(props) {
-	        var camera = props.camera;
-	        if (typeof camera === 'string') {
-	            camera = this._THREEObject3D.getObjectByName(camera, true);
-	            console.log('getting camera');
-	        } else if (camera === null || typeof camera === 'undefined') {
-	            warning(false, "No camera prop specified for react-three scene, using 'maincamera'");
-	            // look for a 'maincamera' object; if none, then make a default camera
-	            camera = this._THREEObject3D.getObjectByName('maincamera', true);
-	            if (typeof camera === 'undefined') {
-	                warning(false, "No camera named 'maincamera' found, creating a default camera");
-	                camera = new THREE.PerspectiveCamera(75, props.width / props.height, 1, 5000);
-	                camera.aspect = props.width / props.height;
-	                camera.updateProjectionMatrix();
-	                camera.position.z = 600;
-	            }
-	        }
-
-	        this._THREEMetaData.camera = camera;
-	    },
-
-	    bindOrbitControls: function bindOrbitControls(rootID, canvas, props) {
-	        if (props.orbitControls && typeof props.orbitControls === 'function') {
-	            if (!this._THREEMetaData.orbitControls && canvas) {
-	                this._THREEMetaData.orbitControls = new props.orbitControls(this._THREEMetaData.camera, canvas);
-	            }
-	        }
-	    },
-
-	    bindPointerEvents: function bindPointerEvents(rootID, canvas, props) {
-	        var _this = this;
-
-	        if (props.pointerEvents) {
-	            if (canvas) {
-	                props.pointerEvents.forEach(function (eventName) {
-	                    listenTo(eventName, canvas);
-	                    putListener(rootID, eventName, function (event) {
-	                        return _this.projectPointerEvent(event, eventName, canvas);
-	                    });
-	                });
-	            }
-	        }
-	    },
-
-	    findRootDOMNode: function findRootDOMNode(rootID) {
-	        // fiddle with some internals here - probably a bit brittle
-	        var container = ReactMount.findReactContainerForID(rootID);
-	        return container;
-	    },
-
-	    findDocumentContainer: function findDocumentContainer() {
-	        var container = this.findRootDOMNode();
-	        if (container) {
-	            return container.elementType === ELEMENT_TYPE_NODE ? container.ownerDocument : container;
-	        }
-	        return null;
-	    },
-
-	    projectPointerEvent: function projectPointerEvent(event, eventName, canvas) {
-	        event.preventDefault();
-	        var rect = canvas.getBoundingClientRect();
-
-	        var _ref = event.touches ? event.touches[0] : event;
-
-	        var clientX = _ref.clientX;
-	        var clientY = _ref.clientY;
-
-	        var x = (clientX - rect.left) / rect.width * 2 - 1;
-	        var y = -((clientY - rect.top) / rect.height) * 2 + 1;
-
-	        var mousecoords = new THREE.Vector3(x, y, 0.5);
-	        var _THREEMetaData = this._THREEMetaData;
-	        var raycaster = _THREEMetaData.raycaster;
-	        var camera = _THREEMetaData.camera;
-
-	        mousecoords.unproject(camera);
-	        raycaster.ray.set(camera.position, mousecoords.sub(camera.position).normalize());
-
-	        var intersections = raycaster.intersectObjects(this._THREEObject3D.children, true);
-	        var firstintersection = intersections.length > 0 ? intersections[0] : null;
-
-	        if (firstintersection !== null) {
-	            var pickobject = firstintersection.object;
-	            if (typeof pickobject.userData !== 'undefined' && pickobject.userData._currentElement) {
-	                var onpickfunction = pickobject.userData._currentElement.props[eventName + '3D'];
-	                if (typeof onpickfunction === 'function') {
-	                    onpickfunction(event, firstintersection);
-	                }
-	            }
-	        }
+	    if (props.projectPointerEventRef) {
+	      props.projectPointerEventRef(this.projectPointerEvent.bind(this));
 	    }
+
+	    // this now gets called by the renderer so that canvas is provided
+	    //this.bindPointerEvents(rootID, props);
+	    return this._THREEObject3D;
+	  },
+
+	  receiveComponent: function receiveComponent(nextElement, transaction, context) {
+	    var newProps = nextElement.props;
+	    THREEObject3DMixin.receiveComponent.call(this, nextElement, transaction, context);
+	  },
+
+	  unmountComponent: function unmountComponent() {
+	    THREEObject3DMixin.unmountComponent.call(this);
+	  },
+
+	  bindCamera: function bindCamera(props) {
+	    var camera = props.camera;
+	    if (typeof camera === 'string') {
+	      camera = this._THREEObject3D.getObjectByName(camera, true);
+	    } else if (camera === null || typeof camera === 'undefined') {
+	      warning(false, "No camera prop specified for react-three scene, using 'maincamera'");
+	      // look for a 'maincamera' object; if none, then make a default camera
+	      camera = this._THREEObject3D.getObjectByName('maincamera', true);
+	      if (typeof camera === 'undefined') {
+	        warning(false, "No camera named 'maincamera' found, creating a default camera");
+	        camera = new THREE.PerspectiveCamera(75, props.width / props.height, 1, 5000);
+	        camera.aspect = props.width / props.height;
+	        camera.updateProjectionMatrix();
+	        camera.position.z = 600;
+	      }
+	    }
+
+	    this._THREEMetaData.camera = camera;
+	  },
+
+	  bindOrbitControls: function bindOrbitControls(rootID, canvas, props) {
+	    if (props.orbitControls && typeof props.orbitControls === 'function') {
+	      if (!this._THREEMetaData.orbitControls && canvas) {
+	        this._THREEMetaData.orbitControls = new props.orbitControls(this._THREEMetaData.camera, canvas);
+	      }
+	    }
+	  },
+
+	  bindPointerEvents: function bindPointerEvents(rootID, canvas, props) {
+	    var _this = this;
+
+	    if (props.pointerEvents) {
+	      if (canvas) {
+	        props.pointerEvents.forEach(function (eventName) {
+	          listenTo(eventName, canvas);
+	          putListener(rootID, eventName, function (event) {
+	            return _this.projectPointerEvent(event, eventName, canvas);
+	          });
+	        });
+	      }
+	    }
+	  },
+
+	  findRootDOMNode: function findRootDOMNode(rootID) {
+	    // fiddle with some internals here - probably a bit brittle
+	    var container = ReactMount.findReactContainerForID(rootID);
+	    return container;
+	  },
+
+	  findDocumentContainer: function findDocumentContainer() {
+	    var container = this.findRootDOMNode();
+	    if (container) {
+	      return container.elementType === ELEMENT_TYPE_NODE ? container.ownerDocument : container;
+	    }
+	    return null;
+	  },
+
+	  projectPointerEvent: function projectPointerEvent(event, eventName, canvas) {
+	    event.preventDefault();
+	    var rect = canvas.getBoundingClientRect();
+
+	    var _ref = event.touches ? event.touches[0] : event;
+
+	    var clientX = _ref.clientX;
+	    var clientY = _ref.clientY;
+
+	    var x = (clientX - rect.left) / rect.width * 2 - 1;
+	    var y = -((clientY - rect.top) / rect.height) * 2 + 1;
+
+	    var mousecoords = new THREE.Vector3(x, y, 0.5);
+	    var _THREEMetaData = this._THREEMetaData;
+	    var raycaster = _THREEMetaData.raycaster;
+	    var camera = _THREEMetaData.camera;
+
+	    mousecoords.unproject(camera);
+	    raycaster.ray.set(camera.position, mousecoords.sub(camera.position).normalize());
+
+	    var intersections = raycaster.intersectObjects(this._THREEObject3D.children, true);
+	    var firstintersection = intersections.length > 0 ? intersections[0] : null;
+
+	    if (firstintersection !== null) {
+	      var pickobject = firstintersection.object;
+	      if (typeof pickobject.userData !== 'undefined' && pickobject.userData._currentElement) {
+	        var onpickfunction = pickobject.userData._currentElement.props[eventName + '3D'];
+	        if (typeof onpickfunction === 'function') {
+	          onpickfunction(event, firstintersection);
+	        }
+	      }
+	    }
+	  }
 	});
 
 	module.exports = THREEScene;
