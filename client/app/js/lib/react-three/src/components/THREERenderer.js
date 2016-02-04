@@ -2,6 +2,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const ReactMount = require('react/lib/ReactMount');
 const ReactUpdates = require('react/lib/ReactUpdates');
+const _ = require('lodash');
 const warning = require('fbjs/lib/warning');
 const THREE = require('three');
 const THREEContainerMixin = require('../mixins/THREEContainerMixin');
@@ -129,9 +130,26 @@ const THREERenderer = React.createClass({
   },
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.width !== this.props.width) {
-      return true
-    }
+
+    let children = this._renderedChildren
+
+    Object.keys(children).forEach(key => {
+      let scene = children[key]
+
+      if (nextProps.lockCamera) {
+        scene._THREEMetaData.orbitControls.enablePan = false
+        scene._THREEMetaData.orbitControls.enableRotate = false
+        scene._THREEMetaData.orbitControls.enableZoom = false
+      } else {
+        scene._THREEMetaData.orbitControls.enablePan = true
+        scene._THREEMetaData.orbitControls.enableRotate = true
+        scene._THREEMetaData.orbitControls.enableZoom = true
+      }
+    });
+
+    return false
+
+    //return !_.isEqual(nextProps, this.props)
   },
 
   componentDidUpdate(oldProps) {

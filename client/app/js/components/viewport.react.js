@@ -21,18 +21,13 @@ class Viewport extends React.Component {
     super(props)
     let initialCameraPosition = new THREE.Vector3(0,0,3)
     this.state = {
-      currentInteractiveCommand: false,
+      currentInteractiveCommand: ApplicationStore.getCurrentInteractiveCommand(),
       height: 600,
       width: 600,
       sceneObjects: ViewportStore.getSceneObjects(),
-      cameraPosition: initialCameraPosition,
-      orbitControlSettings: {
-        enableRotate: true,
-        enablePan: true,
-        enableZoom: true
-      }
+      cameraPosition: initialCameraPosition
     }
-    //this.orbitControls = OrbitControls
+    this.orbitControls = OrbitControls
   }
 
   componentDidMount() {
@@ -46,25 +41,6 @@ class Viewport extends React.Component {
     ViewportStore.addChangeListener(this.onChange)
 
     ApplicationStore.addChangeListener(this.onChange)
-
-      //if (self.state.currentInteractiveCommand) {
-      //  self.setState({
-      //    orbitControlSettings: {
-      //      enableRotate: false,
-      //      enablePan: false,
-      //      enableZoom: false
-      //    }
-      //  })
-      //} else {
-      //  self.setState({
-      //    orbitControlSettings: {
-      //      enableRotate: true,
-      //      enablePan: true,
-      //      enableZoom: true
-      //    }
-      //  })
-      //}
-    //})
 
     window.addEventListener('resize', () => {
       this.setState({
@@ -117,11 +93,13 @@ class Viewport extends React.Component {
     let myCameraPosition = new THREE.Vector3(0,1,10)
     return (
       <div className="viewport" ref={ (ref) => this.viewportRef = ref }>
-        <Renderer width={this.state.width} height={this.state.height} background={0x3366ff}>
-          <Scene width={this.state.width} height={this.state.height}
+        <Renderer lockCamera={shouldCameraLock()} width={this.state.width} height={this.state.height} background={0x3366ff}>
+          <Scene
+                 width={this.state.width} height={this.state.height}
                  camera="maincamera"
                  myCameraPosition={myCameraPosition}
-                 orbitControls={OrbitControls}>
+                 orbitControls={OrbitControls}
+                 >
             <PerspectiveCamera name="maincamera" {...cameraProps} />
             {this.sceneGeometry()}
             <PointLight color={0xffffff} position={lightPosition} intensity={3.0} />
@@ -133,10 +111,42 @@ class Viewport extends React.Component {
   }
 
   onChange() {
-    this.setState({
-      currentInteractiveCommand: ApplicationStore.getCurrentInteractiveCommand()
-    })
+    //Viewport.setState({
+    //  currentInteractiveCommand: ApplicationStore.getCurrentInteractiveCommand()
+    //})
+    //
+    //if (Viewport.state.currentInteractiveCommand) {
+    //  Viewport.setState(function() {
+    //    return {
+    //      orbitControlSettings: {
+    //        enableRotate: false,
+    //          enablePan: false,
+    //          enableZoom: false
+    //      }
+    //    }
+    //  })
+    //} else {
+    //  Viewport.setState(function() {
+    //    return {
+    //      orbitControlSettings: {
+    //        enableRotate: true,
+    //        enablePan: true,
+    //        enableZoom: true
+    //      }
+    //    }
+    //  })
+    //}
+
     this.setState(ViewportStore.getSceneObjects())
+  }
+}
+
+function shouldCameraLock() {
+  let currentInteractiveCommand = ApplicationStore.getCurrentInteractiveCommand();
+  if (currentInteractiveCommand) {
+    return true
+  } else {
+    return false
   }
 }
 
