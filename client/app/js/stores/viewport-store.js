@@ -16,13 +16,13 @@ let ViewportStore = Object.assign({}, EventEmitter.prototype, {
           geometry: new THREE.BoxGeometry( 1, 1, 1 ),
           material: new THREE.MeshLambertMaterial( { color: 0x8ead86 } ),
           position: new THREE.Vector3(2,1,-5)
-        },
-        {
-          geometry: new THREE.BoxGeometry(40, 0, 40),
-          material: new THREE.MeshLambertMaterial( { color: 0x6666ff } ),
-          position: new THREE.Vector3(0, -2, 0)
         }
-      ]
+      ],
+      cameraData: {
+        position: {},
+        rotation: {},
+        scale: {}
+      }
     }
   },
 
@@ -41,8 +41,10 @@ let ViewportStore = Object.assign({}, EventEmitter.prototype, {
   dispatchToken: AppDispatcher.register(function(action) {
     switch (action.actionType) {
       case ViewportConstants.CREATE_OBJECT:
-        createObject(action.objectData, ViewportStore.state.scene.objects)
+        createObject(action.objectData)
         break
+      case ViewportConstants.SAVE_CAMERA_DATA:
+        saveCameraData(action.cameraData)
       default:
       //no op
     }
@@ -52,6 +54,10 @@ let ViewportStore = Object.assign({}, EventEmitter.prototype, {
 
   getSceneObjects: function() {
     return this.state.scene.objects
+  },
+
+  getCameraData: function() {
+    return this.state.cameraData
   }
 })
 
@@ -59,9 +65,15 @@ function loadScene(scene) {
   return scene
 }
 
-function createObject(objectData, objects) {
-  objects.push(objectData)
+let createObject = (objectData) => {
+  ViewportStore.state.scene.objects.push(objectData)
   ViewportStore.emitChange()
 }
+
+function saveCameraData(cameraData) {
+  ViewportStore.state.cameraData = cameraData
+}
+
+
 
 module.exports = ViewportStore

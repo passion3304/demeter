@@ -8,6 +8,8 @@ const THREE = require('three');
 const THREEContainerMixin = require('../mixins/THREEContainerMixin');
 const THREEObject3DMixin = require('../mixins/THREEObject3DMixin');
 
+//var ViewportActions = require('../../../../actions/viewport-actions');
+
 const ReactBrowserEventEmitter = require('react/lib/ReactBrowserEventEmitter');
 const putListener = ReactBrowserEventEmitter.putListener;
 const listenTo = ReactBrowserEventEmitter.listenTo;
@@ -60,6 +62,8 @@ const THREERenderer = React.createClass({
     }
     this._THREErenderer.setPixelRatio(props.pixelRatio);
     this._THREErenderer.setSize(+props.width, +props.height);
+
+    this.cameraData = {};
 
     const transaction = ReactUpdates.ReactReconcileTransaction.getPooled();
     transaction.perform(
@@ -147,9 +151,8 @@ const THREERenderer = React.createClass({
       }
     });
 
-    return false
+    return true
 
-    //return !_.isEqual(nextProps, this.props)
   },
 
   componentDidUpdate(oldProps) {

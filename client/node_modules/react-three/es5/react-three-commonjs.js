@@ -496,6 +496,8 @@ module.exports =
 	var THREEContainerMixin = __webpack_require__(29);
 	var THREEObject3DMixin = __webpack_require__(33);
 
+	//var ViewportActions = require('../../../../actions/viewport-actions');
+
 	var ReactBrowserEventEmitter = __webpack_require__(36);
 	var putListener = ReactBrowserEventEmitter.putListener;
 	var listenTo = ReactBrowserEventEmitter.listenTo;
@@ -550,6 +552,8 @@ module.exports =
 	    }
 	    this._THREErenderer.setPixelRatio(props.pixelRatio);
 	    this._THREErenderer.setSize(+props.width, +props.height);
+
+	    this.cameraData = {};
 
 	    var transaction = ReactUpdates.ReactReconcileTransaction.getPooled();
 	    transaction.perform(this.mountAndAddChildren, this, props.children, transaction, context);
@@ -629,46 +633,9 @@ module.exports =
 	        scene._THREEMetaData.orbitControls.enableRotate = true;
 	        scene._THREEMetaData.orbitControls.enableZoom = true;
 	      }
-
-	      //_.forEach(scene._currentElement.props.children, function(child) {
-	      //  if (typeof child.props !== 'undefined') {
-	      //    if (typeof child.props.lockCamera !== 'undefined') {
-	      //      console.log(child.props.lockCamera)
-	      //      if (child.props.lockCamera) {
-	      //        scene._THREEMetaData.orbitControls.enablePan = false
-	      //        scene._THREEMetaData.orbitControls.enableRotate = false
-	      //        scene._THREEMetaData.orbitControls.enableZoom = false
-	      //      } else {
-	      //        scene._THREEMetaData.orbitControls.enablePan = true
-	      //        scene._THREEMetaData.orbitControls.enableRotate = true
-	      //        scene._THREEMetaData.orbitControls.enableZoom = true
-	      //      }
-	      //    }
-	      //    return false // need to check if other props may have changed
-	      //  }
-	      //})
-
-	      //_.forEach(children[key]._currentElement.props.children, function(child) {
-	      //  if (typeof child.props.lockCamera !== 'undefined') {
-	      //    if (child.props.lockCamera) {
-	      //      scene._THREEMetaData.orbitControls.enablePan = false
-	      //      scene._THREEMetaData.orbitControls.enableRotate = false
-	      //      scene._THREEMetaData.orbitControls.enableZoom = false
-	      //    } else {
-	      //      scene._THREEMetaData.orbitControls.enablePan = true
-	      //      scene._THREEMetaData.orbitControls.enableRotate = true
-	      //      scene._THREEMetaData.orbitControls.enableZoom = true
-	      //    }
-	      //  }
-	      //})
-	      //scene._THREEMetaData.orbitControls.enablePan = this.props.orbitControlSettings.enablePan
-	      //scene._THREEMetaData.orbitControls.enableRotate = this.props.orbitControlSettings.enableRotate
-	      //scene._THREEMetaData.orbitControls.enableZoom = this.props.orbitControlSettings.enableZoom
 	    });
 
-	    return false;
-
-	    //return !_.isEqual(nextProps, this.props)
+	    return true;
 	  },
 
 	  componentDidUpdate: function componentDidUpdate(oldProps) {

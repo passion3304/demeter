@@ -10,8 +10,9 @@ let AmbientLight = ReactTHREE.AmbientLight
 let PointLight = ReactTHREE.PointLight
 let OrbitControls = require('three-orbit-controls')(THREE)
 let ViewportStore = require('../stores/viewport-store')
-let ViewportActions = require('../actions/viewport-actions')
 let ApplicationStore = require('../stores/application-store')
+import OrbitalCamera from '../scene_objects/orbital-camera.react'
+import GroundPlane from '../scene_objects/ground-plane.react'
 import BaseComponent from './base-component.react'
 //import OrbitalCamera from '../scene_objects/orbital-camera.react'
 
@@ -38,9 +39,13 @@ class Viewport extends React.Component {
       height: this.viewportRef.offsetHeight
     })
 
-    ViewportStore.addChangeListener(this.onChange)
+    ViewportStore.addChangeListener(() => {
+      this.setState({
+        sceneObjects: ViewportStore.getSceneObjects()
+      })
+    })
 
-    ApplicationStore.addChangeListener(this.onChange)
+    //ApplicationStore.addChangeListener(this.onChange)
 
     window.addEventListener('resize', () => {
       this.setState({
@@ -52,11 +57,14 @@ class Viewport extends React.Component {
   }
 
   componentWillUpdate() {
+    //this.setState({
+    //  cameraPosition: {}
+    //})
   }
 
   componentWillUnmount() {
-    ViewportStore.removeChangeListener(this.onChange)
-    ApplicationStore.removeChangeListener(this.onChange)
+    //ViewportStore.removeChangeListener(this.onChange)
+    //ApplicationStore.removeChangeListener(this.onChange)
     window.removeEventListener('resize', this.resize)
   }
 
@@ -81,11 +89,12 @@ class Viewport extends React.Component {
     })
   }
 
+
   render() {
 
     let lightPosition = new THREE.Vector3(-3, 3, -3)
     let cameraProps = {
-      fov : 75, aspect : 1,
+      fov : 75, aspect: this.state.width / this.state.height,
       near : 1, far : 5000,
       position : this.state.cameraPosition,
       lookat : new THREE.Vector3(0,0,0)
@@ -99,46 +108,22 @@ class Viewport extends React.Component {
                  camera="maincamera"
                  myCameraPosition={myCameraPosition}
                  orbitControls={OrbitControls}
+                 pointerEvents={['onMouseDown', 'onMouseMove']}
                  >
-            <PerspectiveCamera name="maincamera" {...cameraProps} />
+            <OrbitalCamera name="maincamera" {...cameraProps} />
             {this.sceneGeometry()}
             <PointLight color={0xffffff} position={lightPosition} intensity={3.0} />
             <AmbientLight color={0x333333} />
+            <GroundPlane
+              /*clickToCreate={this.state.currentInteractiveCommand === 'plant'}*/
+           />
           </Scene>
         </Renderer>
       </div>
     )
   }
 
-  onChange() {
-    //Viewport.setState({
-    //  currentInteractiveCommand: ApplicationStore.getCurrentInteractiveCommand()
-    //})
-    //
-    //if (Viewport.state.currentInteractiveCommand) {
-    //  Viewport.setState(function() {
-    //    return {
-    //      orbitControlSettings: {
-    //        enableRotate: false,
-    //          enablePan: false,
-    //          enableZoom: false
-    //      }
-    //    }
-    //  })
-    //} else {
-    //  Viewport.setState(function() {
-    //    return {
-    //      orbitControlSettings: {
-    //        enableRotate: true,
-    //        enablePan: true,
-    //        enableZoom: true
-    //      }
-    //    }
-    //  })
-    //}
 
-    this.setState(ViewportStore.getSceneObjects())
-  }
 }
 
 function shouldCameraLock() {
@@ -149,25 +134,5 @@ function shouldCameraLock() {
     return false
   }
 }
-
-
-function handleClick(event) {
-  createCube(event)
-}
-
-
-function createCube(event) {
-  ViewportActions.createObject({
-    objectData: {
-      position: new THREE.Vector3(Math.random() * 5,
-                                  Math.random() * 5,
-                                  Math.random() * 5),
-      material: new THREE.MeshLambertMaterial({color: 0x0000ff}),
-      geometry: new THREE.BoxGeometry( 1, 1, 1 )
-    }
-  })
-}
-
-//module.exports = Viewport
 
 export default BaseComponent(Viewport)

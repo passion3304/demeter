@@ -8,6 +8,13 @@ var ViewportActions = {
       actionType: ViewportConstants.CREATE_OBJECT,
       objectData: data.objectData
     })
+  },
+
+  saveCameraData: function(data) {
+    AppDispatcher.dispatch({
+      actionType: ViewportConstants.SAVE_CAMERA_DATA,
+      cameraData: data.cameraData
+    })
   }
 }
 
