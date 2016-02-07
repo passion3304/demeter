@@ -624,6 +624,12 @@ module.exports =
 	    _Object$keys(children).forEach(function (key) {
 	      var scene = children[key];
 
+	      nextProps.cameraData({
+	        position: scene._THREEMetaData.camera.position,
+	        rotation: scene._THREEMetaData.camera.rotation,
+	        scale: scene._THREEMetaData.camera.scale
+	      });
+
 	      if (nextProps.lockCamera) {
 	        scene._THREEMetaData.orbitControls.enablePan = false;
 	        scene._THREEMetaData.orbitControls.enableRotate = false;
@@ -636,6 +642,21 @@ module.exports =
 	    });
 
 	    return true;
+	  },
+
+	  componentWillUpdate: function componentWillUpdate(nextProps) {
+	    var self = this;
+	    var children = this._renderedChildren;
+
+	    _Object$keys(children).forEach(function (key) {
+	      var scene = children[key];
+
+	      //nextProps.cameraData({
+	      //  position: scene._THREEMetaData.camera.position,
+	      //  rotation: scene._THREEMetaData.camera.rotation,
+	      //  scale: scene._THREEMetaData.camera.scale
+	      //})
+	    });
 	  },
 
 	  componentDidUpdate: function componentDidUpdate(oldProps) {

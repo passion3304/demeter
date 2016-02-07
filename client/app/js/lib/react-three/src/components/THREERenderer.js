@@ -140,6 +140,12 @@ const THREERenderer = React.createClass({
     Object.keys(children).forEach(key => {
       let scene = children[key]
 
+      nextProps.cameraData({
+        position: scene._THREEMetaData.camera.position,
+        rotation: scene._THREEMetaData.camera.rotation,
+        scale: scene._THREEMetaData.camera.scale
+      })
+
       if (nextProps.lockCamera) {
         scene._THREEMetaData.orbitControls.enablePan = false
         scene._THREEMetaData.orbitControls.enableRotate = false
@@ -153,6 +159,21 @@ const THREERenderer = React.createClass({
 
     return true
 
+  },
+
+  componentWillUpdate(nextProps) {
+    let self = this
+    let children = this._renderedChildren
+
+    Object.keys(children).forEach(key => {
+      let scene = children[key]
+
+      //nextProps.cameraData({
+      //  position: scene._THREEMetaData.camera.position,
+      //  rotation: scene._THREEMetaData.camera.rotation,
+      //  scale: scene._THREEMetaData.camera.scale
+      //})
+    });
   },
 
   componentDidUpdate(oldProps) {

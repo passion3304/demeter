@@ -11,7 +11,12 @@ class OrbitalCamera extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return false
+    if (this.props.aspect !== nextProps.aspect) {
+      return true
+    } else {
+      return false
+    }
+
   }
 
   render() {

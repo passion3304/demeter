@@ -24,7 +24,7 @@ class GroundPlane extends React.Component {
 
   render() {
     let handleClick = (event, intersection) => {
-      if (ApplicationStore.getCurrentInteractiveCommand()) {
+      if (ApplicationStore.getCurrentInteractiveCommand() && !this.props.metaKey) {
         this.createNewPlant(intersection.point)
       }
 
