@@ -13,6 +13,9 @@ let ViewportStore = require('../stores/viewport-store')
 let ApplicationStore = require('../stores/application-store')
 import OrbitalCamera from '../scene_objects/orbital-camera.react'
 import GroundPlane from '../scene_objects/ground-plane.react'
+let DirectionalLight = ReactTHREE.DirectionalLight
+import Sky from '../scene_objects/sky.react'
+import Sun from '../scene_objects/sun.react'
 import BaseComponent from './base-component.react'
 //import OrbitalCamera from '../scene_objects/orbital-camera.react'
 
@@ -104,15 +107,26 @@ class Viewport extends React.Component {
         <Mesh position={object.position}
               material={object.material}
               geometry={object.geometry}
-              key={i} />
+              key={i}
+              castShadow={true}
+              receiveShadow={true} />
       )
     })
   }
 
 
   render() {
+    let lightPosition = new THREE.Vector3(50, 50, -50)
+    let shadowBoxSize = 30
+    let lightTarget = new THREE.Vector3(0, 0, 0)
 
-    let lightPosition = new THREE.Vector3(-3, 3, -3)
+    let shadowBox = {
+      geometry: new THREE.BoxGeometry( 1, 1, 1 ),
+      material: new THREE.MeshLambertMaterial( { color: 0x8ead86 } ),
+      position: new THREE.Vector3(2,1,5)
+    }
+
+
     let cameraProps = {
       fov : 75, aspect: this.state.width / this.state.height,
       near : 1, far : 5000,
@@ -141,6 +155,7 @@ class Viewport extends React.Component {
             height={this.state.height}
             background={0x3366ff}
             cameraData={receiveCameraData}
+            shadowMapEnabled={true}
             >
           <Scene
                  width={this.state.width} height={this.state.height}
@@ -150,11 +165,24 @@ class Viewport extends React.Component {
                  >
             <OrbitalCamera name="maincamera" {...cameraProps} />
             {this.sceneGeometry()}
-            <PointLight color={0xffffff} position={lightPosition} intensity={3.0} />
-            <AmbientLight color={0x333333} />
-            <GroundPlane metaKey={this.state.metaKey}
+            <Mesh castShadow={true} {...shadowBox} />
+            <GroundPlane metaKey={this.state.metaKey} receiveShadow={true}
               /*clickToCreate={this.state.currentInteractiveCommand === 'plant'}*/
-           />
+            />
+            <DirectionalLight color={0xffffff}
+                              position={lightPosition}
+                              intensity={3.0}
+                              castShadow={true}
+                              shadowMapWidth={4096}
+                              shadowMapHeight={4096}
+                              shadowCameraLeft={-shadowBoxSize}
+                              shadowCameraRight={shadowBoxSize}
+                              shadowCameraTop={shadowBoxSize}
+                              shadowCameraBottom={-shadowBoxSize}
+                              shadowCameraFar={200}
+            />
+
+
           </Scene>
         </Renderer>
       </div>
