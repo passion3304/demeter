@@ -14,11 +14,13 @@
     "browserify": "^12.0.1",
     "gulp": "^3.9.0",
     "gulp-sass": "^2.1.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.6",
     "classnames": "^2.2.0",
+    "coordinate-systems": "^1.1.0",
     "flux": "^2.1.1",
     "font-awesome": "^4.5.0",
     "keymirror": "^0.1.1",
@@ -31,6 +33,7 @@
     "react-dom": "^0.14.2",
     "react-three": "^0.7.5",
     "schema-inspector": "^1.5.9",
+    "suncalc": "^1.7.0",
     "three": "^0.72.0",
     "three-orbit-controls": "^72.0.0",
     "three.trackball": "0.0.1"

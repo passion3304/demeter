@@ -116,14 +116,15 @@ class Viewport extends React.Component {
 
 
   render() {
-    let lightPosition = new THREE.Vector3(50, 50, -50)
-    let shadowBoxSize = 30
-    let lightTarget = new THREE.Vector3(0, 0, 0)
 
     let shadowBox = {
       geometry: new THREE.BoxGeometry( 1, 1, 1 ),
       material: new THREE.MeshLambertMaterial( { color: 0x8ead86 } ),
-      position: new THREE.Vector3(2,1,5)
+      position: new THREE.Vector3(3, 1, 0)
+    }
+
+    let sunProps = {
+      target: shadowBox
     }
 
 
@@ -169,18 +170,8 @@ class Viewport extends React.Component {
             <GroundPlane metaKey={this.state.metaKey} receiveShadow={true}
               /*clickToCreate={this.state.currentInteractiveCommand === 'plant'}*/
             />
-            <DirectionalLight color={0xffffff}
-                              position={lightPosition}
-                              intensity={3.0}
-                              castShadow={true}
-                              shadowMapWidth={4096}
-                              shadowMapHeight={4096}
-                              shadowCameraLeft={-shadowBoxSize}
-                              shadowCameraRight={shadowBoxSize}
-                              shadowCameraTop={shadowBoxSize}
-                              shadowCameraBottom={-shadowBoxSize}
-                              shadowCameraFar={200}
-            />
+            <Sky />
+            <Sun {...sunProps} />
 
 
           </Scene>

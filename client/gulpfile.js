@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var browserify = require('browserify');
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
+var watchify = require('watchify');
 var browserSync = require('browser-sync').create();
 var sass = require('gulp-sass');
 var rename = require('gulp-rename');
@@ -23,9 +24,19 @@ gulp.task('sass', function () {
 });
 
 gulp.task('jsx_transform', function() {
-  var bundleStream = browserify('./app/js/app.js', {debug: true}).transform(babelify).bundle().on('error', onError);
+  //var bundleStream = browserify('./app/js/app.js',
+  //  {debug: true}).transform(babelify).bundle().on('error', onError);
+
+  var bundleStream = browserify({
+    entries: ['./app/js/app.js'],
+    debug: true,
+    cache: {},
+    packageCache: {},
+    plugin: [watchify]
+  });
 
   bundleStream
+    .transform(babelify).bundle().on('error', onError)
     .pipe(source('bundle.js'))
     .pipe(rename('app.js'))
     .pipe(gulp.dest('./dist'));
