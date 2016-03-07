@@ -43,6 +43,8 @@ let ViewportStore = Object.assign({}, EventEmitter.prototype, {
       case ViewportConstants.CREATE_OBJECT:
         createObject(action.objectData)
         break
+      case ViewportConstants.SET_CURRENT_TIME:
+        setCurrentTime(action.currentTime)
       case ViewportConstants.SAVE_CAMERA_DATA:
         saveCameraData(action.cameraData)
       default:
@@ -67,6 +69,11 @@ function loadScene(scene) {
 
 let createObject = (objectData) => {
   ViewportStore.state.scene.objects.push(objectData)
+  ViewportStore.emitChange()
+}
+
+function setCurrentTime(currentTime) {
+  ViewportStore.state.currentTime = currentTime
   ViewportStore.emitChange()
 }
 

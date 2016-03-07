@@ -20,7 +20,7 @@ class Sun extends React.Component {
     let shadowBoxSize = 30
     let distance = 70
 
-    let date = new Date('June 21, 2015 10:00:00')
+    let date = new Date('June 21, 2015 ' + this.props.currentTime + ':00:00')
     let times = SunCalc.getTimes(date, 51.5, -121)
     let sunPosition = this.getPosition(date, 51.5, -121)
     let azimuth = sunPosition.azimuth // * (180 / Math.PI) //(sunPosition.azimuth * 180 / Math.PI + 180) % 360

@@ -10,6 +10,13 @@ var ViewportActions = {
     })
   },
 
+  setCurrentTime: function(data) {
+    AppDispatcher.dispatch({
+      actionType: ViewportConstants.SET_CURRENT_TIME,
+      currentTime: data.currentTime
+    })
+  },
+
   saveCameraData: function(data) {
     AppDispatcher.dispatch({
       actionType: ViewportConstants.SAVE_CAMERA_DATA,

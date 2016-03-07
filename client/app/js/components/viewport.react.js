@@ -16,8 +16,9 @@ import GroundPlane from '../scene_objects/ground-plane.react'
 let DirectionalLight = ReactTHREE.DirectionalLight
 import Sky from '../scene_objects/sky.react'
 import Sun from '../scene_objects/sun.react'
+import TimeSlider from './widgets/timeSlider.react';
 import BaseComponent from './base-component.react'
-//import OrbitalCamera from '../scene_objects/orbital-camera.react'
+
 
 class Viewport extends React.Component {
 
@@ -28,7 +29,8 @@ class Viewport extends React.Component {
       metaKey: false,
       height: 600,
       width: 600,
-      sceneObjects: ViewportStore.getSceneObjects()
+      sceneObjects: ViewportStore.getSceneObjects(),
+      currentTime: 12
     }
     this.orbitControls = OrbitControls
     this.cameraData = {
@@ -115,6 +117,8 @@ class Viewport extends React.Component {
   }
 
 
+
+
   render() {
 
     let shadowBox = {
@@ -125,6 +129,12 @@ class Viewport extends React.Component {
 
     let sunProps = {
       target: shadowBox
+    }
+
+    let changeTimeSliderValue = (event) => {
+      this.setState({
+        currentTime: event.target.value
+      })
     }
 
 
@@ -171,11 +181,17 @@ class Viewport extends React.Component {
               /*clickToCreate={this.state.currentInteractiveCommand === 'plant'}*/
             />
             <Sky />
-            <Sun {...sunProps} />
+            <Sun currentTime={this.state.currentTime} {...sunProps} />
 
 
           </Scene>
         </Renderer>
+        <TimeSlider
+          handleChange={changeTimeSliderValue}
+          step={this.state.step}
+          max={24}
+          min={0}
+          disabled="disabled"/>
       </div>
     )
   }
