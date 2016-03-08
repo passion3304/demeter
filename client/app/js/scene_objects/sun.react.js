@@ -17,11 +17,11 @@ class Sun extends React.Component {
 
     let date = new Date(this.props.date.year,
                         this.props.date.month,
-                        this.props.date.day,
+                        this.props.date.date,
                         this.props.time.hour,
                         this.props.time.minute)
 
-    let sunCoordinates = SunPosition(date)
+    let sunCoordinates = SunPosition(date, this.props.latitude, this.props.longitude)
 
     return (
         <DirectionalLight color={0xffffff}

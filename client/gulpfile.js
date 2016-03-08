@@ -44,7 +44,8 @@ var runBrowserifyTask = function(options) {
     'schema-inspector',
     'classnames',
     'node-uuid',
-    'bootstrap-sass'
+    'bootstrap-sass',
+    'moment'
   ]);
 
   var bundler = browserify({
@@ -70,7 +71,8 @@ var runBrowserifyTask = function(options) {
     'schema-inspector',
     'classnames',
     'node-uuid',
-    'bootstrap-sass'
+    'bootstrap-sass',
+    'moment'
   ]);
 
   var rebundle = function() {

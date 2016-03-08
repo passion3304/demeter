@@ -20,6 +20,28 @@ class TimeLocationSelectors extends React.Component {
       })
     }
 
+    let changeDateSliderValue = (event) => {
+      let daysSinceNewYear = event.target.value
+      let newDate = TimeServices.convertFromDaysAfterNewYear(daysSinceNewYear)
+      ViewportActions.setDate({
+        date: newDate
+      })
+    }
+
+    let changeLatitudeSliderValue = (event) => {
+      let latitude = event.target.value
+      ViewportActions.setLatitude({
+        latitude: latitude,
+      })
+    }
+
+    let changeLongitudeSliderValue = (event) => {
+      let longitude = event.target.value
+      ViewportActions.setLongitude({
+        longitude: longitude
+      })
+    }
+
 
     return (
       <div>
@@ -42,9 +64,9 @@ class TimeLocationSelectors extends React.Component {
           </Grid.Column>
           <Grid.Column large={8}>
             <Slider
-              //handleChange={changeTimeSliderValue}
+              handleChange={changeDateSliderValue}
               step={1}
-              max={364}    // number of minutes in a day
+              max={364}
               min={0}
               disabled="disabled" />
           </Grid.Column>
@@ -55,9 +77,9 @@ class TimeLocationSelectors extends React.Component {
           </Grid.Column>
           <Grid.Column large={8}>
             <Slider
-              //handleChange={changeTimeSliderValue}
+              handleChange={changeLatitudeSliderValue}
               step={1}
-              max={90}    // number of minutes in a day
+              max={90}
               min={-90}
               disabled="disabled" />
           </Grid.Column>
@@ -68,9 +90,9 @@ class TimeLocationSelectors extends React.Component {
           </Grid.Column>
           <Grid.Column large={8}>
             <Slider
-              //handleChange={changeTimeSliderValue}
+              handleChange={changeLongitudeSliderValue}
               step={1}
-              max={180}    // number of minutes in a day
+              max={180}
               min={-180}
               disabled="disabled" />
           </Grid.Column>

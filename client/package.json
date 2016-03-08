@@ -30,6 +30,7 @@
     "font-awesome": "^4.5.0",
     "keymirror": "^0.1.1",
     "lodash": "^3.10.1",
+    "moment": "^2.12.0",
     "node-uuid": "^1.4.7",
     "object-assign": "^4.0.1",
     "q": "^1.4.1",

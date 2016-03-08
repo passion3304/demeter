@@ -2,17 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f997d69-4014-4472-bb16-c68c33e9271b" name="Default" comment="create separate react files for each option panel type">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/app/js/components/toolbar5.react.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/app/js/components/widgets/timeSlider.react.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/actions/viewport-actions.js" afterPath="$PROJECT_DIR$/client/app/js/actions/viewport-actions.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/components/viewport.react.js" afterPath="$PROJECT_DIR$/client/app/js/components/viewport.react.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/components/widgets/time-location-selectors.react.js" afterPath="$PROJECT_DIR$/client/app/js/components/widgets/time-location-selectors.react.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/constants/viewport-constants.js" afterPath="$PROJECT_DIR$/client/app/js/constants/viewport-constants.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/lib/sun-position.js" afterPath="$PROJECT_DIR$/client/app/js/lib/sun-position.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/lib/time-services.js" afterPath="$PROJECT_DIR$/client/app/js/lib/time-services.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/scene_objects/ground-plane.react.js" afterPath="$PROJECT_DIR$/client/app/js/scene_objects/ground-plane.react.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/scene_objects/sun.react.js" afterPath="$PROJECT_DIR$/client/app/js/scene_objects/sun.react.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/js/stores/viewport-store.js" afterPath="$PROJECT_DIR$/client/app/js/stores/viewport-store.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/scss/viewport.scss" afterPath="$PROJECT_DIR$/client/app/scss/viewport.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/dist/app.css" afterPath="$PROJECT_DIR$/client/dist/app.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/dist/app.js" afterPath="$PROJECT_DIR$/client/dist/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/dist/vendors.js" afterPath="$PROJECT_DIR$/client/dist/vendors.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/gulpfile.js" afterPath="$PROJECT_DIR$/client/gulpfile.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/package.json" afterPath="$PROJECT_DIR$/client/package.json" />
     </list>
@@ -35,21 +36,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="viewport.react.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="viewport.react.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/app/js/components/viewport.react.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="152" column="50" selection-start-line="152" selection-start-column="50" selection-end-line="152" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.8288288">
+              <caret line="156" column="52" selection-start-line="156" selection-start-column="52" selection-end-line="156" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="time-location-selectors.react.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="viewport-actions.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/app/js/actions/viewport-actions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="35" column="22" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="time-location-selectors.react.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/app/js/components/widgets/time-location-selectors.react.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7824968">
-              <caret line="46" column="22" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -59,7 +70,7 @@
         <entry file="file://$PROJECT_DIR$/client/app/js/lib/time-services.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+              <caret line="51" column="60" selection-start-line="51" selection-start-column="60" selection-end-line="51" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -69,7 +80,7 @@
         <entry file="file://$PROJECT_DIR$/client/app/js/stores/viewport-store.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="40" column="3" selection-start-line="40" selection-start-column="3" selection-end-line="40" selection-end-column="3" />
+              <caret line="132" column="31" selection-start-line="132" selection-start-column="31" selection-end-line="132" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -79,7 +90,7 @@
         <entry file="file://$PROJECT_DIR$/client/app/js/scene_objects/sun.react.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
+              <caret line="23" column="84" selection-start-line="23" selection-start-column="84" selection-end-line="23" selection-end-column="84" />
               <folding />
             </state>
           </provider>
@@ -89,7 +100,7 @@
         <entry file="file://$PROJECT_DIR$/client/app/js/lib/sun-position.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+              <caret line="4" column="56" selection-start-line="4" selection-start-column="56" selection-end-line="4" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -149,7 +160,6 @@
         <option value="$PROJECT_DIR$/client/app/js/stores/application-store.js" />
         <option value="$PROJECT_DIR$/client/app/scss/toolbar.scss" />
         <option value="$PROJECT_DIR$/client/app/js/scene_objects/sky.react.js" />
-        <option value="$PROJECT_DIR$/client/app/js/scene_objects/ground-plane.react.js" />
         <option value="$PROJECT_DIR$/client/node_modules/suncalc/test.js" />
         <option value="$PROJECT_DIR$/client/noop.js" />
         <option value="$PROJECT_DIR$/client/dist/vendor.js" />
@@ -157,21 +167,22 @@
         <option value="$PROJECT_DIR$/client/index.html" />
         <option value="$PROJECT_DIR$/client/dist/vendors.js" />
         <option value="$PROJECT_DIR$/client/dist/app.js" />
-        <option value="$PROJECT_DIR$/client/gulpfile.js" />
-        <option value="$PROJECT_DIR$/client/app/js/lib/sun-position.js" />
         <option value="$PROJECT_DIR$/client/app/js/components/widgets/timeSlider.react.js" />
         <option value="$PROJECT_DIR$/client/app/js/components/widgets/time-location-sliders.react.js" />
         <option value="$PROJECT_DIR$/client/app/scss/viewport.scss" />
         <option value="$PROJECT_DIR$/client/package.json" />
         <option value="$PROJECT_DIR$/client/app/js/components/utility/grid.js" />
         <option value="$PROJECT_DIR$/client/app/js/actions/application-actions.js" />
-        <option value="$PROJECT_DIR$/client/app/js/constants/viewport-constants.js" />
+        <option value="$PROJECT_DIR$/client/gulpfile.js" />
+        <option value="$PROJECT_DIR$/client/app/js/lib/time-services.js" />
+        <option value="$PROJECT_DIR$/client/app/js/scene_objects/ground-plane.react.js" />
         <option value="$PROJECT_DIR$/client/app/js/actions/viewport-actions.js" />
+        <option value="$PROJECT_DIR$/client/app/js/constants/viewport-constants.js" />
+        <option value="$PROJECT_DIR$/client/app/js/components/widgets/time-location-selectors.react.js" />
         <option value="$PROJECT_DIR$/client/app/js/scene_objects/sun.react.js" />
+        <option value="$PROJECT_DIR$/client/app/js/lib/sun-position.js" />
         <option value="$PROJECT_DIR$/client/app/js/stores/viewport-store.js" />
         <option value="$PROJECT_DIR$/client/app/js/components/viewport.react.js" />
-        <option value="$PROJECT_DIR$/client/app/js/lib/time-services.js" />
-        <option value="$PROJECT_DIR$/client/app/js/components/widgets/time-location-selectors.react.js" />
       </list>
     </option>
   </component>
@@ -565,29 +576,7 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="node_modules">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="demeter">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="client">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="app">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="scss">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -1195,14 +1184,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/gulpfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7824968">
-          <caret line="118" column="3" selection-start-line="118" selection-start-column="3" selection-end-line="118" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/app/js/components/status_indicators/current-interactive-command.react.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1259,14 +1240,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/constants/viewport-constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17117117">
-          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/app/js/actions/application-actions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3912484">
@@ -1275,42 +1248,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/actions/viewport-actions.js">
+    <entry file="file://$PROJECT_DIR$/client/gulpfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2934363">
-          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/lib/sun-position.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/stores/viewport-store.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="3" selection-start-line="40" selection-start-column="3" selection-end-line="40" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/scene_objects/sun.react.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/js/components/viewport.react.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="152" column="50" selection-start-line="152" selection-start-column="50" selection-end-line="152" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.75804377">
+          <caret line="73" column="21" selection-start-line="73" selection-start-column="21" selection-end-line="73" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -1318,15 +1259,71 @@
     <entry file="file://$PROJECT_DIR$/client/app/js/lib/time-services.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+          <caret line="51" column="60" selection-start-line="51" selection-start-column="60" selection-end-line="51" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/scene_objects/ground-plane.react.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/constants/viewport-constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1956242">
+          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/actions/viewport-actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="22" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/app/js/components/widgets/time-location-selectors.react.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7824968">
-          <caret line="46" column="22" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/scene_objects/sun.react.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="84" selection-start-line="23" selection-start-column="84" selection-end-line="23" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/lib/sun-position.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="56" selection-start-line="4" selection-start-column="56" selection-end-line="4" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/stores/viewport-store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="132" column="31" selection-start-line="132" selection-start-column="31" selection-end-line="132" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/js/components/viewport.react.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8288288">
+          <caret line="156" column="52" selection-start-line="156" selection-start-column="52" selection-end-line="156" selection-end-column="52" />
           <folding />
         </state>
       </provider>

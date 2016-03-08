@@ -30,14 +30,12 @@ let ViewportStore = Object.assign({}, EventEmitter.prototype, {
       minute: 30
     },
     date: {
-      day: 10,
+      date: 10,
       month: 11,
       year: 2016
     },
-    location: {
-      latitude: 45,
-      longitude: -122
-    }
+    latitude: 45,
+    longitude: -122
   },
 
   emitChange: function() {
@@ -60,6 +58,15 @@ let ViewportStore = Object.assign({}, EventEmitter.prototype, {
       case ViewportConstants.SET_TIME:
         setTime(action.time)
         break
+      case ViewportConstants.SET_DATE:
+        setDate(action.date)
+        break
+      case ViewportConstants.SET_LATITUDE:
+        setLatitude(action.latitude)
+        break
+      case ViewportConstants.SET_LONGITUDE:
+        setLongitude(action.longitude)
+        break
       case ViewportConstants.SAVE_CAMERA_DATA:
         saveCameraData(action.cameraData)
       default:
@@ -81,8 +88,12 @@ let ViewportStore = Object.assign({}, EventEmitter.prototype, {
     return this.state.date
   },
 
-  getCurrentLocation: function() {
-    return this.state.location
+  getLatitude: function() {
+    return this.state.latitude
+  },
+
+  getLongitude: function() {
+    return this.state.longitude
   },
 
   getCameraData: function() {
@@ -111,9 +122,15 @@ function setDate(date) {
   ViewportStore.emitChange()
 }
 
-function setLocation(location) {
+function setLatitude(latitude) {
   // sanitize
-  ViewportStore.state.location = location
+  ViewportStore.state.latitude = latitude
+  ViewportStore.emitChange()
+}
+
+function setLongitude(longitude) {
+  // sanitize
+  ViewportStore.state.longitude = longitude
   ViewportStore.emitChange()
 }
 

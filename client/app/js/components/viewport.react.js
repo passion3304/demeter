@@ -32,7 +32,8 @@ class Viewport extends React.Component {
       sceneObjects: ViewportStore.getSceneObjects(),
       time: ViewportStore.getCurrentTime(),
       date: ViewportStore.getCurrentDate(),
-      location: ViewportStore.getCurrentLocation()
+      latitude: ViewportStore.getLatitude(),
+      longitude: ViewportStore.getLongitude()
     }
     this.orbitControls = OrbitControls
     this.cameraData = {
@@ -54,10 +55,10 @@ class Viewport extends React.Component {
         sceneObjects: ViewportStore.getSceneObjects(),
         time: ViewportStore.getCurrentTime(),
         date: ViewportStore.getCurrentDate(),
-        location: ViewportStore.getCurrentLocation()
+        latitude: ViewportStore.getLatitude(),
+        longitude: ViewportStore.getLongitude()
       })
     })
-
 
     window.addEventListener('resize', () => {
       this.setState({
@@ -151,6 +152,9 @@ class Viewport extends React.Component {
     return (
       <div className="viewport" ref={ (ref) => this.viewportRef = ref }>
         <div>Current time: {TimeServices.formattedTime(this.state.time)}</div>
+        <div>Current date: {TimeServices.formattedDate(this.state.date)}</div>
+        <div>Latitude: {this.state.latitude}</div>
+        <div>Longitude: {this.state.longitude}</div>
         <Renderer
             lockCamera={shouldCameraLock()}
             width={this.state.width}
@@ -174,7 +178,8 @@ class Viewport extends React.Component {
             <Sky />
             <Sun time={this.state.time}
                  date={this.state.date}
-                 location={this.state.location}
+                 latitude={this.state.latitude}
+                 longitude={this.state.longitude}
                  target={shadowBox} />
 
 

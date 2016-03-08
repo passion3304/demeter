@@ -24,10 +24,17 @@ var ViewportActions = {
     })
   },
 
-  setLocation: function(data) {
+  setLatitude: function(data) {
     AppDispatcher.dispatch({
-      actionType: ViewportConstants.SET_LOCATION,
-      location: data.location
+      actionType: ViewportConstants.SET_LATITUDE,
+      latitude: data.latitude
+    })
+  },
+
+  setLongitude: function(data) {
+    AppDispatcher.dispatch({
+      actionType: ViewportConstants.SET_LONGITUDE,
+      longitude: data.longitude
     })
   },
 

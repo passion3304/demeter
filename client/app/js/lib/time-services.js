@@ -1,3 +1,5 @@
+let Moment = require('moment')
+
 let TimeServices = {
   convertFromMinutesAfterMidnight: function(offsetInMinutes) {
     let hour = Math.floor(offsetInMinutes / 60)
@@ -7,6 +9,17 @@ let TimeServices = {
       hour: hour,
       minute: minute
     }
+  },
+
+  convertFromDaysAfterNewYear: function(offsetInDays) {
+    let newYear = Moment(new Date('January 1, 2016')) // move to higher scope for caching?
+    let newDate = newYear.add(offsetInDays, 'days')
+    let date = {
+      year: newDate.year(),
+      month: newDate.month(),
+      date: newDate.date()
+    }
+    return date
   },
 
   formattedTime: function(time) {
@@ -30,6 +43,15 @@ let TimeServices = {
     timeString += hour + ':' + minute + ' ' + ampm
 
     return timeString
+  },
+
+  formattedDate: function(date) {
+    // what can be precalculated here?
+    let dateString = ''
+    let months = Moment.months()
+    dateString += months[date.month] + ' ' + (date.date + 1) + ', ' + date.year
+
+    return dateString
   }
 
 }
