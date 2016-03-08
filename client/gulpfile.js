@@ -118,9 +118,4 @@ gulp.task('browser-sync', function() {
   });
 });
 
-function onError(err) {
-  console.log(err);
-  this.emit('end');
-}
-
 

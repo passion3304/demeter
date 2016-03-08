@@ -10,10 +10,24 @@ var ViewportActions = {
     })
   },
 
-  setCurrentTime: function(data) {
+  setTime: function(data) {
     AppDispatcher.dispatch({
-      actionType: ViewportConstants.SET_CURRENT_TIME,
-      currentTime: data.currentTime
+      actionType: ViewportConstants.SET_TIME,
+      time: data.time
+    })
+  },
+
+  setDate: function(data) {
+    AppDispatcher.dispatch({
+      actionType: ViewportConstants.SET_DATE,
+      date: data.date
+    })
+  },
+
+  setLocation: function(data) {
+    AppDispatcher.dispatch({
+      actionType: ViewportConstants.SET_LOCATION,
+      location: data.location
     })
   },
 

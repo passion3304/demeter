@@ -13,10 +13,10 @@ let ViewportStore = require('../stores/viewport-store')
 let ApplicationStore = require('../stores/application-store')
 import OrbitalCamera from '../scene_objects/orbital-camera.react'
 import GroundPlane from '../scene_objects/ground-plane.react'
-let DirectionalLight = ReactTHREE.DirectionalLight
 import Sky from '../scene_objects/sky.react'
 import Sun from '../scene_objects/sun.react'
-import TimeSlider from './widgets/timeSlider.react';
+import TimeLocationSelectors from './widgets/time-location-selectors.react'
+import TimeServices from '../lib/time-services'
 import BaseComponent from './base-component.react'
 
 
@@ -30,7 +30,9 @@ class Viewport extends React.Component {
       height: 600,
       width: 600,
       sceneObjects: ViewportStore.getSceneObjects(),
-      currentTime: 12
+      time: ViewportStore.getCurrentTime(),
+      date: ViewportStore.getCurrentDate(),
+      location: ViewportStore.getCurrentLocation()
     }
     this.orbitControls = OrbitControls
     this.cameraData = {
@@ -41,7 +43,6 @@ class Viewport extends React.Component {
   }
 
   componentDidMount() {
-    let self = this
 
     this.setState({
       width: this.viewportRef.offsetWidth,
@@ -50,11 +51,13 @@ class Viewport extends React.Component {
 
     ViewportStore.addChangeListener(() => {
       this.setState({
-        sceneObjects: ViewportStore.getSceneObjects()
+        sceneObjects: ViewportStore.getSceneObjects(),
+        time: ViewportStore.getCurrentTime(),
+        date: ViewportStore.getCurrentDate(),
+        location: ViewportStore.getCurrentLocation()
       })
     })
 
-    //ApplicationStore.addChangeListener(this.onChange)
 
     window.addEventListener('resize', () => {
       this.setState({
@@ -81,15 +84,9 @@ class Viewport extends React.Component {
 
   }
 
-  componentWillUpdate() {
-    //this.setState({
-    //  cameraPosition: {}
-    //})
-  }
 
   componentWillUnmount() {
-    //ViewportStore.removeChangeListener(this.onChange)
-    //ApplicationStore.removeChangeListener(this.onChange)
+    // ViewportStore.removeChangeListener // need to add the remove correspondant
     window.removeEventListener('resize', this.resize)
   }
 
@@ -127,16 +124,6 @@ class Viewport extends React.Component {
       position: new THREE.Vector3(3, 1, 0)
     }
 
-    let sunProps = {
-      target: shadowBox
-    }
-
-    let changeTimeSliderValue = (event) => {
-      this.setState({
-        currentTime: event.target.value
-      })
-    }
-
 
     let cameraProps = {
       fov : 75, aspect: this.state.width / this.state.height,
@@ -146,9 +133,11 @@ class Viewport extends React.Component {
       lookat: new THREE.Vector3(0,0,0),
       scale : this.cameraData.scale
     }
+
     let receiveCameraData = (data) => {
       this.cameraData = data
     }
+
     let shouldCameraLock = () => {
       let currentInteractiveCommand = ApplicationStore.getCurrentInteractiveCommand()
 
@@ -158,8 +147,10 @@ class Viewport extends React.Component {
         return false
       }
     }
+
     return (
       <div className="viewport" ref={ (ref) => this.viewportRef = ref }>
+        <div>Current time: {TimeServices.formattedTime(this.state.time)}</div>
         <Renderer
             lockCamera={shouldCameraLock()}
             width={this.state.width}
@@ -181,17 +172,15 @@ class Viewport extends React.Component {
               /*clickToCreate={this.state.currentInteractiveCommand === 'plant'}*/
             />
             <Sky />
-            <Sun currentTime={this.state.currentTime} {...sunProps} />
+            <Sun time={this.state.time}
+                 date={this.state.date}
+                 location={this.state.location}
+                 target={shadowBox} />
 
 
           </Scene>
         </Renderer>
-        <TimeSlider
-          handleChange={changeTimeSliderValue}
-          step={this.state.step}
-          max={24}
-          min={0}
-          disabled="disabled"/>
+        <TimeLocationSelectors />
       </div>
     )
   }

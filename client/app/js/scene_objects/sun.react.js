@@ -3,46 +3,25 @@ let ReactTHREE = require('react-three')
 let Mesh = ReactTHREE.Mesh
 let DirectionalLight = ReactTHREE.DirectionalLight
 let THREE = require('three')
-let SunCalc = require('suncalc')
+import SunPosition from '../lib/sun-position'
+import TimeServices from '../lib/time-services'
 
 class Sun extends React.Component {
   constructor(props) {
     super(props)
   }
 
-  getPosition(timeAndDate, latitude, longitude) {
-    return SunCalc.getPosition(timeAndDate, latitude, longitude)
-  }
-
   render() {
 
-    let lightPosition = new THREE.Vector3(50, 50, -50)
-    let shadowBoxSize = 30
-    let distance = 70
+    let shadowBoxSize = 60
 
-    let date = new Date('June 21, 2015 ' + this.props.currentTime + ':00:00')
-    let times = SunCalc.getTimes(date, 51.5, -121)
-    let sunPosition = this.getPosition(date, 51.5, -121)
-    let azimuth = sunPosition.azimuth // * (180 / Math.PI) //(sunPosition.azimuth * 180 / Math.PI + 180) % 360
-    let altitude = sunPosition.altitude // * (180 / Math.PI)
-    azimuth = (360 * (Math.PI / 180)) - azimuth
-    altitude = (90 * (Math.PI / 180)) - altitude
+    let date = new Date(this.props.date.year,
+                        this.props.date.month,
+                        this.props.date.day,
+                        this.props.time.hour,
+                        this.props.time.minute)
 
-    let sunCoordinates = {
-      x: distance * Math.sin(altitude) * Math.sin(azimuth),
-      y: distance * Math.cos(altitude),
-      z: distance * Math.sin(altitude) * Math.cos(azimuth)
-    }
-
-    //let testAzimuth = 90 * (Math.PI / 180)
-    //let testAltitude = 60 * (Math.PI / 180)
-    //let testDistance = 50
-    //
-    //let testCoordinates = {
-    //  x: testDistance * Math.sin(testAltitude) * Math.sin(testAzimuth),
-    //  y: testDistance * Math.cos(testAltitude),
-    //  z: testDistance * Math.sin(testAltitude) * Math.cos(testAzimuth)
-    //}
+    let sunCoordinates = SunPosition(date)
 
     return (
         <DirectionalLight color={0xffffff}
