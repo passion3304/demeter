@@ -9,6 +9,8 @@ var source = require('vinyl-source-stream');
 var browserSync = require('browser-sync').create();
 var sass = require('gulp-sass');
 var rename = require('gulp-rename');
+var jest = require('gulp-jest-iojs')
+var Server = require('karma').Server;
 
 
 gulp.task('default', function() {
@@ -55,7 +57,7 @@ var runBrowserifyTask = function(options) {
     fullPaths: true
   })
   .require(require.resolve('./app/js/app.js'), { entry: true })
-  .transform(babelify)
+  .transform('babelify')
   .external([
     'react',
     'react-dom',
@@ -77,6 +79,9 @@ var runBrowserifyTask = function(options) {
 
   var rebundle = function() {
     bundler.bundle()
+      .on('error', function(err) {
+        console.log(err)
+      })
     .pipe(source('bundle.js'))
     .pipe(gulpif(options.uglify, streamify(uglify())))
     .pipe(rename('app.js'))
@@ -111,11 +116,23 @@ gulp.task('copy', function() {
     .pipe(gulp.dest('./dist'));
 });
 
+
+gulp.task('jest', function () {
+  return gulp.src('__tests__').pipe(jest({
+    scriptPreprocessor: '../node_modules/babel-jest',
+    unmockedModulePathPatterns: [
+      '../node_modules/react'
+
+    ]
+  }));
+});
+
+
 // Static server
 gulp.task('browser-sync', function() {
   browserSync.init({
     server: {
-      baseDir: "./dist"
+      baseDir: './dist'
     }
   });
 });

@@ -9,6 +9,7 @@ exports.validation = function () {
 				name: { type: 'string', minLength: 4, maxLength: 12 },
 				age: { type: 'number', gt: 0, lt: 100 },
 				id: { type: 'string', exactLength: 8, pattern: /^A.{6}Z$/ },
+				site1: { type: 'string', pattern: 'url' },
 				stuff: {
 					type: 'array',
 					minLength: 2,
@@ -26,6 +27,7 @@ exports.validation = function () {
 				name: 'NikitaJS',
 				age: 20,
 				id: 'AbcdefgZ',
+				site1: 'http://google.com',
 				stuff: ['JavaScript', null, 1234]
 			};
 			var result = si.validate(schema, candidate);
@@ -40,6 +42,7 @@ exports.validation = function () {
 				name: 'Nik',
 				age: 20,
 				id: 'Abcdefgb',
+				site1: 'http://localhost:1234',
 				stuff: ['', null, 1234]
 			};
 			var result = si.validate(schema, candidate);
@@ -57,16 +60,18 @@ exports.validation = function () {
 				name: 'NikitaJS',
 				age: 101,
 				id: new Date(),
+				site1: 'wat',
 				stuff: []
 			};
 			var result = si.validate(schema, candidate);
 			result.should.be.an.Object;
 			result.should.have.property('valid').with.equal(false);
 			result.should.have.property('error').with.be.an.instanceof(Array)
-			.and.be.lengthOf(3);
+			.and.be.lengthOf(4);
 			result.error[0].property.should.equal('@.age');
 			result.error[1].property.should.equal('@.id');
-			result.error[2].property.should.equal('@.stuff');
+			result.error[2].property.should.equal('@.site1');
+			result.error[3].property.should.equal('@.stuff');
 		});
 
 		test('candidate #4', function () {
@@ -74,6 +79,7 @@ exports.validation = function () {
 				name: 'NikitaJS loves JavaScript but this string is too long',
 				age: 20,
 				id: 'aeeeeeeZ',
+				site1: 'http://schema:inspector@schema-inspector.com',
 				stuff: ['JavaScript', {}, []]
 			};
 			var result = si.validate(schema, candidate);
@@ -2094,4 +2100,29 @@ exports.validation = function () {
 		});
 
 	}); // suite "schema #14"
+
+	suite('schema #22 (date with validDate: true)', function () {
+		var schema = {
+			type: 'object',
+			items: { type: 'date', validDate: true }
+		};
+
+		test('candidate #1', function () {
+			var candidate = {
+				valid: new Date(),
+				invalid: new Date('invalid'),
+				nope: 'hello!'
+			};
+
+			var result = si.validate(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('valid').with.equal(false);
+			result.should.have.property('error').with.be.an.instanceof(Array)
+			.and.be.lengthOf(2);
+			result.error[0].property.should.equal('@[invalid]');
+			result.error[1].property.should.equal('@[nope]');
+		});
+
+	});
+
 };

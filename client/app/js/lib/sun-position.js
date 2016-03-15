@@ -1,3 +1,5 @@
+'use strict'
+
 let SunCalc = require('suncalc')
 
 function SunPosition(date, latitude, longitude) {
@@ -15,4 +17,4 @@ function SunPosition(date, latitude, longitude) {
   return sunCoordinates
 }
 
-export default SunPosition
+module.exports = SunPosition

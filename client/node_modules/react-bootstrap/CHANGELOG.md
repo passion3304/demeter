@@ -1,3 +1,23 @@
+v0.28.3 - Thu, 11 Feb 2016 00:00:42 GMT
+---------------------------------------
+
+- [922ecae](../../commit/922ecae) [fixed] Allow overriding aria-label on <SplitButton> toggle
+- [f187e04](../../commit/f187e04) [fixed] Use actual ellipsis in pagination
+- [f4c1525](../../commit/f4c1525) [added] pagination boundaryLinks
+- [9331141](../../commit/9331141) [fixed] remove extra tabIndex
+
+
+
+v0.28.2 - Fri, 08 Jan 2016 06:38:06 GMT
+---------------------------------------
+
+- [1bee8a2](../../commit/1bee8a2) [added] responsively hiding columns
+- [653bb17](../../commit/653bb17) [fixed] a11y: setting tabIndex="-1" for the dismiss button of Alerts since aria-hidden="true"
+- [1d07197](../../commit/1d07197) [fixed] don't add aria-label to modal header and close button
+- [035e553](../../commit/035e553) [fixed] navbar-default not added for custom styles
+
+
+
 v0.28.1 - Mon, 16 Nov 2015 20:04:34 GMT
 ---------------------------------------
 

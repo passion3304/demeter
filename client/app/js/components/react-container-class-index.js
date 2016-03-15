@@ -8,5 +8,5 @@ module.exports = {
   Toolbar:                      Toolbar,
   Viewport:                     Viewport,
   Menu:                         Menu,
-  OptionPanel:                  OptionPanel,
+  OptionPanel:                  OptionPanel
 };

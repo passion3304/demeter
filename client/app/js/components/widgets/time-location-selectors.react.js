@@ -10,6 +10,10 @@ class TimeLocationSelectors extends React.Component {
     super(props)
   }
 
+  componentWillMount() {
+
+  }
+
   render() {
 
     let changeTimeSliderValue = (event) => {
@@ -31,7 +35,7 @@ class TimeLocationSelectors extends React.Component {
     let changeLatitudeSliderValue = (event) => {
       let latitude = event.target.value
       ViewportActions.setLatitude({
-        latitude: latitude,
+        latitude: latitude
       })
     }
 
@@ -40,6 +44,10 @@ class TimeLocationSelectors extends React.Component {
       ViewportActions.setLongitude({
         longitude: longitude
       })
+    }
+
+    let getValue = (slider) => {
+      return this.props[slider]
     }
 
 
@@ -51,11 +59,11 @@ class TimeLocationSelectors extends React.Component {
           </Grid.Column>
           <Grid.Column large={8}>
             <Slider
+              value={getValue('time')}
               handleChange={changeTimeSliderValue}
               step={5}
               max={1439}    // number of minutes in a day
-              min={0}
-              disabled="disabled" />
+              min={0} />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row className="date-selector">
@@ -64,11 +72,11 @@ class TimeLocationSelectors extends React.Component {
           </Grid.Column>
           <Grid.Column large={8}>
             <Slider
+              value={getValue('date')}
               handleChange={changeDateSliderValue}
               step={1}
               max={364}
-              min={0}
-              disabled="disabled" />
+              min={0} />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row className="latitude-selector">
@@ -77,11 +85,11 @@ class TimeLocationSelectors extends React.Component {
           </Grid.Column>
           <Grid.Column large={8}>
             <Slider
+              value={getValue('latitude')}
               handleChange={changeLatitudeSliderValue}
               step={1}
               max={90}
-              min={-90}
-              disabled="disabled" />
+              min={-90} />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row className="longitude-selector">
@@ -90,11 +98,11 @@ class TimeLocationSelectors extends React.Component {
           </Grid.Column>
           <Grid.Column large={8}>
             <Slider
+              value={getValue('longitude')}
               handleChange={changeLongitudeSliderValue}
               step={1}
               max={180}
-              min={-180}
-              disabled="disabled" />
+              min={-180} />
           </Grid.Column>
         </Grid.Row>
       </div>

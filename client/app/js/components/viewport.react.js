@@ -1,5 +1,4 @@
 let React = require('react')
-//let ReactTHREE = require('../lib/react-three/es5/react-three-commonjs')
 let ReactTHREE = require('react-three')
 let THREE = require('three')
 let Renderer = ReactTHREE.Renderer
@@ -18,6 +17,7 @@ import Sun from '../scene_objects/sun.react'
 import TimeLocationSelectors from './widgets/time-location-selectors.react'
 import TimeServices from '../lib/time-services'
 import BaseComponent from './base-component.react'
+import TestComponent from './test-component.react'
 
 
 class Viewport extends React.Component {
@@ -151,6 +151,7 @@ class Viewport extends React.Component {
 
     return (
       <div className="viewport" ref={ (ref) => this.viewportRef = ref }>
+        <TestComponent />
         <div>Current time: {TimeServices.formattedTime(this.state.time)}</div>
         <div>Current date: {TimeServices.formattedDate(this.state.date)}</div>
         <div>Latitude: {this.state.latitude}</div>
@@ -185,7 +186,11 @@ class Viewport extends React.Component {
 
           </Scene>
         </Renderer>
-        <TimeLocationSelectors />
+        <TimeLocationSelectors time={TimeServices.getMinutesSinceMidnight(this.state.time)}
+                               date={TimeServices.getDaysSinceNewYear(this.state.date)}
+                               latitude={this.state.latitude}
+                               longitude={this.state.longitude}
+        />
       </div>
     )
   }
