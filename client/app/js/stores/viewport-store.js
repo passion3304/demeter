@@ -6,6 +6,7 @@ let THREE = require('three')
 let ApplicationConstants = require('../constants/application-constants')
 let ApplicationActions = require('../actions/application-actions')
 let ViewportConstants = require('../constants/viewport-constants')
+let Validate = require('../lib/validate')
 
 
 let CHANGE_EVENT = 'change'
@@ -124,13 +125,13 @@ let destroyObject = (id) => {
 }
 
 function setTime(time) {
-  // sanitize
+  Validate.time(time)
   ViewportStore.state.time = time
   ViewportStore.emitChange()
 }
 
 function setDate(date) {
-  // sanitize
+  Validate.date(date)
   ViewportStore.state.date = date
   ViewportStore.emitChange()
 }

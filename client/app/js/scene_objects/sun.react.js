@@ -13,7 +13,7 @@ class Sun extends React.Component {
 
   render() {
 
-    let shadowBoxSize = 200
+    let shadowBoxSize = 60
 
     let date = new Date(this.props.date.year,
                         this.props.date.month,

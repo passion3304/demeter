@@ -1,8 +1,7 @@
 'use strict'
 
 let Moment = require('moment')
-let Validate = require('validate-arguments')
-
+let Validate = require('./validate')
 
 let TimeServices = (function() {
 
@@ -11,10 +10,9 @@ let TimeServices = (function() {
   let now = new Moment()
 
   return {
+
     convertFromMinutesAfterMidnight: function(offsetInMinutes) {
-      if (typeof offsetInMinutes === 'undefined') {
-        throw new Error('function in time-services called with no parameters')
-      }
+      Validate.emptyArgs(offsetInMinutes)
       let hour = Math.floor(offsetInMinutes / 60)
       let minute = offsetInMinutes % 60
 
@@ -25,10 +23,7 @@ let TimeServices = (function() {
     },
 
     convertFromDaysAfterNewYear: function(offsetInDays, year) {
-      if (typeof offsetInDays === 'undefined') {
-        throw new Error('function in time-services called with no parameters')
-      }
-      checkForEmptyArgs(offsetInDays)
+      Validate.emptyArgs(offsetInDays)
       if (typeof year === 'undefined') {
         year = now.year()
       }
@@ -42,14 +37,14 @@ let TimeServices = (function() {
     },
 
     getMinutesSinceMidnight: function(time) {
-      validateTime(time)
+      Validate.time(time)
 
       return time.hour * 60 + time.minute
     },
 
     getDaysSinceNewYear: function(date) {
 
-      validateDate(date)
+      Validate.date(date)
 
       let newYear = Moment(new Date(date.year, 0, 1))
       let current = Moment(new Date(date.year, date.month, date.date))
@@ -58,7 +53,7 @@ let TimeServices = (function() {
 
     formattedTime: function(time) {
 
-      validateTime(time)
+      Validate.time(time)
 
       let timeString = '',
         ampm = 'am',
@@ -84,7 +79,7 @@ let TimeServices = (function() {
 
     formattedDate: function(date) {
 
-      validateDate(date)
+      Validate.date(date)
 
       let dateString = ''
       dateString += months[date.month] + ' ' + (date.date) + ', ' + date.year
@@ -96,52 +91,5 @@ let TimeServices = (function() {
 
 
 })()
-
-function validateTime(time) {
-
-  checkForEmptyArgs(time)
-
-  let args = Validate.validate(time, {
-
-    hour: {
-      isa: 'natural'
-    },
-    minute: {
-      isa: 'natural'
-    }
-  })
-
-  if (!args.isValid()) {
-    throw args.errorString()
-  }
-}
-
-function validateDate(date) {
-
-  checkForEmptyArgs(date)
-
-  let args = Validate.validate(date, {
-
-    year: {
-      isa: 'natural'
-    },
-    month: {
-      isa: 'natural'
-    },
-    date: {
-      isa: 'natural'
-    }
-  })
-
-  if (!args.isValid()) {
-    throw args.errorString()
-  }
-}
-
-function checkForEmptyArgs(args) {
-  if (typeof args === 'undefined') {
-    throw new Error('function in time-services called with no parameters')
-  }
-}
 
 module.exports = TimeServices

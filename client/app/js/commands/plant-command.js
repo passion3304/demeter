@@ -23,7 +23,7 @@ var plantCommand = function() {
             type: 'plant'
           }
         })
-      }, 100)
+      }, 1)
       
     }
   }
