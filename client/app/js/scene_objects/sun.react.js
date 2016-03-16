@@ -13,7 +13,7 @@ class Sun extends React.Component {
 
   render() {
 
-    let shadowBoxSize = 60
+    let shadowBoxSize = 200
 
     let date = new Date(this.props.date.year,
                         this.props.date.month,
@@ -30,7 +30,7 @@ class Sun extends React.Component {
                           castShadow={true}
                           shadowMapWidth={4096}
                           shadowMapHeight={4096}
-                          shadowCameraVisible={true}
+                          shadowCameraVisible={false}
                           shadowCameraLeft={-shadowBoxSize}
                           shadowCameraRight={shadowBoxSize}
                           shadowCameraTop={shadowBoxSize}

@@ -11,27 +11,14 @@ class GroundPlane extends React.Component {
     super(props)
   }
 
-  createNewPlant(basePoint) {
-    ViewportActions.createObject({
-      objectData: {
-        position: new THREE.Vector3(basePoint.x, 0, basePoint.z),
-        material: new THREE.MeshLambertMaterial({color: 0x0000ff}),
-        geometry: new THREE.BoxGeometry( 1, 5, 1 )
-      }
-    })
-  }
-
   render() {
-    let handleClick = (event, intersection) => {
+    let myHandleClick = (event, intersection) => {
+      event.stopPropagation()
       ApplicationActions.click({
         targetID: this.props.id,
         viewport: true,   // need a better identification system
         intersection: intersection
       })
-
-      // if (ApplicationStore.getCurrentInteractiveCommand() && !this.props.metaKey) {
-      //   this.createNewPlant(intersection.point)
-      // }
 
     }
 
@@ -40,7 +27,7 @@ class GroundPlane extends React.Component {
             material={new THREE.MeshLambertMaterial( { color: 0x6666ff } )}
             geometry={new THREE.BoxGeometry(200, 0.5, 200)}
             receiveShadow={true}
-            onMouseDown3D={handleClick}
+            onMouseDown3D={myHandleClick}
       />
     )
   }

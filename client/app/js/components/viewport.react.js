@@ -120,12 +120,6 @@ class Viewport extends React.Component {
 
   render() {
 
-    let shadowBox = {
-      geometry: new THREE.BoxGeometry( 1, 1, 1 ),
-      material: new THREE.MeshLambertMaterial( { color: 0x8ead86 } ),
-      position: new THREE.Vector3(3, 1, 0)
-    }
-
 
     let cameraProps = {
       fov : 75, aspect: this.state.width / this.state.height,
@@ -172,16 +166,14 @@ class Viewport extends React.Component {
                  >
             <OrbitalCamera name="maincamera" {...cameraProps} />
             {this.sceneGeometry()}
-            <Mesh castShadow={true} {...shadowBox} />
             <GroundPlane metaKey={this.state.metaKey} receiveShadow={true} id={uuid.v1()}
-              /*clickToCreate={this.state.currentInteractiveCommand === 'plant'}*/
             />
             <Sky />
             <Sun time={this.state.time}
                  date={this.state.date}
                  latitude={this.state.latitude}
                  longitude={this.state.longitude}
-                 target={shadowBox} />
+            />
 
 
           </Scene>
