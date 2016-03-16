@@ -6,6 +6,10 @@ var electrifyCommand = function() {
 
     deactivate: function() {
 
+    },
+
+    handleClick: function() {
+      
     }
   }
 };

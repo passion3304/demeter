@@ -39,6 +39,7 @@ body {
 
 button {
   outline: none !important;   // make this a configurable option for accessibility
+  z-index: 1000 !important;
 }
 
 .hidden {

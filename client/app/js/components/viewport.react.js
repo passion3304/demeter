@@ -8,6 +8,7 @@ let Mesh = ReactTHREE.Mesh
 let AmbientLight = ReactTHREE.AmbientLight
 let PointLight = ReactTHREE.PointLight
 let OrbitControls = require('three-orbit-controls')(THREE)
+let uuid = require('node-uuid')
 let ViewportStore = require('../stores/viewport-store')
 let ApplicationStore = require('../stores/application-store')
 import OrbitalCamera from '../scene_objects/orbital-camera.react'
@@ -17,7 +18,6 @@ import Sun from '../scene_objects/sun.react'
 import TimeLocationSelectors from './widgets/time-location-selectors.react'
 import TimeServices from '../lib/time-services'
 import BaseComponent from './base-component.react'
-import TestComponent from './test-component.react'
 
 
 class Viewport extends React.Component {
@@ -109,7 +109,8 @@ class Viewport extends React.Component {
               geometry={object.geometry}
               key={i}
               castShadow={true}
-              receiveShadow={true} />
+              receiveShadow={true}
+              onMouseDown3D={object.handleClick} />
       )
     })
   }
@@ -151,7 +152,6 @@ class Viewport extends React.Component {
 
     return (
       <div className="viewport" ref={ (ref) => this.viewportRef = ref }>
-        <TestComponent />
         <div>Current time: {TimeServices.formattedTime(this.state.time)}</div>
         <div>Current date: {TimeServices.formattedDate(this.state.date)}</div>
         <div>Latitude: {this.state.latitude}</div>
@@ -173,7 +173,7 @@ class Viewport extends React.Component {
             <OrbitalCamera name="maincamera" {...cameraProps} />
             {this.sceneGeometry()}
             <Mesh castShadow={true} {...shadowBox} />
-            <GroundPlane metaKey={this.state.metaKey} receiveShadow={true}
+            <GroundPlane metaKey={this.state.metaKey} receiveShadow={true} id={uuid.v1()}
               /*clickToCreate={this.state.currentInteractiveCommand === 'plant'}*/
             />
             <Sky />

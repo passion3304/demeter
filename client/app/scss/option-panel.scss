@@ -2,12 +2,11 @@
 
 .option-panel {
   position: absolute;
-  left: $toolbar-medium-width;
+  right: 0px;
   top: $navbar-height;
   width: $option-panel-medium-width;
   height: 300px;
   padding: 10px;
-  z-index: 2;
   h1 {
     font-size: 24px;
     text-align: center !important;
@@ -16,10 +15,12 @@
 
 .panel-show {
   opacity: 1;
+  z-index: 2;
   transition: opacity 200ms;
 }
 
 .panel-hide {
   opacity: 0;
+  z-index: 0;
   transition: opacity 200ms;
 }

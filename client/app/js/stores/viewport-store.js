@@ -1,7 +1,10 @@
 let AppDispatcher = require('../dispatcher/app-dispatcher')
 let EventEmitter = require('events').EventEmitter
+let _ = require('lodash')
+let uuid = require('node-uuid')
 let THREE = require('three')
 let ApplicationConstants = require('../constants/application-constants')
+let ApplicationActions = require('../actions/application-actions')
 let ViewportConstants = require('../constants/viewport-constants')
 
 
@@ -55,6 +58,9 @@ let ViewportStore = Object.assign({}, EventEmitter.prototype, {
       case ViewportConstants.CREATE_OBJECT:
         createObject(action.objectData)
         break
+      case ViewportConstants.DESTROY_OBJECT:
+        destroyObject(action.id)
+        break
       case ViewportConstants.SET_TIME:
         setTime(action.time)
         break
@@ -106,7 +112,20 @@ function loadScene(scene) {
 }
 
 let createObject = (objectData) => {
+  objectData.id = uuid.v1()
+  objectData.handleClick = (event, intersection) => {
+    ApplicationActions.click({
+      targetID: objectData.id,
+      viewport: true,
+      intersection: intersection
+    })
+  }
   ViewportStore.state.scene.objects.push(objectData)
+  ViewportStore.emitChange()
+}
+
+let destroyObject = (id) => {
+  _.remove(ViewportStore.state.scene.objects, { id: id })
   ViewportStore.emitChange()
 }
 

@@ -3,6 +3,7 @@ let keyMirror = require('keymirror')
 module.exports = keyMirror({
 
   CREATE_OBJECT: null,
+  DESTROY_OBJECT: null,
   SET_TIME: null,
   SET_DATE:null,
   SET_LATITUDE: null,

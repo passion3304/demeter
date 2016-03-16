@@ -3,12 +3,11 @@ let ReactTHREE = require('react-three')
 let THREE = require('three')
 let Mesh = ReactTHREE.Mesh
 let ViewportActions = require('../actions/viewport-actions')
-let ViewportStore = require('../stores/viewport-store')
+let ApplicationActions = require('../actions/application-actions')
 let ApplicationStore = require('../stores/application-store')
 
 class GroundPlane extends React.Component {
   constructor(props) {
-
     super(props)
   }
 
@@ -24,9 +23,15 @@ class GroundPlane extends React.Component {
 
   render() {
     let handleClick = (event, intersection) => {
-      if (ApplicationStore.getCurrentInteractiveCommand() && !this.props.metaKey) {
-        this.createNewPlant(intersection.point)
-      }
+      ApplicationActions.click({
+        targetID: this.props.id,
+        viewport: true,   // need a better identification system
+        intersection: intersection
+      })
+
+      // if (ApplicationStore.getCurrentInteractiveCommand() && !this.props.metaKey) {
+      //   this.createNewPlant(intersection.point)
+      // }
 
     }
 

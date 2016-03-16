@@ -30,7 +30,8 @@ var PlantOptionsPanel = React.createClass({
 
     // Airbrush Toggle
     var airbrushToggleButton =     classNames({
-      active: this.elements.airbrushToggle.active
+      active: this.elements.airbrushToggle.active,
+      airbrushToggleButton: true
     });
     var airbrushToggle = this.elements.airbrushToggle || {};
 

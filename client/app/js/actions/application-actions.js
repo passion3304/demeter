@@ -12,7 +12,9 @@ var ApplicationActions = {
   click: function(data) {
     AppDispatcher.dispatch({
       actionType: ApplicationConstants.CLICK,
-      targetID: data.targetID
+      targetID: data.targetID,
+      viewport: data.viewport,
+      intersection: data.intersection
     })
   }
 }

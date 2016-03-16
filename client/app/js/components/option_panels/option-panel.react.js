@@ -17,10 +17,12 @@ class OptionPanel extends React.Component {
     })
 
     return (
-      <div className={OptionPanelStyles}>
-        <h1>{this.props.componentData.displayName}</h1>
-        <div className="option-panel-widgets">
-          {this.props.childComponents}
+      <div className='option-panel-container'>
+        <div className={OptionPanelStyles}>
+          <h1>{this.props.componentData.displayName}</h1>
+          <div className="option-panel-widgets">
+            {this.props.childComponents}
+          </div>
         </div>
       </div>
     )

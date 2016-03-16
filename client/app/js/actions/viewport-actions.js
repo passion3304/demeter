@@ -10,6 +10,13 @@ var ViewportActions = {
     })
   },
 
+  destroyObject: function(data) {
+    AppDispatcher.dispatch({
+      actionType: ViewportConstants.DESTROY_OBJECT,
+      id: data.id
+    })
+  },
+
   setTime: function(data) {
     AppDispatcher.dispatch({
       actionType: ViewportConstants.SET_TIME,

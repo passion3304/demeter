@@ -40,7 +40,7 @@ let ApplicationStore = Object.assign({}, EventEmitter.prototype, {
         ApplicationStore.emitChange()
         break
       case ApplicationConstants.CLICK:
-        ApplicationStore.ui.click(action.targetID)
+        ApplicationStore.ui.click(action)
           .then(function(newState) {
             _.assign(ApplicationStore.state, newState)
             ApplicationStore.emitChange()

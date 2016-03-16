@@ -11,7 +11,7 @@ export default class {
     this.state.commands = initializeCommands(commands)
     this.state.containerComponents = []
     this.state.components = initializeComponents(components, this.state.containerComponents)
-    this.state.currentInteractiveCommand = {}
+    this.state.currentInteractiveCommand = 'none'
   }
 
   getCommands() {
@@ -30,34 +30,42 @@ export default class {
     return findByID(this.state.components, id)
   }
 
-  click(targetID) {
+  click(action) {
     let deferred = q.defer()
-    let component = findByID(this.state.components, targetID)
-    if (component && typeof component.command !== 'undefined') {
 
-      let command = findByName(this.state.commands, component.command)
+    if (action.viewport) { // click 3D object
+      clickViewport(action, this.state)
+      deferred.resolve()
 
-      switch (command.type) {
-        case 'interactive':
-          toggleActiveState(component, this.state)
-          deferred.resolve({ currentInteractiveCommand: this.state.currentInteractiveCommand })
-          break
+    } else {  // click component
+      let component = findByID(this.state.components, action.targetID)
+      if (component && typeof component.command !== 'undefined') {
 
-        case 'boolean':
-          toggleActiveState(component, this.state)
-          deferred.resolve()
-          break
+        let command = findByName(this.state.commands, component.command)
 
-        case 'instant':
-          activate(component, this.state)
-          deactivate(component, this.state)
-          deferred.resolve()
-          break
+        switch (command.type) {
+          case 'interactive':
+            toggleActiveState(component, this.state)
+            deferred.resolve({ currentInteractiveCommand: this.state.currentInteractiveCommand })
+            break
 
-        default:
-        // no op
+          case 'boolean':
+            toggleActiveState(component, this.state)
+            deferred.resolve()
+            break
+
+          case 'instant':
+            activate(component, this.state)
+            deactivate(component, this.state)
+            deferred.resolve()
+            break
+
+          default:
+          // no op
+        }
       }
     }
+    
     return deferred.promise
   }
 }
@@ -218,5 +226,17 @@ function toggleActiveState(component, state) {
     activate(component, state)
   } else {
     deactivate(component, state)
+  }
+}
+
+function clickViewport(action, state) {
+  if (state.currentInteractiveCommand === 'none') {
+    return
+  } else {
+    if (typeof state.currentInteractiveCommand.handleClick === 'undefined') {
+      throw new Error('command is missing handleClick function')
+    } else {
+      state.currentInteractiveCommand.handleClick(action)
+    }
   }
 }

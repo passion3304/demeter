@@ -6190,22 +6190,23 @@ input[type="button"].btn-block {
 
 .option-panel {
   position: absolute;
-  left: 120px;
+  right: 0px;
   top: 50px;
   width: 250px;
   height: 300px;
-  padding: 10px;
-  z-index: 2; }
+  padding: 10px; }
   .option-panel h1 {
     font-size: 24px;
     text-align: center !important; }
 
 .panel-show {
   opacity: 1;
+  z-index: 2;
   transition: opacity 200ms; }
 
 .panel-hide {
   opacity: 0;
+  z-index: 0;
   transition: opacity 200ms; }
 
 .current-interactive-command {
@@ -12044,7 +12045,8 @@ body {
     list-style-type: none; }
 
 button {
-  outline: none !important; }
+  outline: none !important;
+  z-index: 1000 !important; }
 
 .hidden {
   visibility: hidden; }
