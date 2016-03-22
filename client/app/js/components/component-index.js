@@ -21,7 +21,22 @@ module.exports = {
             }
           ],
           icon:     {
-            'fa-tree': true
+            'fa-leaf': true
+          }
+        },
+        {
+          name:     'Create primitive',
+          type:     'button',
+          command:  'primitive',
+          reactClass: 'Button',
+          extraProps: [
+            {
+              name: 'bsStyle',
+              value: 'primary'
+            }
+          ],
+          icon:     {
+            'fa-cube': true
           }
         },
         {
@@ -159,6 +174,14 @@ module.exports = {
               command: 'plant'
             },
             {
+              name: 'primitive',
+              templateText: 'Create primitive',
+              displayName: 'Create primitive',
+              type: 'menu-item',
+              reactClass: 'MenuItem',
+              command: 'primitive'
+            },
+            {
               name: 'eraser',
               templateText: 'Eraser',
               displayName: 'Eraser',
@@ -257,6 +280,30 @@ module.exports = {
           },
           icon: {
             'fa-paper-plane-o': true
+          }
+        }
+      ]
+    },
+    {
+      name: 'primitive-options',
+      type: 'option-panel',
+      reactClass: 'OptionPanel',
+      reactSubClass: 'PrimitiveOptionsPanel',
+      parentCommand: 'primitive',
+      displayName: 'Primitive options',
+      children: [
+        {
+          name: 'airbrushToggle',
+          displayName: 'Airbrush',
+          type: 'button',
+          command: 'airbrush',
+          reactClass: 'Button',
+          classNames: {
+            'btn': true,
+            'btn-success': true
+          },
+          icon: {
+            'fa-cube': true
           }
         }
       ]

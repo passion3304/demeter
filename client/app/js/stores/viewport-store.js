@@ -106,7 +106,8 @@ function loadScene(scene) {
   return scene
 }
 
-let createObject = (objectData) => {
+let createObject = (objectData) => {      // seems like this should go in another module, perhaps a yet-to-be created
+                                          // Scene store
   objectData.id = uuid.v1()
   objectData.handleClick = (event, intersection) => {
     ApplicationActions.click({

@@ -1,3 +1,15 @@
+/**
+ *
+ *                          ui.js
+ *
+ *    This module is the controller for the entire interface, coordinating actions with state, viewport with other
+ *    UI elements.  It's like a layer between the Application store and the layer of other interface elements like
+ *    the toolbar and the viewport.
+ *
+ *    Clicks and other actions in the UI are first dispatched to the Application Store, which then brokers the event
+ *    to this module.
+ */
+
 var commands = require('./commands')
 var components = require('../components/component-index')
 var uuid = require('node-uuid')

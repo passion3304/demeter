@@ -1,7 +1,7 @@
 var React = require('react');
-var ApplicationActions = require('../../actions/application-actions');
-var ApplicationStore = require('../../stores/application-store');
-var Widgets = require('../widgets/widgets-index');
+var ApplicationActions = require('../js/actions/application-actions');
+var ApplicationStore = require('../js/stores/application-store');
+var Widgets = require('../js/components/widgets/widgets-index');
 var classNames = require('classnames');
 var uuid = require('node-uuid');
 
