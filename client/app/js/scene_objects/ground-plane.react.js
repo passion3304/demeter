@@ -30,8 +30,7 @@ class GroundPlane extends React.Component {
             material={new THREE.MeshLambertMaterial( { color: 0x6666ff } )}
             geometry={new THREE.BoxGeometry(200, 0.5, 200)}
             receiveShadow={true}
-            onMouseDown3D={handleClick}
-      />
+            onMouseDown3D={handleClick} />
     )
   }
 }

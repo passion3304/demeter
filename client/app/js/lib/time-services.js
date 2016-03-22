@@ -12,7 +12,8 @@ let TimeServices = (function() {
   return {
 
     convertFromMinutesAfterMidnight: function(offsetInMinutes) {
-      Validate.emptyArgs(offsetInMinutes)
+      Validate.hasArguments(offsetInMinutes)
+      Validate.isNumber(offsetInMinutes)
       let hour = Math.floor(offsetInMinutes / 60)
       let minute = offsetInMinutes % 60
 
@@ -23,7 +24,8 @@ let TimeServices = (function() {
     },
 
     convertFromDaysAfterNewYear: function(offsetInDays, year) {
-      Validate.emptyArgs(offsetInDays)
+      Validate.hasArguments(offsetInDays)
+      Validate.isNumber(offsetInDays)
       if (typeof year === 'undefined') {
         year = now.year()
       }

@@ -1,11 +1,30 @@
+/**
+ *                                        validate.js
+ *
+ *    This module is meant to validate function parameters as a service for APIs in the application.  It's not meant to
+ *    verify user input.  Here, errors will be thrown if something doesn't validate.  The module is designed to cause
+ *    my programming mistakes to crash the application.
+ *
+ */
+
+'use strict'
+
 let ValidateArguments = require('validate-arguments')
 
 let Validate = (function() {
 
   return {
 
-    emptyArgs: function(args) {
-      return checkForEmptyArgs(args)
+    hasArguments: function(args) {
+      return hasArguments(args)
+    },
+
+    isNumber: function(arg) {
+      return isNumber(arg)
+    },
+
+    isWithinRange: function(value, min, max) {
+      return isWithinRange(value, min, max)
     },
 
     time: function(time) {
@@ -25,15 +44,10 @@ let Validate = (function() {
     }
   }
 
-  function checkForEmptyArgs(args) {
-    if (typeof args === 'undefined') {
-      throw new Error('function in time-services called with no parameters')
-    }
-  }
-
   function validateTime(time) {
 
-    checkForEmptyArgs(time)
+    hasArguments(time.hour)
+    hasArguments(time.minute)
 
     let args = ValidateArguments.validate(time, {
 
@@ -45,10 +59,8 @@ let Validate = (function() {
       }
     })
 
-    if (!withinRange(time.hour, 0, 23) ||
-        !withinRange(time.minute, 0, 59)) {
-      throw new Error('one or more parameters out of range')
-    }
+    isWithinRange(time.hour, 0, 23)
+    isWithinRange(time.minute, 0, 59)
 
     if (!args.isValid()) {
       throw args.errorString()
@@ -57,7 +69,9 @@ let Validate = (function() {
 
   function validateDate(date) {
 
-    checkForEmptyArgs(date)
+    hasArguments(date.year)
+    hasArguments(date.month)
+    hasArguments(date.date)
 
     let args = ValidateArguments.validate(date, {
 
@@ -72,11 +86,9 @@ let Validate = (function() {
       }
     })
 
-    if (!withinRange(date.year, 0, 9999) ||
-        !withinRange(date.month, 0, 11) ||
-        !withinRange(date.date, 1, 31)) {
-      throw new Error('one or more parameters out of range')
-    }
+    isWithinRange(date.year, 0, 9999)
+    isWithinRange(date.month, 0, 11)
+    isWithinRange(date.date, 1, 31)
 
     if (!args.isValid()) {
       throw args.errorString()
@@ -84,24 +96,42 @@ let Validate = (function() {
   }
 
   function validateLatitude(latitude) {
-    checkForEmptyArgs(latitude)
 
-    let args = ValidateArguments.validate(time, {
-      time: 'number'
-    })
+    hasArguments(latitude)
+
+    if (!isWithinRange(latitude, -90, 90)) {
+      throw new Error('bad arguments')
+    }
   }
 
   function validateLongitude(longitude) {
-    checkForEmptyArgs(longitude)
 
+    hasArguments(longitude)
 
+    isWithinRange(longitude, -180, 180)
   }
 
-  function withinRange(value, min, max) {
+  function hasArguments(args) {
+    if (typeof args !== 'undefined') {
+      return true
+    } else {
+      throw new Error('missing arguments')
+    }
+  }
+  
+  function isNumber(arg) {
+    if (!isNaN(arg)) {
+      return true
+    } else {
+      throw new Error('argument is not a number')
+    }
+  }
+
+  function isWithinRange(value, min, max) {
     if (value >= min && value <= max) {
       return true
     } else {
-      return false
+      throw new Error('argument out of range')
     }
   }
 

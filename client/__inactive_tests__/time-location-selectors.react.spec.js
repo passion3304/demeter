@@ -2,14 +2,14 @@
 
 jest.dontMock('../../../app/js/components/widgets/time-location-selectors.react')
 
-let React = require('../../../node_modules/react')
-let ReactDOM = require('../../../node_modules/react-dom')
-let TestUtils = require('../../../node_modules/react-addons-test-utils')
+let React = require('../node_modules/react/react')
+let ReactDOM = require('../node_modules/react-dom/index')
+let TestUtils = require('../node_modules/react-addons-test-utils/index')
 
-let TimeLocationSelectors = require('../../../app/js/components/widgets/time-location-selectors.react').default
+let TimeLocationSelectors = require('../app/js/components/widgets/time-location-selectors.react.js').default
 
-let Toolbar = require('../../../app/js/components/toolbar.react').default
-let TestComponent = require('../../../app/js/components/test-component.react').default
+let Toolbar = require('../app/js/components/toolbar.react.js').default
+let TestComponent = require('../app/js/components/test-component.react.js').default
 
 describe('basic rendering', () => {
 

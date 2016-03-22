@@ -137,13 +137,13 @@ function setDate(date) {
 }
 
 function setLatitude(latitude) {
-  // sanitize
+  Validate.latitude(latitude)
   ViewportStore.state.latitude = latitude
   ViewportStore.emitChange()
 }
 
 function setLongitude(longitude) {
-  // sanitize
+  Validate.longitude(longitude)
   ViewportStore.state.longitude = longitude
   ViewportStore.emitChange()
 }
