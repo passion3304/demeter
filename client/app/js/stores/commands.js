@@ -32,9 +32,5 @@ module.exports = [
   {
     name: 'clear_scene',
     type: 'instant'
-  },
-  {
-    name: 'airbrush',
-    type: 'boolean'
   }
 ];

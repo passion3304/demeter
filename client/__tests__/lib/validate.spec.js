@@ -11,17 +11,17 @@ describe('validate rejection', () => {
   })
 
   it('throws error on invalid date', () => {
-    expect( () => { Validate.date({ month: 13, date: 1, year: 2000 }) } ).toThrow('argument out of range')
-    expect( () => { Validate.date({ month: 11, date: 32, year: 2000 }) } ).toThrow('argument out of range')
-    expect( () => { Validate.date({ month: 11, date: 1, year: 10000 }) } ).toThrow('argument out of range')
+    expect( () => { Validate.date({ month: 13, date: 1, year: 2000 }) } ).toThrow()
+    expect( () => { Validate.date({ month: 11, date: 32, year: 2000 }) } ).toThrow()
+    expect( () => { Validate.date({ month: 11, date: 1, year: 10000 }) } ).toThrow()
 
-    expect( () => { Validate.date({ month: 11, date: 1 }) } ).toThrow('missing arguments')
-    expect( () => { Validate.date({ year: 1996 }) } ).toThrow('missing arguments')
+    expect( () => { Validate.date({ month: 11, date: 1 }) } ).toThrow()
+    expect( () => { Validate.date({ year: 1996 }) } ).toThrow()
   })
 
   it('throws error on invalid time', () => {
-    expect( () => { Validate.time({ hour: 25, minute: 1 }) } ).toThrow('argument out of range')
-    expect( () => { Validate.time({ hour: 12, minute: 62 }) } ).toThrow('argument out of range')
+    expect( () => { Validate.time({ hour: 25, minute: 1 }) } ).toThrow()
+    expect( () => { Validate.time({ hour: 12, minute: 62 }) } ).toThrow()
 
     expect( () => { Validate.time({ hour: 12}) } ).toThrow('missing arguments')
     expect( () => { Validate.time({ minute: 1}) } ).toThrow('missing arguments')

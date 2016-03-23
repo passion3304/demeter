@@ -5,11 +5,13 @@
  *    verify user input.  Here, errors will be thrown if something doesn't validate.  The module is designed to cause
  *    my programming mistakes to crash the application.
  *
+ *    For simple stuff, some basic functions are provided.  For JavaScript object validation, Joi is used.
+ *
  */
 
 'use strict'
 
-let ValidateArguments = require('validate-arguments')
+let Joi = require('joi')
 
 let Validate = (function() {
 
@@ -49,50 +51,30 @@ let Validate = (function() {
     hasArguments(time.hour)
     hasArguments(time.minute)
 
-    let args = ValidateArguments.validate(time, {
-
-      hour: {
-        isa: 'natural'
-      },
-      minute: {
-        isa: 'natural'
-      }
+    const schema = Joi.object().keys({
+      hour: Joi.number().integer().min(0).max(23).required(),
+      minute: Joi.number().integer().min(0).max(59).required()
     })
 
-    isWithinRange(time.hour, 0, 23)
-    isWithinRange(time.minute, 0, 59)
-
-    if (!args.isValid()) {
-      throw args.errorString()
-    }
+    Joi.validate(time, schema, (err) => {
+      if (err) throw err
+    })
   }
 
   function validateDate(date) {
 
-    hasArguments(date.year)
-    hasArguments(date.month)
-    hasArguments(date.date)
+    hasArguments(date)
 
-    let args = ValidateArguments.validate(date, {
-
-      year: {
-        isa: 'natural'
-      },
-      month: {
-        isa: 'natural'
-      },
-      date: {
-        isa: 'natural'
-      }
+    const schema = Joi.object().keys({
+      year: Joi.number().integer().min(-9999).max(9999).required(),
+      month: Joi.number().integer().min(0).max(11).required(),
+      date: Joi.number().integer().min(1).max(31).required()
     })
 
-    isWithinRange(date.year, 0, 9999)
-    isWithinRange(date.month, 0, 11)
-    isWithinRange(date.date, 1, 31)
+    Joi.validate(date, schema, (err) => {
+      if (err) throw err
+    })
 
-    if (!args.isValid()) {
-      throw args.errorString()
-    }
   }
 
   function validateLatitude(latitude) {

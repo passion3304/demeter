@@ -1,5 +1,5 @@
 let React = require('react')
-let BaseComponent = require('../base-component.react')
+let BaseComponent = require('../js/components/base-component.react.js')
 let classNames = require('classnames')
 
 class OptionPanel extends React.Component {

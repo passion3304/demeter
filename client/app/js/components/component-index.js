@@ -272,11 +272,10 @@ module.exports = {
           name: 'airbrushToggle',
           displayName: 'Airbrush',
           type: 'button',
-          command: 'airbrush',
           reactClass: 'Button',
           classNames: {
             'btn': true,
-            'btn-success': true
+            'btn-primary': true
           },
           icon: {
             'fa-paper-plane-o': true
@@ -293,14 +292,13 @@ module.exports = {
       displayName: 'Primitive options',
       children: [
         {
-          name: 'airbrushToggle',
-          displayName: 'Airbrush',
+          name: 'createCube',         // need to find a way to universally tie subControl and view
+          displayName: 'Create cube',
           type: 'button',
-          command: 'airbrush',
           reactClass: 'Button',
           classNames: {
             'btn': true,
-            'btn-success': true
+            'btn-primary': true
           },
           icon: {
             'fa-cube': true
