@@ -1,7 +1,0 @@
-.module-cache/
-node_modules
-logs
-*.log
-*.project
-.DS_Store
-.idea
