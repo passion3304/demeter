@@ -1,7 +1,7 @@
 var React = require('react');
-var ApplicationActions = require('../../actions/application-actions');
+var ApplicationActions = require('../js/actions/application-actions');
 var classNames = require('classnames');
-var Widgets = require('../widgets/widgets-index');
+var Widgets = require('../js/components/widgets/widgets-index');
 
 var OptionPanel = React.createClass({
 

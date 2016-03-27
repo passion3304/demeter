@@ -1,6 +1,8 @@
 let React = require('react')
-let BaseComponent = require('../js/components/base-component.react.js')
+let BaseComponent = require('../base-component.react')
+let OptionPanels = require('./option-panel-index')
 let classNames = require('classnames')
+let _ = require('lodash')
 
 class OptionPanel extends React.Component {
   constructor(props) {
@@ -16,14 +18,12 @@ class OptionPanel extends React.Component {
       'option-panel': true
     })
 
+    let OptionPanelReactClass = OptionPanels[this.props.componentData.reactSubClass]
+
     return (
-      <div className='option-panel-container'>
-        <div className={OptionPanelStyles}>
-          <h1>{this.props.componentData.displayName}</h1>
-          <div className="option-panel-widgets">
-            {this.props.childComponents}
-          </div>
-        </div>
+      <div className={OptionPanelStyles}>
+        <h1>{this.props.componentData.displayName}</h1>
+        <OptionPanelReactClass />
       </div>
     )
   }

@@ -1,13 +1,13 @@
-var React = require('react');
+const React = require('react')
 
-var ElectrifyOptionsPanel = React.createClass({
-  render: function() {
+class ElectrifyOptionsPanel extends React.Component {
+  render() {
     return (
       <div>
         <p>I'm the Electrify options panel</p>
       </div>
-    );
+    )
   }
-});
+}
 
-module.exports = ElectrifyOptionsPanel;
+export default ElectrifyOptionsPanel

@@ -1,13 +1,13 @@
-var React = require('react');
+const React = require('react')
 
-var EraseOptionsPanel = React.createClass({
-  render: function() {
+class EraseOptionsPanel extends React.Component {
+  render () {
     return (
       <div>
         <p>I'm the Erase options panel</p>
       </div>
-    );
+    )
   }
-});
+}
 
-module.exports = EraseOptionsPanel;
+export default EraseOptionsPanel

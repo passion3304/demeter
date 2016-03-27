@@ -1,7 +1,7 @@
-let Toolbar = require('./toolbar.react.js')
+import Toolbar from './toolbar.react.js'
 import Menu from './menu.react.js'
 import Viewport from './viewport.react'
-import OptionPanel from './../../archived/option-panel.react.js'
+import OptionPanel from './option_panels/option-panel.react.js'
 
 
 module.exports = {

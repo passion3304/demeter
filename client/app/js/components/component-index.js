@@ -266,22 +266,7 @@ module.exports = {
       reactClass: 'OptionPanel',
       reactSubClass: 'PlantOptionsPanel',
       parentCommand: 'plant',
-      displayName: 'Plant options',
-      children: [
-        {
-          name: 'airbrushToggle',
-          displayName: 'Airbrush',
-          type: 'button',
-          reactClass: 'Button',
-          classNames: {
-            'btn': true,
-            'btn-primary': true
-          },
-          icon: {
-            'fa-paper-plane-o': true
-          }
-        }
-      ]
+      displayName: 'Plant options'
     },
     {
       name: 'primitive-options',
@@ -289,22 +274,7 @@ module.exports = {
       reactClass: 'OptionPanel',
       reactSubClass: 'PrimitiveOptionsPanel',
       parentCommand: 'primitive',
-      displayName: 'Primitive options',
-      children: [
-        {
-          name: 'createCube',         // need to find a way to universally tie subControl and view
-          displayName: 'Create cube',
-          type: 'button',
-          reactClass: 'Button',
-          classNames: {
-            'btn': true,
-            'btn-primary': true
-          },
-          icon: {
-            'fa-cube': true
-          }
-        }
-      ]
+      displayName: 'Primitive options'
     },
     {
       name: 'erase-options',
