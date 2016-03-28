@@ -1,8 +1,7 @@
 let React = require('react')
 let ViewportActions = require('../../actions/viewport-actions')
 import TimeServices from '../../lib/time-services'
-import ReactSliderNativeBootstrap from 'react-bootstrap-native-slider'
-let Slider = ReactSliderNativeBootstrap
+import Widgets from './widgets-index'
 import Grid from '../utility/grid'
 
 class TimeLocationSelectors extends React.Component {
@@ -58,7 +57,7 @@ class TimeLocationSelectors extends React.Component {
              Time
           </Grid.Column>
           <Grid.Column large={8}>
-            <Slider
+            <Widgets.Slider
               value={getValue('time')}
               handleChange={changeTimeSliderValue}
               step={5}
@@ -71,7 +70,7 @@ class TimeLocationSelectors extends React.Component {
             Date
           </Grid.Column>
           <Grid.Column large={8}>
-            <Slider
+            <Widgets.Slider
               value={getValue('date')}
               handleChange={changeDateSliderValue}
               step={1}
@@ -84,7 +83,7 @@ class TimeLocationSelectors extends React.Component {
             Latitude
           </Grid.Column>
           <Grid.Column large={8}>
-            <Slider
+            <Widgets.Slider
               value={getValue('latitude')}
               handleChange={changeLatitudeSliderValue}
               step={1}
@@ -97,7 +96,7 @@ class TimeLocationSelectors extends React.Component {
             Longitude
           </Grid.Column>
           <Grid.Column large={8}>
-            <Slider
+            <Widgets.Slider
               value={getValue('longitude')}
               handleChange={changeLongitudeSliderValue}
               step={1}

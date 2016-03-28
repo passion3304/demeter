@@ -1,12 +1,15 @@
 let React = require('react')
 let BaseComponent = require('../base-component.react')
-let OptionPanels = require('./option-panel-index')
+import OptionPanels from './option-panel-index'
 let classNames = require('classnames')
 let _ = require('lodash')
 
 class OptionPanel extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      currentInteractiveSubcommand: false
+    }
   }
 
   render() {
@@ -23,7 +26,21 @@ class OptionPanel extends React.Component {
     return (
       <div className={OptionPanelStyles}>
         <h1>{this.props.componentData.displayName}</h1>
-        <OptionPanelReactClass />
+        <OptionPanelReactClass controls={this.props.componentData.controls} />
+      </div>
+    )
+  }
+}
+
+class SubCommand extends  React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    return (
+      <div>
+        Hi
       </div>
     )
   }

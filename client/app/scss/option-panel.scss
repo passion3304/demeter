@@ -5,13 +5,22 @@
   right: 0px;
   top: $navbar-height;
   width: $option-panel-medium-width;
-  height: 75vh;
+  height: 80vh;
   padding: 10px;
   h1 {
     font-size: 24px;
     text-align: center !important;
   }
+  .option-panel-contents {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: lighten($primary-color, 20%);
+  }
+  .form-group {
+  }
 }
+
+
 
 .panel-show {
   opacity: 1;

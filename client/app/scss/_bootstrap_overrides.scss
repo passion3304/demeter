@@ -20,3 +20,7 @@ $panel-bg: lighten($primary-color, 30%);
   background-color: darken($brand-primary, 15%) !important;
   border-color: darken($btn-primary-bg, 15%) !important;
 }
+
+.nav-tabs li a {
+  outline: none !important;
+}

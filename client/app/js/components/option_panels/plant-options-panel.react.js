@@ -9,6 +9,10 @@ const uuid = require('node-uuid')
 
 class PlantOptionsPanel extends React.Component{
 
+  constructor(props) {
+    super(props)
+  }
+
   render() {
 
 

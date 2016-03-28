@@ -274,7 +274,148 @@ module.exports = {
       reactClass: 'OptionPanel',
       reactSubClass: 'PrimitiveOptionsPanel',
       parentCommand: 'primitive',
-      displayName: 'Primitive options'
+      displayName: 'Primitive options',
+      controls: [
+        {
+          name: 'sphere',
+          parameters: [
+            {
+              name: 'diameter',
+              displayName: 'diameter',
+              defaultValue: 1,
+              type: 'natural'
+            },
+            {
+              name: 'horizontalSegments',
+              displayName: 'horizontal segments',
+              defaultValue: 24,
+              type: 'natural'
+            },
+            {
+              name: 'verticalSegments',
+              displayName: 'vertical segments',
+              defaultValue: 24,
+              type: 'natural'
+            },
+            {
+              name: 'center',
+              displayName: 'center',
+              defaultValue: {
+                x: 0,
+                y: 0,
+                z: 0
+              },
+              type: 'vector3'
+            }
+          ]
+        },
+        {
+          name: 'cube',
+          parameters: [
+            {
+              name: 'width',
+              displayName: 'width',
+              defaultValue: 1,
+              type: 'natural'
+            },
+            {
+              name: 'height',
+              displayName: 'height',
+              defaultValue: 1,
+              type: 'natural'
+            },
+            {
+              name: 'depth',
+              displayName: 'depth',
+              defaultValue: 1,
+              type: 'natural'
+            },
+            {
+              name: 'widthSegments',
+              displayName: 'width segments',
+              defaultValue: 1,
+              type: 'natural'
+            },
+            {
+              name: 'heightSegments',
+              displayName: 'height segments',
+              defaultValue: 1,
+              type: 'natural'
+            },
+            {
+              name: 'depthSegments',
+              displayName: 'depth segments',
+              defaultValue: 1,
+              type: 'natural'
+            },
+            {
+              name: 'center',
+              displayName: 'center',
+              defaultValue: {
+                x: 0,
+                y: 0,
+                z: 0
+              },
+              type: 'vector3'
+            }
+          ]
+        },
+        {
+          name: 'cone',
+          parameters: [
+            {
+              name: 'diameter',
+              displayName: 'diameter',
+              defaultValue: 1,
+              type: 'natural'
+            },
+            {
+              name: 'height',
+              displayName: 'height',
+              defaultValue: 1,
+              type: 'natural'
+            },
+            {
+              name: 'baseSegments',
+              displayName: 'base segments',
+              defaultValue: 24,
+              type: 'natural'
+            },
+            {
+              name: 'heightSegments',
+              displayName: 'height segments',
+              defaultValue: 24,
+              type: 'natural'
+            },
+            {
+              name: 'center',
+              displayName: 'center',
+              defaultValue: {
+                x: 0,
+                y: 0,
+                z: 0
+              },
+              type: 'vector3'
+            }
+          ]
+        }
+      ],
+      controlsOld: [
+        {
+          name: 'cone',
+          parameters: {
+            diameter: 1,
+            height: 1,
+            baseSegments: 12,
+            verticalSegments: 1,
+            center: {
+              x: 0,
+              y: 0,
+              z: 0
+            }
+          }
+        }
+      ]
     },
     {
       name: 'erase-options',

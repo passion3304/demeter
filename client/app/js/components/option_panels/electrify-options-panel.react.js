@@ -1,6 +1,11 @@
 const React = require('react')
 
 class ElectrifyOptionsPanel extends React.Component {
+
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     return (
       <div>
