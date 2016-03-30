@@ -3,6 +3,7 @@ const ApplicationActions = require('../../actions/application-actions')
 const ApplicationStore = require('../../stores/application-store')
 import Widgets from '../widgets/widgets-index'
 const classNames = require('classnames')
+const Validate = require('../../lib/validate')
 const _ = require('lodash')
 
 class PrimitiveOptionsPanel extends React.Component{
@@ -25,7 +26,8 @@ class PrimitiveOptionsPanel extends React.Component{
       control.parameters.map((parameter) => {
         parameters.push({
           name: parameter.name,
-          value: parameter.defaultValue
+          value: parameter.defaultValue,
+          type: parameter.type
         })
       })
 
@@ -38,8 +40,11 @@ class PrimitiveOptionsPanel extends React.Component{
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return true
+  }
+
   render() {
-    let self = this
     let controls = this.props.controls
 
     return (
@@ -49,12 +54,15 @@ class PrimitiveOptionsPanel extends React.Component{
           return (
             <Widgets.Tab key={i} eventKey={i} title={control.name}>
               {control.parameters.map((parameter, j) => {
-                if (parameter.type === 'natural') {
+                if (parameter.type === 'natural' || parameter.type === 'number') {
 
                   return (
                     <Widgets.Input key={j} type="number" name={j} label={parameter.displayName}
-                                   value={self.state.controls[i].parameters[j].value}
-                                   onChange={this.handleParameterChange.bind(this)} />
+                                   value={this.state.controls[i].parameters[j].value}
+                                   onChange={this.handleParameterChange.bind(this)}
+                                   onBlur={this.handleLossOfFocus.bind(this)}
+                                   onKeyDown={this.handleKeyDown.bind(this)}
+                                   />
                   )
                 }
               })}
@@ -74,11 +82,42 @@ class PrimitiveOptionsPanel extends React.Component{
   }
 
   handleParameterChange(event) {
+
+    // doesn't handle the minus symbol that well for specifying negative numbers
+
     let controls = this.state.controls
-    controls[this.state.activeControl].parameters[event.target.name].value = Number(event.target.value)
-    this.setState({
-      controls: controls
-    })
+    let value = event.target.value
+    console.log(value)
+    let type = controls[this.state.activeControl].parameters[event.target.name].type
+
+    if (!value) {
+      controls[this.state.activeControl].parameters[event.target.name].value = 0
+      this.setState({
+        controls: controls
+      })
+    }
+
+    if (value == '-') {
+      console.log('negative')
+    }
+
+
+    if (Validate.validate(type, value)) {
+      controls[this.state.activeControl].parameters[event.target.name].value = Number(value)
+      this.setState({
+        controls: controls
+      })
+    } else {
+      return false
+    }
+  }
+
+  handleLossOfFocus(event) {
+    //console.log('leaving focus')
+  }
+
+  handleKeyDown(event) {  // look into https://github.com/nkbt/react-debounce-input
+    console.log('key press!')
   }
 }
 

@@ -280,10 +280,10 @@ module.exports = {
           name: 'sphere',
           parameters: [
             {
-              name: 'diameter',
-              displayName: 'diameter',
+              name: 'radius',
+              displayName: 'radius',
               defaultValue: 1,
-              type: 'natural'
+              type: 'number'
             },
             {
               name: 'horizontalSegments',
@@ -316,19 +316,19 @@ module.exports = {
               name: 'width',
               displayName: 'width',
               defaultValue: 1,
-              type: 'natural'
+              type: 'number'
             },
             {
               name: 'height',
               displayName: 'height',
               defaultValue: 1,
-              type: 'natural'
+              type: 'number'
             },
             {
               name: 'depth',
               displayName: 'depth',
               defaultValue: 1,
-              type: 'natural'
+              type: 'number'
             },
             {
               name: 'widthSegments',
@@ -364,16 +364,16 @@ module.exports = {
           name: 'cone',
           parameters: [
             {
-              name: 'diameter',
-              displayName: 'diameter',
+              name: 'radius',
+              displayName: 'radius',
               defaultValue: 1,
-              type: 'natural'
+              type: 'number'
             },
             {
               name: 'height',
               displayName: 'height',
               defaultValue: 1,
-              type: 'natural'
+              type: 'number'
             },
             {
               name: 'baseSegments',
@@ -398,22 +398,6 @@ module.exports = {
               type: 'vector3'
             }
           ]
-        }
-      ],
-      controlsOld: [
-        {
-          name: 'cone',
-          parameters: {
-            diameter: 1,
-            height: 1,
-            baseSegments: 12,
-            verticalSegments: 1,
-            center: {
-              x: 0,
-              y: 0,
-              z: 0
-            }
-          }
         }
       ]
     },

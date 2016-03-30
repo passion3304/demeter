@@ -2,6 +2,8 @@
 
 let SunCalc = require('suncalc')
 
+// use validation module for these values
+
 function SunPosition(date, latitude, longitude) {
   let distance = 70
   let sunPosition = SunCalc.getPosition(date, latitude, longitude)

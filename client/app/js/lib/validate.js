@@ -11,7 +11,7 @@
 
 'use strict'
 
-let Joi = require('joi')
+const Joi = require('joi')
 
 let Validate = (function() {
 
@@ -23,6 +23,10 @@ let Validate = (function() {
 
     isNumber: function(arg) {
       return isNumber(arg)
+    },
+
+    validate: function(type, value, range, throwError) {
+      return validate(type, value, range, throwError)
     },
 
     isWithinRange: function(value, min, max) {
@@ -107,6 +111,98 @@ let Validate = (function() {
     } else {
       throw new Error('argument is not a number')
     }
+  }
+
+  /**
+   *
+   * @param type
+   * @param value
+   * @param range (optional)
+   * @param throwErrors (optional)
+   *
+   * This is an abstraction of Joi for validating single values with optional error throwing.  I don't want the
+   * application to crash if a user somehow enters a bad value, but I do want it to crash if something internally
+   * is calling a function with bad arguments
+   *
+   *
+   */
+
+  //To do needs unit tests
+
+  function validate(type, value, range, throwErrors) {
+
+    let valid = false
+
+    const args = {
+      type: type,
+      value: value,
+      range: range,
+      throwErrors: throwErrors
+    }
+
+    const functionSchema = {
+      type: Joi.string().required(),
+      value: Joi.required(),
+      range: Joi.object({
+        min: Joi.number().required(),
+        max: Joi.number().required()
+      }),
+      throwErrors: Joi.boolean()
+    }
+
+    // validate function arguments
+    Joi.validate(args, functionSchema, (err) => {
+      if (err) throw err
+    })
+
+    // validate the value itself according to type and other parameters, throwing errors only if the calling
+    // function specifies
+
+    const inputValue = {
+      value: value
+    }
+
+    let schemaForType = {}
+
+    switch (type) {
+      case 'number':
+        schemaForType = {
+          value: Joi.number()
+        }
+        break
+      case 'integer':
+        schemaForType = {
+          value: Joi.number().integer()
+        }
+        break
+      case 'natural':
+        schemaForType = {
+          value: Joi.number().integer().min(0)
+        }
+        break
+      case 'string':
+        schemaForType = {
+          value: Joi.string()
+        }
+        break
+      default:
+        return
+    }
+
+    Joi.validate(inputValue, schemaForType, (err) => {
+      if (err) {
+        if (throwErrors) {
+          throw err
+        } else {
+          valid = false
+        }
+      } else {
+        valid = true
+      }
+    })
+
+    return valid
+
   }
 
   function isWithinRange(value, min, max) {
