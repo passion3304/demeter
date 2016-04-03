@@ -1,4 +1,5 @@
 const React = require('react')
+const DebounceInput = require('react-debounce-input')
 const ApplicationActions = require('../../actions/application-actions')
 const ApplicationStore = require('../../stores/application-store')
 import Widgets from '../widgets/widgets-index'
@@ -56,12 +57,27 @@ class PrimitiveOptionsPanel extends React.Component{
               {control.parameters.map((parameter, j) => {
                 if (parameter.type === 'natural' || parameter.type === 'number') {
 
+                  let validateState = function (controlIndex, parameterIndex) {
+                    let controls = this.state.controls
+                    let value = Number(controls[controlIndex].parameters[parameterIndex].value)
+                    let type = controls[controlIndex].parameters[parameterIndex].type
+
+                    if (Validate.validate(type, value)) {
+                      return 'success'
+                    } else {
+                      return 'error'
+                    }
+                  }
+
+                  // I don't like how the name prop is really an index -- need to rethink the way the
+                  // state is structured by the structure of the component index
                   return (
-                    <Widgets.Input key={j} type="number" name={j} label={parameter.displayName}
+                    <Widgets.Input key={j} type="number"
+                                   label={parameter.displayName}
+                                   defaultValue={this.state.controls[i].parameters[j].value}
                                    value={this.state.controls[i].parameters[j].value}
-                                   onChange={this.handleParameterChange.bind(this)}
-                                   onBlur={this.handleLossOfFocus.bind(this)}
-                                   onKeyDown={this.handleKeyDown.bind(this)}
+                                   onChange={this.handleParameterChange.bind(this, i, j)}
+                                   bsStyle={validateState.call(this, i, j)}
                                    />
                   )
                 }
@@ -81,43 +97,34 @@ class PrimitiveOptionsPanel extends React.Component{
     })
   }
 
-  handleParameterChange(event) {
-
-    // doesn't handle the minus symbol that well for specifying negative numbers
+  handleParameterChange(controlIndex, parameterIndex, event) {
 
     let controls = this.state.controls
     let value = event.target.value
-    console.log(value)
-    let type = controls[this.state.activeControl].parameters[event.target.name].type
+    let type = controls[controlIndex].parameters[parameterIndex].type
+    controls[controlIndex].parameters[parameterIndex].value = value
 
-    if (!value) {
-      controls[this.state.activeControl].parameters[event.target.name].value = 0
-      this.setState({
-        controls: controls
-      })
-    }
+    this.setState({
+      controls: controls
+    })
 
-    if (value == '-') {
-      console.log('negative')
-    }
+    // not trying to debounce input or control this element anymore
+    // instead just validate and only send to object creation THREE related methods when state values are valid
+    // otherwise display red in input and just leave the object alone
+
+    //setTimeout(() => {
+    //  if (!value) {
+    //    controls[this.state.activeControl].parameters[event.target.name].value = 0
+    //  } else if (Validate.validate(type, value)) {
+    //    controls[this.state.activeControl].parameters[event.target.name].value = Number(value)
+    //  }
+    //  this.setState({
+    //    controls: controls
+    //  })
+    //}, 1000)
 
 
-    if (Validate.validate(type, value)) {
-      controls[this.state.activeControl].parameters[event.target.name].value = Number(value)
-      this.setState({
-        controls: controls
-      })
-    } else {
-      return false
-    }
-  }
 
-  handleLossOfFocus(event) {
-    //console.log('leaving focus')
-  }
-
-  handleKeyDown(event) {  // look into https://github.com/nkbt/react-debounce-input
-    console.log('key press!')
   }
 }
 
