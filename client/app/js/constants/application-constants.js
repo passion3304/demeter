@@ -4,7 +4,9 @@ module.exports = keyMirror({
 
   START_APP: null,
 
-  CLICK: null
+  CLICK: null,
+
+  ADJUST_COMMAND: null
 
 
 })

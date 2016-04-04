@@ -23,6 +23,7 @@ let ViewportStore = Object.assign({}, EventEmitter.prototype, {
         scale: {}
       }
     },
+    guideObject: false,
     time: {
       hour: 11,
       minute: 30
@@ -81,6 +82,10 @@ let ViewportStore = Object.assign({}, EventEmitter.prototype, {
     return this.state.scene.objects
   },
 
+  getGuideObject: function() {
+    return this.state.guideObject
+  },
+
   getCurrentTime: function() {
     return this.state.time
   },
@@ -116,7 +121,12 @@ let createObject = (objectData) => {      // seems like this should go in anothe
       intersection: intersection
     })
   }
-  ViewportStore.state.scene.objects.push(objectData)
+
+  if (objectData.type === 'guide') {
+    ViewportStore.state.guideObject = objectData
+  } else {
+    ViewportStore.state.scene.objects.push(objectData)
+  }
   ViewportStore.emitChange()
 }
 

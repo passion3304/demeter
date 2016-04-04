@@ -26,7 +26,7 @@ class OptionPanel extends React.Component {
     return (
       <div className={OptionPanelStyles}>
         <h1>{this.props.componentData.displayName}</h1>
-        <OptionPanelReactClass controls={this.props.componentData.controls} />
+        <OptionPanelReactClass componentData={this.props.componentData} />
       </div>
     )
   }

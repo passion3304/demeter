@@ -5,6 +5,9 @@ let Renderer = ReactTHREE.Renderer
 let Scene = ReactTHREE.Scene
 let PerspectiveCamera = ReactTHREE.PerspectiveCamera
 let Mesh = ReactTHREE.Mesh
+let Object3D = ReactTHREE.Object3D
+let Line = ReactTHREE.Line
+let SkinnedMesh = ReactTHREE.SkinnedMesh
 let AmbientLight = ReactTHREE.AmbientLight
 let PointLight = ReactTHREE.PointLight
 let OrbitControls = require('three-orbit-controls')(THREE)
@@ -15,6 +18,7 @@ import OrbitalCamera from '../scene_objects/orbital-camera.react'
 import GroundPlane from '../scene_objects/ground-plane.react'
 import Sky from '../scene_objects/sky.react'
 import Sun from '../scene_objects/sun.react'
+import MouseIntersectionPlane from '../scene_objects/mouse-intersection-plane'
 import TimeLocationSelectors from './widgets/time-location-selectors.react'
 import TimeServices from '../lib/time-services'
 import BaseComponent from './base-component.react'
@@ -30,6 +34,7 @@ class Viewport extends React.Component {
       height: 600,
       width: 600,
       sceneObjects: ViewportStore.getSceneObjects(),
+      guideObject: ViewportStore.getGuideObject(),
       time: ViewportStore.getCurrentTime(),
       date: ViewportStore.getCurrentDate(),
       latitude: ViewportStore.getLatitude(),
@@ -53,6 +58,7 @@ class Viewport extends React.Component {
     ViewportStore.addChangeListener(() => {
       this.setState({
         sceneObjects: ViewportStore.getSceneObjects(),
+        guideObject: ViewportStore.getGuideObject(),
         time: ViewportStore.getCurrentTime(),
         date: ViewportStore.getCurrentDate(),
         latitude: ViewportStore.getLatitude(),
@@ -115,7 +121,19 @@ class Viewport extends React.Component {
     })
   }
 
-
+  guideObject() {
+    if (!this.state.guideObject) {
+      return null
+    } else {
+      return (
+        <Mesh position={this.state.guideObject.position}
+              material={this.state.guideObject.material}
+              geometry={this.state.guideObject.geometry}
+              //onMouseDown3D={this.state.guideObject.handleClick}
+              />
+      )
+    }
+  }
 
 
   render() {
@@ -144,8 +162,14 @@ class Viewport extends React.Component {
       }
     }
 
+    let handleClick = (e) => {
+      console.log('clicking the viewport')
+    }
+
     return (
-      <div className="viewport" ref={ (ref) => this.viewportRef = ref }>
+      <div className="viewport"
+           ref={ (ref) => this.viewportRef = ref }
+           onClick={handleClick.bind(this)}>
         <div>Current time: {TimeServices.formattedTime(this.state.time)}</div>
         <div>Current date: {TimeServices.formattedDate(this.state.date)}</div>
         <div>Latitude: {this.state.latitude}</div>
@@ -166,6 +190,8 @@ class Viewport extends React.Component {
                  >
             <OrbitalCamera name="maincamera" {...cameraProps} />
             {this.sceneGeometry()}
+            {this.guideObject()}
+            <MouseIntersectionPlane />
             <GroundPlane metaKey={this.state.metaKey} receiveShadow={true} id={uuid.v1()}
             />
             <Sky />

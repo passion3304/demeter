@@ -13,7 +13,8 @@ let ApplicationStore = Object.assign({}, EventEmitter.prototype, {
   state: {
     settings: {},
     loaded: false,
-    currentInteractiveCommand: false
+    currentInteractiveCommand: false,
+    commandSettings: {}
   },
 
   ui: {},
@@ -46,6 +47,12 @@ let ApplicationStore = Object.assign({}, EventEmitter.prototype, {
             ApplicationStore.emitChange()
           })
         break
+      case ApplicationConstants.ADJUST_COMMAND:
+        ApplicationStore.ui.adjustCommand(action)
+          .then((newState) => {
+            _.assign(ApplicationStore.state, newState)
+            ApplicationStore.emitChange()
+          })
       default:
       //no op
     }
@@ -60,6 +67,14 @@ let ApplicationStore = Object.assign({}, EventEmitter.prototype, {
   getCurrentInteractiveCommand: function() {
     if (this.state.currentInteractiveCommand.name) {
       return this.state.currentInteractiveCommand.name
+    } else {
+      return false
+    }
+  },
+
+  getCommandSettings: (commandName) => {
+    if (typeof this.state.commandSettings[commandName] !== 'undefined') {
+      return this.state.commandSettings[commandName]
     } else {
       return false
     }

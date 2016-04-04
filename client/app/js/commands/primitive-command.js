@@ -12,18 +12,18 @@ var primitiveCommand = function() {
     },
 
     handleClick: function(action) {
-      //setTimeout(() => {    // terrible, terrible hack
-      //  ViewportActions.createObject({
-      //    objectData: {
-      //      position: new THREE.Vector3(action.intersection.point.x,
-      //        0,
-      //        action.intersection.point.z),
-      //      material: new THREE.MeshLambertMaterial({color: 0x0000ff}),
-      //      geometry: new THREE.BoxGeometry( 1, 5, 1 ),
-      //      type: 'plant'
-      //    }
-      //  })
-      //}, 1)
+      setTimeout(() => {    // terrible, terrible hack
+        ViewportActions.createObject({
+          objectData: {
+            position: new THREE.Vector3(action.intersection.point.x,
+                                        action.intersection.point.y,
+                                        action.intersection.point.z),
+            material: new THREE.MeshBasicMaterial({color: 0x880000, wireframe: true}),
+            geometry: new THREE.BoxGeometry( 1, 1, 1 ),
+            type: 'guide'
+          }
+        })
+      }, 1)
 
     }
   }

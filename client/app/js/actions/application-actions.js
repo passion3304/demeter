@@ -16,6 +16,14 @@ var ApplicationActions = {
       viewport: data.viewport,
       intersection: data.intersection
     })
+  },
+
+  adjustCommand: function(data) {
+    AppDispatcher.dispatch({
+      actionType: ApplicationConstants.ADJUST_COMMAND,
+      command: data.command,
+      newSettings: data.newSettings
+    })
   }
 }
 

@@ -14,7 +14,7 @@ class PrimitiveOptionsPanel extends React.Component{
 
     let controls = []
 
-    this.props.controls.map((control) => {
+    this.props.componentData.controls.map((control) => {
       controls.push({
         name: control.name,
         parameters: initializeParameters(control)
@@ -35,6 +35,8 @@ class PrimitiveOptionsPanel extends React.Component{
       return parameters
     }
 
+
+
     this.state = {
       activeControl: 0,
       controls: controls
@@ -46,7 +48,7 @@ class PrimitiveOptionsPanel extends React.Component{
   }
 
   render() {
-    let controls = this.props.controls
+    let controls = this.props.componentData.controls
 
     return (
       <Widgets.Well className="option-panel-contents">
@@ -57,15 +59,47 @@ class PrimitiveOptionsPanel extends React.Component{
               {control.parameters.map((parameter, j) => {
                 if (parameter.type === 'natural' || parameter.type === 'number') {
 
-                  let validateState = function (controlIndex, parameterIndex) {
+                  let validateState = function(controlIndex, parameterIndex) {
                     let controls = this.state.controls
                     let value = Number(controls[controlIndex].parameters[parameterIndex].value)
                     let type = controls[controlIndex].parameters[parameterIndex].type
 
                     if (Validate.validate(type, value)) {
-                      return 'success'
+                      return true
                     } else {
-                      return 'error'
+                      return false
+                    }
+                  }
+
+                  let handleParameterChange = function(controlIndex, parameterIndex, event) {
+                    let controls = this.state.controls
+                    let value = event.target.value
+                    controls[controlIndex].parameters[parameterIndex].value = value
+
+                    this.setState({
+                      controls: controls
+                    })
+
+                    if (validateState.call(this, controlIndex, parameterIndex)) {
+                      ApplicationActions.adjustCommand({
+                        command: 'primitive',
+                        newSettings: controls
+                      })
+                    }
+                  }
+
+                  let handleBlur = function(controlIndex, parameterIndex, event) {
+                    let controls = this.state.controls
+                    let value = event.target.value
+                    let defaultValue =
+                      this.props.componentData.controls[controlIndex].parameters[parameterIndex].defaultValue
+                    let type = controls[controlIndex].parameters[parameterIndex].type
+
+                    if (!Validate.validate(type, value)) {
+                      controls[controlIndex].parameters[parameterIndex].value = defaultValue
+                      this.setState({
+                        controls: controls
+                      })
                     }
                   }
 
@@ -76,8 +110,9 @@ class PrimitiveOptionsPanel extends React.Component{
                                    label={parameter.displayName}
                                    defaultValue={this.state.controls[i].parameters[j].value}
                                    value={this.state.controls[i].parameters[j].value}
-                                   onChange={this.handleParameterChange.bind(this, i, j)}
-                                   bsStyle={validateState.call(this, i, j)}
+                                   onChange={handleParameterChange.bind(this, i, j)}
+                                   onBlur={handleBlur.bind(this, i, j)}
+                                   bsStyle={validateState.call(this, i, j) ? null : 'error'}
                                    />
                   )
                 }
@@ -92,39 +127,15 @@ class PrimitiveOptionsPanel extends React.Component{
   }
 
   handleControlSelection(eventKey) {
+    /**
+     * this is where the guide object will be switched
+     *
+     * if, that is, the user has created that guide object
+     */
+
     this.setState({
       activeControl: eventKey
     })
-  }
-
-  handleParameterChange(controlIndex, parameterIndex, event) {
-
-    let controls = this.state.controls
-    let value = event.target.value
-    let type = controls[controlIndex].parameters[parameterIndex].type
-    controls[controlIndex].parameters[parameterIndex].value = value
-
-    this.setState({
-      controls: controls
-    })
-
-    // not trying to debounce input or control this element anymore
-    // instead just validate and only send to object creation THREE related methods when state values are valid
-    // otherwise display red in input and just leave the object alone
-
-    //setTimeout(() => {
-    //  if (!value) {
-    //    controls[this.state.activeControl].parameters[event.target.name].value = 0
-    //  } else if (Validate.validate(type, value)) {
-    //    controls[this.state.activeControl].parameters[event.target.name].value = Number(value)
-    //  }
-    //  this.setState({
-    //    controls: controls
-    //  })
-    //}, 1000)
-
-
-
   }
 }
 

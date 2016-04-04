@@ -24,6 +24,7 @@ export default class {
     this.state.containerComponents = []
     this.state.components = initializeComponents(components, this.state.containerComponents)
     this.state.currentInteractiveCommand = 'none'
+    this.state.commandSettings = {}
   }
 
   getCommands() {
@@ -80,6 +81,16 @@ export default class {
     
     return deferred.promise
   }
+
+  adjustCommand(action) {
+    let deferred = q.defer()
+
+    _.assign(this.state.commandSettings[action.command], action.newSettings)
+    deferred.resolve({ commandSettings: this.state.commandSettings })
+
+    return deferred.promise
+  }
+
 }
 
 function initializeCommands(commands) {
