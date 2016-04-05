@@ -163,7 +163,7 @@ class Viewport extends React.Component {
     }
 
     let handleClick = (e) => {
-      console.log('clicking the viewport')
+      console.log(ApplicationStore.getCommandSettings('primitive'))
     }
 
     return (
@@ -191,7 +191,6 @@ class Viewport extends React.Component {
             <OrbitalCamera name="maincamera" {...cameraProps} />
             {this.sceneGeometry()}
             {this.guideObject()}
-            <MouseIntersectionPlane />
             <GroundPlane metaKey={this.state.metaKey} receiveShadow={true} id={uuid.v1()}
             />
             <Sky />

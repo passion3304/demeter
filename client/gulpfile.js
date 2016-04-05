@@ -83,7 +83,7 @@ var runBrowserifyTask = function(options) {
         console.log(err)
       })
     .pipe(source('bundle.js'))
-    .pipe(gulpif(options.uglify, streamify(uglify())))
+    //.pipe(gulpif(options.uglify, streamify(uglify())))
     .pipe(rename('app.js'))
     .pipe(gulp.dest(options.dest));
   }
@@ -95,11 +95,10 @@ var runBrowserifyTask = function(options) {
 
   vendorBundler.bundle()
   .pipe(source('vendors.js'))
-  .pipe(streamify((uglify())))
+  //.pipe(streamify((uglify())))
   .pipe(gulp.dest(options.dest));
 
   return rebundle();
-
 }
 
 gulp.task('sass', function () {
@@ -117,7 +116,7 @@ gulp.task('copy', function() {
 });
 
 
-gulp.task('jest', function () {
+gulp.task('jest', function() {
   return gulp.src('__tests__').pipe(jest({
     scriptPreprocessor: '../node_modules/babel-jest',
     unmockedModulePathPatterns: [
@@ -125,6 +124,11 @@ gulp.task('jest', function () {
 
     ]
   }));
+});
+
+gulp.task('react-three', function() {
+  gulp.src('./app/js/lib/react-three/es5/*.js')
+    .pipe(gulp.dest('./node_modules/react-three/es5/'))
 });
 
 

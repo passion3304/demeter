@@ -64,17 +64,17 @@ let ApplicationStore = Object.assign({}, EventEmitter.prototype, {
     return this.state.loaded
   },
 
-  getCurrentInteractiveCommand: function() {
-    if (this.state.currentInteractiveCommand.name) {
-      return this.state.currentInteractiveCommand.name
+  getCommandSettings: function(commandName) {
+    if (typeof this.state.commandSettings[commandName] !== 'undefined') {
+        return this.state.commandSettings[commandName]
     } else {
       return false
     }
   },
 
-  getCommandSettings: (commandName) => {
-    if (typeof this.state.commandSettings[commandName] !== 'undefined') {
-      return this.state.commandSettings[commandName]
+  getCurrentInteractiveCommand: function() {
+    if (this.state.currentInteractiveCommand.name) {
+      return this.state.currentInteractiveCommand.name
     } else {
       return false
     }

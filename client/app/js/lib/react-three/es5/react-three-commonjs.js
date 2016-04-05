@@ -13769,6 +13769,7 @@ module.exports =
 	  },
 
 	  projectPointerEvent: function projectPointerEvent(event, eventName, canvas) {
+
 	    event.preventDefault();
 	    var rect = canvas.getBoundingClientRect();
 
@@ -13787,6 +13788,11 @@ module.exports =
 
 	    mousecoords.unproject(camera);
 	    raycaster.ray.set(camera.position, mousecoords.sub(camera.position).normalize());
+
+	    // my additions for getting 2d -> 3d mouse stuff work
+	    var dir = mousecoords.sub(camera.position).normalize();
+	    var distance = -camera.position.z / dir.z;
+	    var pos = camera.position.clone().add(dir.multiplyScalar(distance));
 
 	    var intersections = raycaster.intersectObjects(this._THREEObject3D.children, true);
 	    var firstintersection = intersections.length > 0 ? intersections[0] : null;
