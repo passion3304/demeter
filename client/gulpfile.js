@@ -38,7 +38,6 @@ var runBrowserifyTask = function(options) {
     'three',
     'react-three',
     'three-orbit-controls',
-    'three.trackball',
     'flux',
     'lodash',
     'q',
