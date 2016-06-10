@@ -1,7 +1,0 @@
-/client/coverage
-/client/__inactive_tests__
-/client/dist
-/client/node_modules
-/dev
-.idea
-.gitignore
