@@ -12,5 +12,6 @@ Clone or download the repo, then:
 2. `npm install`
 3. `gulp`
 
+*Requires browser WebGL support and may not work in Safari.  Try refreshing the browser window/tab if at first you see nothing.*
+
 Use standard click, drag and scrollwheel operations to navigate the 3D space.
-While a tool is selected using the toolbar to the left, hold down the **Alt/Opt** in addition to clicking, dragging or scrolling.
