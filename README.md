@@ -1,6 +1,6 @@
 # Demeter - WIP
 
-This is an attempt to build a large React application using serialized components.
+This is an attempt to build an easily extensible React application using serialized components.
 
 It's also a chance to play with THREE.js, using React-THREE to bind the two.
 
