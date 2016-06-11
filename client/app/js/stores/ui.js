@@ -85,13 +85,18 @@ export default class {
   adjustCommand(action) {
     let deferred = q.defer()
 
-    _.assign(this.state.commandSettings[action.command], action.newSettings)
+    // if there is currently a guide object, adjust that.  It lives in Viewport, so update it there?
+    // no wait, this controller shouldn't dictate how Viewport gets updated, or should it??
+
+    this.state.commandSettings[action.command] = action.newSettings
     deferred.resolve({ commandSettings: this.state.commandSettings })
 
     return deferred.promise
   }
 
 }
+
+// where should command settings be initialized?
 
 function initializeCommands(commands) {
 
@@ -253,11 +258,12 @@ function toggleActiveState(component, state) {
 }
 
 function clickViewport(action, state) {
+  // maybe use parameter validation here instead of a bunch of conditionals
   if (state.currentInteractiveCommand === 'none') {
     return
   } else {
     if (typeof state.currentInteractiveCommand.handleClick === 'undefined') {
-      throw new Error('command is missing handleClick function')
+      throw new Error('command is missing handleClick function')      // replace this with the new validation
     } else {
       state.currentInteractiveCommand.handleClick(action)
     }

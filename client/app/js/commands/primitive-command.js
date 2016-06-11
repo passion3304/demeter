@@ -1,20 +1,22 @@
 const THREE = require('three')
 const ViewportActions = require('../actions/viewport-actions')
-let ApplicationStore = require('../stores/application-store')
 
-var primitiveCommand = function() {
+let primitiveCommand = () => {
   return {
-    activate: function() {
+    activate: () => {
 
     },
 
-    deactivate: function() {
+    deactivate: () => {
 
     },
 
-    handleClick: function(action) {
+    handleClick: (action) => {
 
+      // not sure why this needs to go here. If I require at the top outside of this scope,
+      // the object is empty.  Maybe it's not initialized yet?
 
+      let ApplicationStore = require('../stores/application-store')
 
       if (/* === 'guide' && typeof action.objectData.shape !== 'undefined'*/true) {
         switch(action.shape) {
@@ -57,6 +59,6 @@ var primitiveCommand = function() {
 
     }
   }
-};
+}
 
-module.exports = primitiveCommand();
+module.exports = primitiveCommand()

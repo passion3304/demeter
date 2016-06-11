@@ -43,6 +43,14 @@ class PrimitiveOptionsPanel extends React.Component{
     }
   }
 
+  componentDidMount() {
+    setTimeout(() => {
+      ApplicationActions.adjustCommand({
+        primitive: this.state.controls
+      })
+    }, 1)
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     return true
   }
@@ -83,7 +91,8 @@ class PrimitiveOptionsPanel extends React.Component{
                     if (validateState.call(this, controlIndex, parameterIndex)) {
                       ApplicationActions.adjustCommand({
                         command: 'primitive',
-                        newSettings: controls
+                        newSettings: controls,
+                        activeControl: this.state.activeControl       // I don't like that this is an index
                       })
                     }
                   }

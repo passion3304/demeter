@@ -64,12 +64,9 @@ let ApplicationStore = Object.assign({}, EventEmitter.prototype, {
     return this.state.loaded
   },
 
-  getCommandSettings: function(commandName) {
-    if (typeof this.state.commandSettings[commandName] !== 'undefined') {
-        return this.state.commandSettings[commandName]
-    } else {
-      return false
-    }
+  getCommandSettings: function() {
+    // maybe do validation here?
+    return this.state.commandSettings
   },
 
   getCurrentInteractiveCommand: function() {

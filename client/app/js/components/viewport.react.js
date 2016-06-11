@@ -13,14 +13,16 @@ let PointLight = ReactTHREE.PointLight
 let OrbitControls = require('three-orbit-controls')(THREE)
 let uuid = require('node-uuid')
 let ViewportStore = require('../stores/viewport-store')
+let ApplicationActions = require('../actions/application-actions')
 let ApplicationStore = require('../stores/application-store')
 import OrbitalCamera from '../scene_objects/orbital-camera.react'
 import GroundPlane from '../scene_objects/ground-plane.react'
 import Sky from '../scene_objects/sky.react'
 import Sun from '../scene_objects/sun.react'
-import MouseIntersectionPlane from '../scene_objects/mouse-intersection-plane'
+//import MouseIntersectionPlane from '../scene_objects/mouse-intersection-plane'
 import TimeLocationSelectors from './widgets/time-location-selectors.react'
 import TimeServices from '../lib/time-services'
+import Grid from './utility/grid'
 import BaseComponent from './base-component.react'
 
 
@@ -30,6 +32,7 @@ class Viewport extends React.Component {
     super(props)
     this.state = {
       currentInteractiveCommand: ApplicationStore.getCurrentInteractiveCommand(),
+      commandSettings: ApplicationStore.getCommandSettings(),
       metaKey: false,
       height: 600,
       width: 600,
@@ -53,6 +56,12 @@ class Viewport extends React.Component {
     this.setState({
       width: this.viewportRef.offsetWidth,
       height: this.viewportRef.offsetHeight
+    })
+    
+    ApplicationStore.addChangeListener(() => {
+      this.setState({
+        commandSettings: ApplicationStore.getCommandSettings()
+      })
     })
 
     ViewportStore.addChangeListener(() => {
@@ -162,53 +171,72 @@ class Viewport extends React.Component {
       }
     }
 
-    let handleClick = (e) => {
-      console.log(ApplicationStore.getCommandSettings('primitive'))
-    }
 
+    /**
+     * don't really need this here?
+     */
+    
+    // this overrides the handleClick() method in BaseComponent
+    // let handleClick = (event) => {
+    //   // event.target === 'canvas'
+    //   event.stopPropagation()
+    //   ApplicationActions.click({
+    //     viewport: true,
+    //   })
+    // }
+
+    // it might be a problem to put onClick in a div rather than react component
     return (
-      <div className="viewport"
-           ref={ (ref) => this.viewportRef = ref }
-           onClick={handleClick.bind(this)}>
-        <div>Current time: {TimeServices.formattedTime(this.state.time)}</div>
-        <div>Current date: {TimeServices.formattedDate(this.state.date)}</div>
-        <div>Latitude: {this.state.latitude}</div>
-        <div>Longitude: {this.state.longitude}</div>
-        <Renderer
-            lockCamera={shouldCameraLock()}
-            width={this.state.width}
-            height={this.state.height}
-            background={0x3366ff}
-            cameraData={receiveCameraData}
-            shadowMapEnabled={true}
-            >
-          <Scene
-                 width={this.state.width} height={this.state.height}
-                 camera="maincamera"
-                 orbitControls={OrbitControls}
-                 pointerEvents={['onMouseDown', 'onMouseMove']}
-                 >
-            <OrbitalCamera name="maincamera" {...cameraProps} />
-            {this.sceneGeometry()}
-            {this.guideObject()}
-            <GroundPlane metaKey={this.state.metaKey} receiveShadow={true} id={uuid.v1()}
-            />
-            <Sky />
-            <Sun time={this.state.time}
-                 date={this.state.date}
-                 latitude={this.state.latitude}
-                 longitude={this.state.longitude}
-            />
+      <Grid.Container className="viewport-container">
+        <Grid.Row>
+          <div>Current time: {TimeServices.formattedTime(this.state.time)}</div>
+          <div>Current date: {TimeServices.formattedDate(this.state.date)}</div>
+          <div>Latitude: {this.state.latitude}</div>
+          <div>Longitude: {this.state.longitude}</div>
+        </Grid.Row>
+        <Grid.Row>
+          <div className="viewport"
+               ref={ (ref) => this.viewportRef = ref }
+               >
+            <Renderer
+                lockCamera={shouldCameraLock()}
+                width={this.state.width}
+                height={this.state.height}
+                background={0x3366ff}
+                cameraData={receiveCameraData}
+                shadowMapEnabled={true}
+                >
+              <Scene
+                     width={this.state.width} height={this.state.height}
+                     camera="maincamera"
+                     orbitControls={OrbitControls}
+                     pointerEvents={['onMouseDown', 'onMouseMove']}
+                     >
+                <OrbitalCamera name="maincamera" {...cameraProps} />
+                {this.sceneGeometry()}
+                {this.guideObject()}
+                <GroundPlane metaKey={this.state.metaKey} receiveShadow={true} id={uuid.v1()}
+                />
+                <Sky />
+                <Sun time={this.state.time}
+                     date={this.state.date}
+                     latitude={this.state.latitude}
+                     longitude={this.state.longitude}
+                />
 
 
-          </Scene>
-        </Renderer>
-        <TimeLocationSelectors time={TimeServices.getMinutesSinceMidnight(this.state.time)}
-                               date={TimeServices.getDaysSinceNewYear(this.state.date)}
-                               latitude={this.state.latitude}
-                               longitude={this.state.longitude}
-        />
-      </div>
+              </Scene>
+            </Renderer>
+          </div>
+        </Grid.Row>
+        <Grid.Row>
+          <TimeLocationSelectors time={TimeServices.getMinutesSinceMidnight(this.state.time)}
+                                 date={TimeServices.getDaysSinceNewYear(this.state.date)}
+                                 latitude={this.state.latitude}
+                                 longitude={this.state.longitude}
+          />
+        </Grid.Row>
+      </Grid.Container>
     )
   }
 

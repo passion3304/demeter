@@ -1,6 +1,6 @@
-let ReactGrid = require('react-bootstrap-grid')
+const ReactGrid = require('react-bootstrap-grid')
 
-let Grid = {
+const Grid = {
   Container:    ReactGrid.Container,
   Row:          ReactGrid.Row,
   Column:       ReactGrid.Column,

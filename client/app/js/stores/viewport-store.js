@@ -23,7 +23,7 @@ let ViewportStore = Object.assign({}, EventEmitter.prototype, {
         scale: {}
       }
     },
-    guideObject: false,
+    guideObject: false,   // this is either an object or false (?)
     time: {
       hour: 11,
       minute: 30
@@ -122,7 +122,10 @@ let createObject = (objectData) => {      // seems like this should go in anothe
     })
   }
 
-  if (objectData.type === 'guide') {
+  if (objectData.type === 'guide') {      // it looks like the policy to only have one guide object is enforced here, among other places
+    
+    // mutate objectData to add in size (and position?) from tool settings
+    // _.assign(objectData, {})
     ViewportStore.state.guideObject = objectData
   } else {
     ViewportStore.state.scene.objects.push(objectData)
