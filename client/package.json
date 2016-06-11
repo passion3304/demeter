@@ -1,9 +1,9 @@
 {
   "name": "demeter-client",
   "version": "1.0.0",
-  "description": "",
+  "description": "React app with THREE.js 3D components.",
   "main": "app.js",
-  "author": "",
+  "author": "Wyatt Lindsey",
   "license": "ISC",
   "devDependencies": {
     "babel-jest": "^9.0.3",
@@ -51,7 +51,7 @@
     "react-bootstrap-native-slider": "^1.1.1",
     "react-debounce-input": "^2.2.0",
     "react-dom": "^0.14.2",
-    "react-three": "^0.7.5",
+    "react-three": "^0.8.0",
     "schema-inspector": "^1.6.4",
     "suncalc": "^1.7.0",
     "three": "^0.72.0",
